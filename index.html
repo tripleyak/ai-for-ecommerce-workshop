@@ -1059,7 +1059,7 @@
     <p>Before installing either AI CLI, you need a few developer tools on your Mac. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~15 minutes</span></p>
 
     <div class="callout warn" style="margin-bottom: 20px;">
-      <strong>Video walkthrough coming soon.</strong> Jack will record a step-by-step screen recording walking through this entire setup process. Check back here before May 25 for the link.
+      <strong>Setup help is available.</strong> If you get stuck, book a setup call from the help bar at the bottom of this page and bring the exact error message with you.
     </div>
 
     <details style="margin-bottom: 20px;">
@@ -1105,6 +1105,14 @@ node --version
 brew install node
 
 <span class="comment"># Or download from: https://nodejs.org</span></code></pre>
+    </div>
+
+    <h3>Python 3.12+</h3>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="comment"># SignalSweep requires Python 3.12 or newer</span>
+HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12
+python3.12 --version</code></pre>
     </div>
 
     <h3>GitHub CLI</h3>
@@ -1191,11 +1199,30 @@ claude auth login    <span class="comment"># Opens browser — sign in with Clau
     <details>
       <summary>3.3 &mdash; Install Skills</summary>
       <div class="detail-body">
-        <p><strong>last30days</strong> (agentic research across 150+ sources):</p>
+        <p><strong>SignalSweep</strong> (public workshop research skill across 150+ sources):</p>
         <div class="code-wrap">
-          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-          <pre><code>/plugin install last30days@last30days-skill</code></pre>
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code><span class="comment"># Run in your regular terminal, NOT inside Claude Code</span>
+set -e
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12
+mkdir -p ~/.claude/skills ~/.codex/skills
+curl -L --fail -o /tmp/signalsweep-open.skill \
+  https://github.com/tripleyak/signalsweep-open/releases/download/v3.28.3/signalsweep-open.skill
+shasum -a 256 /tmp/signalsweep-open.skill
+unzip -q -o /tmp/signalsweep-open.skill -d ~/.claude/skills
+unzip -q -o /tmp/signalsweep-open.skill -d ~/.codex/skills
+SIGNALSWEEP_PYTHON="$(command -v python3.13 || command -v python3.12 || command -v python3)"
+"$SIGNALSWEEP_PYTHON" - &lt;&lt;'PY'
+import sys
+if sys.version_info &lt; (3, 12):
+    raise SystemExit("SignalSweep needs Python 3.12+. Run: brew install python@3.12")
+print(f"Using Python {sys.version.split()[0]}")
+PY
+"$SIGNALSWEEP_PYTHON" ~/.claude/skills/signalsweep/scripts/signalsweep.py setup --free-public-keys --write-template
+chmod 600 ~/.config/signalsweep/.env</code></pre>
         </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">The checksum should be <code>15a066b1b38b8f7bbc516c40a85540a5ed8f6fa2b089efc5f2cf90dcca720524</code>. Restart Claude Code and Codex after installing, then run <code>/signalsweep pickleball paddle grip sweaty hands</code>.</p>
 
         <p><strong>grill-with-docs & grill-me</strong> (stress-test plans and designs — <a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a>):</p>
         <div class="code-wrap">
@@ -1217,6 +1244,14 @@ git clone https://github.com/jthack/claude-goal.git
 cd claude-goal
 ./install.sh</code></pre>
         </div>
+
+        <p><strong>SkillForge</strong> (turn repeatable ecommerce workflows into reusable AI skills):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code><span class="comment"># Run in your regular terminal</span>
+curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/install_workshop.sh | bash</code></pre>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">This installs SkillForge for Claude Code and Codex, adds the Claude Code <code>/skillforge</code> command, configures balanced proactive suggestions, and verifies the install.</p>
 
         <div class="callout tip">Restart Claude Code after installing all skills.</div>
       </div>
@@ -1303,7 +1338,7 @@ cd claude-goal
           <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
           <pre><code>What plugins, skills, and MCP servers do I have installed?</code></pre>
         </div>
-        <p>You should see: compound-engineering, Vercel, last30days, grill-me, grill-with-docs, goal, Excalidraw MCP, Playwright MCP, and Claude in Chrome listed.</p>
+        <p>You should see: compound-engineering, Vercel, SignalSweep, grill-me, grill-with-docs, goal, Excalidraw MCP, Playwright MCP, and Claude in Chrome listed.</p>
       </div>
     </details>
   </div>
@@ -1587,7 +1622,7 @@ cd everlearn</code></pre>
     </div>
 
     <h3>2. Install The Ecommerce Profile</h3>
-    <p>This creates <code>~/Everlearn Vault</code>, installs the Everlearn skill for Claude Code and Codex, and adds a local <code>everlearn</code> command.</p>
+    <p>This creates <code>~/Everlearn Vault</code>, installs the Everlearn skill for Claude Code and Codex, adds a local <code>everlearn</code> command, and installs a Claude Code <code>/everlearn</code> command.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>./scripts/setup.sh --profile ecommerce
@@ -1610,7 +1645,12 @@ cd everlearn</code></pre>
     <div class="step"><span class="step-num">3</span><div class="step-body"><p>Select <code>~/Everlearn Vault</code></p></div></div>
 
     <h3>5. Use It From Claude Code Or Codex</h3>
-    <p>After setup, restart Claude Code or Codex so the new skill loads. Then use prompts like these:</p>
+    <p>After setup, restart Claude Code or Codex so the new skill loads. In Claude Code, you can use the slash command:</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag prompt">Claude Code</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>/everlearn signal Customers keep asking whether the starter bundle includes replacement filters.</code></pre>
+    </div>
+    <p>In Claude Code or Codex, plain-English prompts also work:</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag prompt">Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>Use Everlearn to capture the reusable learning from this session.</code></pre>
@@ -1661,15 +1701,17 @@ cd everlearn</code></pre>
         <li><input type="checkbox" data-key="prereq-brew"><span><code>brew --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-git"><span><code>git --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-node"><span><code>node --version</code> shows v18.x or higher</span></li>
+        <li><input type="checkbox" data-key="prereq-python"><span><code>python3.12 --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-tmux"><span><code>tmux -V</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="cc-version"><span><code>claude --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="cc-auth"><span><code>claude auth login</code> completed successfully</span></li>
         <li><input type="checkbox" data-key="cc-compound"><span>compound-engineering plugin installed</span></li>
         <li><input type="checkbox" data-key="cc-vercel"><span>Vercel plugin installed</span></li>
-        <li><input type="checkbox" data-key="cc-last30"><span>last30days skill installed</span></li>
+        <li><input type="checkbox" data-key="cc-signalsweep"><span>SignalSweep public workshop skill installed and free-key template created</span></li>
         <li><input type="checkbox" data-key="cc-grill-docs"><span>grill-with-docs skill installed</span></li>
         <li><input type="checkbox" data-key="cc-grill-me"><span>grill-me skill installed</span></li>
         <li><input type="checkbox" data-key="cc-goal"><span>Goal skill installed</span></li>
+        <li><input type="checkbox" data-key="cc-skillforge"><span>SkillForge installed (<code>/skillforge</code> is available after restart)</span></li>
         <li><input type="checkbox" data-key="cc-excalidraw"><span>Excalidraw MCP configured</span></li>
         <li><input type="checkbox" data-key="cc-playwright"><span>Playwright MCP configured</span></li>
         <li><input type="checkbox" data-key="cc-chrome"><span>Claude in Chrome extension installed and signed in</span></li>
@@ -1688,6 +1730,7 @@ cd everlearn</code></pre>
         <li><input type="checkbox" data-key="cx-computer"><span>Computer Use installed (Codex Desktop &gt; Settings)</span></li>
         <li><input type="checkbox" data-key="cx-chrome"><span>Codex in Chrome extension installed</span></li>
         <li><input type="checkbox" data-key="cx-vercel"><span>Vercel plugin installed (via <code>/plugins</code>)</span></li>
+        <li><input type="checkbox" data-key="cx-skillforge"><span>SkillForge installed in Codex (<code>~/.codex/skills/skillforge</code> exists)</span></li>
         <li><input type="checkbox" data-key="cx-excalidraw"><span>Excalidraw MCP configured</span></li>
         <li><input type="checkbox" data-key="cx-remote"><span>Remote Control tested (<code>codex remote-control</code> starts)</span></li>
         <li><input type="checkbox" data-key="cx-goal"><span><code>/goal test</code> works inside a Codex session</span></li>

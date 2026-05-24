@@ -10,6 +10,7 @@ Static prerequisite and setup guide for the AI for Ecommerce x Amazon Sellers Wo
 ## Project
 
 - Main file: `index.html`
+- Facilitator guide: `EVERLEARN-DEMO-WALKTHROUGH.md`
 - Vercel project: `ai-for-ecommerce-workshop`
 - Deploy command: `vercel --yes --prod`
 
