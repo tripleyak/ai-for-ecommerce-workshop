@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Ecommerce — Workshop Prerequisites & Setup Guide</title>
+<style>
+  :root {
+    --bg: #0c0a13;
+    --surface: #16131f;
+    --surface-hover: #1e1a2a;
+    --border: #2d2640;
+    --text: #f0ece6;
+    --text-muted: #9a8fad;
+    --accent: #7c3aed;
+    --accent-light: #a78bfa;
+    --accent-bg: rgba(124,58,237,0.15);
+    --yellow: #eab308;
+    --yellow-light: #facc15;
+    --yellow-bg: rgba(234,179,8,0.12);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.1);
+    --orange: #f59e0b;
+    --orange-bg: rgba(245,158,11,0.1);
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.1);
+    --blue: #3b82f6;
+    --blue-bg: rgba(59,130,246,0.1);
+    --code-bg: #110e1a;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: hidden; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .hero {
+    background: linear-gradient(135deg, #0c0a13 0%, #1a1030 30%, #2d1a54 60%, #1a1030 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 52px 24px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(124,58,237,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: #ffffff;
+    position: relative;
+  }
+  .hero h1 span.highlight {
+    background: linear-gradient(90deg, #7c3aed, #9333ea);
+    padding: 2px 14px;
+    border-radius: 4px;
+    -webkit-text-fill-color: #ffffff;
+  }
+  .hero-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .hero-text {
+    flex: 1;
+    min-width: 280px;
+    max-width: 600px;
+  }
+  .hero-tagline {
+    color: var(--yellow) !important;
+    font-size: 1.05rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 8px !important;
+  }
+  .hero-desc {
+    color: var(--text-muted) !important;
+    font-size: 0.9rem !important;
+    margin: 0 0 20px !important;
+  }
+  .hero-time-box {
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: rgba(234,179,8,0.1);
+    border: 1px solid rgba(234,179,8,0.3);
+    border-radius: var(--radius-sm);
+    display: inline-block;
+  }
+  .hero-time-num {
+    color: var(--yellow);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+  .hero-time-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-left: 8px;
+  }
+  .hero-flyer {
+    flex: 0 0 auto;
+    max-width: 340px;
+  }
+  .hero-flyer img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    border: 2px solid var(--accent);
+    box-shadow: 0 8px 32px rgba(124,58,237,0.3);
+  }
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 16px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .hero-badge.date { background: var(--accent-bg); color: var(--accent-light); border: 1px solid rgba(124,58,237,0.3); }
+  .hero-badge.deadline { background: var(--yellow-bg); color: var(--yellow); border: 1px solid rgba(234,179,8,0.3); }
+  .hero-badge.time { background: var(--accent-bg); color: var(--accent-light); border: 1px solid rgba(124,58,237,0.3); }
+
+  /* Progress bar */
+  .progress-wrap {
+    max-width: 2100px;
+    margin: -20px auto 0;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .progress-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 10px;
+    background: var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--yellow));
+    border-radius: 999px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  /* Tabs */
+  .tabs-wrap {
+    max-width: 2100px;
+    margin: 32px auto 0;
+    padding: 0 24px;
+  }
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 10px 18px;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { background: var(--surface-hover); color: var(--yellow); }
+  .tab-btn.active {
+    background: var(--surface);
+    color: var(--yellow);
+    border-color: var(--accent);
+    border-bottom: 2px solid var(--surface);
+  }
+  .tab-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) var(--radius);
+    padding: 32px 28px;
+    display: none;
+  }
+  .tab-content.active { display: block; }
+
+  /* Section headings */
+  .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--yellow);
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-right: 10px;
+  }
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--text);
+  }
+  h3:first-child { margin-top: 0; }
+
+  /* Accounts table */
+  .table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 16px 0;
+  }
+  .accounts-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 480px;
+  }
+  .accounts-table th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .accounts-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .accounts-table tr:last-child td { border-bottom: none; }
+  .accounts-table a {
+    color: var(--yellow);
+    text-decoration: none;
+  }
+  .accounts-table a:hover { text-decoration: underline; }
+  .cost-paid { color: var(--yellow); font-weight: 600; }
+  .cost-free { color: var(--green); font-weight: 600; }
+  .cost-total {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 10px 16px;
+    background: var(--yellow-bg);
+    color: var(--yellow);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 1px solid rgba(234,179,8,0.25);
+  }
+
+  /* Callout boxes */
+  .callout {
+    padding: 16px 18px;
+    border-radius: var(--radius-sm);
+    margin: 16px 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-left: 3px solid;
+  }
+  .callout.info { background: var(--accent-bg); border-color: var(--accent); }
+  .callout.warn { background: var(--yellow-bg); border-color: var(--yellow); }
+  .callout.tip { background: var(--green-bg); border-color: var(--green); }
+  .callout strong { font-weight: 600; }
+
+  /* Code blocks */
+  .code-wrap {
+    position: relative;
+    margin: 12px 0;
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    color: #c9d1d9;
+  }
+  .code-label {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 6px;
+  }
+  .code-tag {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .code-tag.terminal { background: var(--yellow-bg); color: var(--yellow); }
+  .code-tag.session { background: var(--accent-bg); color: var(--accent-light); }
+  .code-tag.config { background: var(--yellow-bg); color: var(--yellow-light); }
+  .copy-btn {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s;
+  }
+  .copy-btn:hover { color: var(--yellow); border-color: var(--accent); }
+  .copy-btn.copied { color: var(--yellow); border-color: var(--yellow); }
+
+  /* Collapsible details */
+  details {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  summary {
+    padding: 14px 18px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.92rem;
+    background: var(--surface-hover);
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  summary:hover { background: #231d33; }
+  summary::marker { content: ''; }
+  summary::before {
+    content: '\25B6';
+    font-size: 0.65rem;
+    transition: transform 0.2s;
+    color: var(--text-muted);
+  }
+  details[open] > summary::before { transform: rotate(90deg); }
+  .detail-body { padding: 18px; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1px;
+    position: relative;
+    transition: all 0.15s;
+  }
+  .checklist input[type="checkbox"]:checked {
+    background: var(--yellow);
+    border-color: var(--yellow);
+  }
+  .checklist input[type="checkbox"]:checked::after {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .checklist input[type="checkbox"]:checked + span {
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+  .checklist-group {
+    margin: 20px 0;
+  }
+  .checklist-group-title {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-left: 32px;
+  }
+
+  /* Steps */
+  .step {
+    display: flex;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .step-num {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-top: 2px;
+  }
+  .step-body { flex: 1; }
+  .step-body p { margin: 4px 0; font-size: 0.9rem; }
+
+  /* Links */
+  a { color: var(--accent-light); text-decoration: none; }
+  a:hover { color: var(--yellow); }
+  a:hover { text-decoration: underline; }
+
+  /* Inline code */
+  code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    background: var(--code-bg);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.82em;
+    border: 1px solid var(--border);
+  }
+  pre code { background: none; border: none; padding: 0; }
+
+  /* What to bring cards */
+  .bring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .bring-card {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    text-align: center;
+  }
+  .bring-icon { font-size: 1.8rem; margin-bottom: 8px; }
+  .bring-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+  .bring-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+  /* Post-workshop cards */
+  .perk-list {
+    display: grid;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .perk {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface-hover);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .perk-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .perk-icon.purple { background: var(--accent-bg); }
+  .perk-icon.green { background: var(--yellow-bg); }
+  .perk-icon.blue { background: var(--accent-bg); }
+
+  /* Troubleshooting */
+  .faq-item {
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    background: var(--surface-hover);
+    user-select: none;
+  }
+  .faq-q:hover { background: #231d33; }
+  .faq-a {
+    padding: 16px 18px;
+    font-size: 0.9rem;
+    display: none;
+    border-top: 1px solid var(--border);
+  }
+  .faq-item.open .faq-a { display: block; }
+
+  /* CTA button */
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--yellow);
+    color: #0c0a13;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .cta-btn:hover { background: var(--yellow-light); text-decoration: none; }
+
+  /* Responsive — tablets */
+  @media (max-width: 1024px) {
+    .progress-wrap, .tabs-wrap, .exclusive-wrap { max-width: 100%; }
+    .outcome-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  }
+
+  /* Responsive — mobile */
+  @media (max-width: 640px) {
+    .hero { padding: 24px 16px 20px; }
+    .hero h1 { font-size: 1.5rem; }
+    .hero-flex { gap: 20px; flex-direction: column; }
+    .hero-text { min-width: 0; max-width: 100%; text-align: center; }
+    .hero-tagline { font-size: 0.88rem !important; }
+    .hero-desc { font-size: 0.82rem !important; }
+    .hero-meta { gap: 8px; justify-content: center !important; }
+    .hero-badge { font-size: 0.72rem; padding: 5px 10px; }
+    .hero-flyer { max-width: 260px; }
+    .hero-time-box { display: block !important; text-align: center; padding: 12px 14px; }
+    .hero-time-num { font-size: 0.95rem; display: block; margin-bottom: 4px; }
+    .hero-time-label { font-size: 0.78rem; margin-left: 0; }
+
+    .progress-wrap { padding: 0 12px; }
+    .progress-card { padding: 14px 16px; gap: 10px; flex-wrap: wrap; }
+    .progress-label { min-width: 60px; font-size: 0.8rem; }
+
+    .tabs-wrap { padding: 0 12px; }
+    .tab-bar { gap: 2px; }
+    .tab-btn { padding: 8px 10px; font-size: 0.75rem; }
+    .tab-content { padding: 16px 14px; }
+
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 0.95rem; }
+
+    /* Tables — responsive card layout on mobile */
+    .accounts-table { font-size: 0.8rem; }
+    .accounts-table th { font-size: 0.68rem; padding: 8px 6px; }
+    .accounts-table td { padding: 8px 6px; word-break: break-word; }
+
+    /* Code blocks */
+    pre { font-size: 0.74rem; padding: 12px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    code { font-size: 0.76em; }
+
+    /* Steps */
+    .step { gap: 10px; }
+    .step-body p { font-size: 0.85rem; }
+
+    /* Details/collapsible */
+    summary { padding: 12px 14px; font-size: 0.85rem; }
+    .detail-body { padding: 14px; }
+
+    /* Checklist */
+    .checklist li { font-size: 0.84rem; gap: 10px; }
+    .checklist input[type="checkbox"] { width: 18px; height: 18px; min-width: 18px; }
+
+    /* Bring grid */
+    .bring-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .bring-card { padding: 12px; }
+    .bring-icon { font-size: 1.4rem; }
+    .bring-title { font-size: 0.82rem; }
+    .bring-desc { font-size: 0.72rem; }
+
+    /* Perks */
+    .perk { padding: 10px 12px; font-size: 0.84rem; }
+    .perk-icon { width: 30px; height: 30px; min-width: 30px; font-size: 0.9rem; }
+
+    /* FAQ */
+    .faq-q { padding: 12px 14px; font-size: 0.85rem; }
+    .faq-a { padding: 12px 14px; font-size: 0.84rem; }
+
+    /* Callouts */
+    .callout { padding: 12px 14px; font-size: 0.84rem; }
+
+    /* Exclusive section */
+    .exclusive-card { padding: 20px 16px; }
+    .exclusive-grid { grid-template-columns: 1fr; }
+    .exclusive-title { font-size: 1.05rem; }
+
+    /* CTA */
+    .cta-btn { padding: 12px 20px; font-size: 0.85rem; }
+
+    /* Help bar */
+    .help-bar { padding: 8px 16px; font-size: 0.78rem; gap: 8px; }
+
+    /* Section wrappers */
+    .section-wrap { padding: 0 12px; margin-top: 16px; }
+    .section-card { padding: 18px 14px; }
+    .outcome-grid { grid-template-columns: 1fr !important; gap: 10px; }
+    .outcome-grid > div { padding: 12px; }
+    .outcome-grid > div > div:first-child { font-size: 0.86rem; }
+    .outcome-grid > div > div:last-child { font-size: 0.78rem; }
+
+    /* Hosts */
+    .hosts-card { padding: 18px 14px; gap: 18px; flex-direction: column; }
+    .host { min-width: 0; }
+    .host-name { font-size: 0.92rem; }
+    .host-bio { font-size: 0.8rem; }
+    .host-org { text-align: left; }
+    .host-label { margin-bottom: 6px; }
+
+    /* Images in frameworks */
+    .tab-content img { min-width: 0; }
+
+    /* Cost total badge */
+    .cost-total { font-size: 0.82rem; padding: 8px 12px; }
+  }
+
+  /* Very small screens */
+  @media (max-width: 380px) {
+    .tab-btn { padding: 6px 7px; font-size: 0.68rem; }
+    .hero h1 { font-size: 1.3rem; }
+    .bring-grid { grid-template-columns: 1fr; }
+    .accounts-table th:nth-child(3),
+    .accounts-table td:nth-child(3) { display: none; }
+  }
+
+  /* Paragraph spacing inside tab content */
+  .tab-content p { margin: 8px 0; font-size: 0.9rem; }
+
+  /* Separator */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  .comment { color: #6a737d; }
+
+  /* Reusable section wrappers */
+  .section-wrap {
+    max-width: 2100px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+  }
+  .outcome-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .outcome-grid > div {
+    padding: 16px;
+    background: var(--surface-hover);
+    border-radius: var(--radius-sm);
+  }
+  .outcome-grid > div > div:first-child {
+    font-weight: 700;
+    font-size: 0.92rem;
+    margin-bottom: 4px;
+  }
+  .outcome-grid > div > div:last-child {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  /* Hosts */
+  .hosts-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 36px;
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .host { flex: 1; min-width: 220px; }
+  .host-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+  }
+  .host-name { font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+  .host-bio { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+  .host-org { flex: 0 0 auto; text-align: right; }
+
+  /* Sticky help bar */
+  .help-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    z-index: 100;
+    font-size: 0.85rem;
+  }
+  .help-bar span { color: var(--text-muted); }
+  .help-bar a {
+    color: var(--yellow);
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .help-bar a:hover { text-decoration: underline; }
+
+  /* Exclusive access banner */
+  .exclusive-wrap {
+    max-width: 2100px;
+    margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .exclusive-card {
+    background: linear-gradient(135deg, #1a1030 0%, #2d1a54 50%, #1a1030 100%);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .exclusive-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(124,58,237,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .exclusive-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: #0c0a13;
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .exclusive-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .exclusive-sub {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .exclusive-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    position: relative;
+  }
+  .exclusive-tool {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px;
+  }
+  .exclusive-tool-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--yellow);
+    margin-bottom: 6px;
+  }
+  .exclusive-tool-desc {
+    font-size: 0.85rem;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .exclusive-tool-use {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .exclusive-tool-use strong { color: var(--accent-light); }
+  @media (max-width: 640px) {
+    .exclusive-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-flex">
+    <div class="hero-text">
+      <h1>AI for <span class="highlight">Ecommerce</span></h1>
+      <p class="hero-tagline">Build Smarter. Automate More. Grow Faster on Amazon.</p>
+      <p class="hero-desc">Prerequisites & Setup Guide. Complete everything below before the workshop so you can build, not troubleshoot.</p>
+      <div class="hero-meta">
+        <span class="hero-badge date">May 27, 2026</span>
+        <span class="hero-badge deadline">Setup by May 25</span>
+      </div>
+      <div class="hero-time-box">
+        <span class="hero-time-num">90-120 minutes</span>
+        <span class="hero-time-label">estimated setup time — block this out before the event</span>
+      </div>
+    </div>
+    <div class="hero-flyer">
+      <img src="workshop-flyer.png" alt="AI for Ecommerce Workshop — Live & In Person, hosted by Austin Amazon Group">
+    </div>
+  </div>
+</div>
+
+<!-- What you'll build -->
+<div class="section-wrap">
+  <div class="section-card">
+    <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--yellow); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px;">What You'll Be Able to Do After This Workshop</h2>
+    <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">These aren't hypothetical — you'll build each of these live during the session.</p>
+    <div class="outcome-grid">
+      <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Scrape & Analyze Competitor Listings</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Pull reviews, Q&A, backend attributes, and pricing data from any Amazon listing automatically.</div>
+      </div>
+      <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Build a Personal Research Tool</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Create an AI-powered research engine that pulls intelligence from 150+ sources in a single command.</div>
+      </div>
+      <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--accent);">
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Connect Research to a Second Brain</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Pipe insights into an Obsidian vault that AI agents read and build on — knowledge that compounds over time.</div>
+      </div>
+      <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--yellow);">
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Deploy AI Agents Into Seller Central</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Use browser and computer use to have AI agents update listings and manage ad campaigns inside your actual SC account.</div>
+      </div>
+      <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--yellow);">
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Generate Actionable Insights From Data</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Turn raw competitor and market data into strategies — pricing, keywords, listing copy, PPC adjustments — with AI analysis.</div>
+      </div>
+      <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--yellow);">
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Turn Any Workflow Into a Reusable AI Skill</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Found a winning process? Capture it as a skill that any AI agent can run — on every product, every time, automatically.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Progress bar -->
+<div class="progress-wrap">
+  <div class="progress-card">
+    <span style="font-size: 0.85rem; font-weight: 600;">Setup Progress</span>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-label" id="progressLabel">0 / 0</span>
+  </div>
+</div>
+
+<!-- Exclusive Access -->
+<div class="exclusive-wrap">
+  <div class="exclusive-card">
+    <div class="exclusive-badge">Live Attendees Only</div>
+    <div class="exclusive-title">Exclusive Tool Access — Included With Your Workshop Ticket</div>
+    <div class="exclusive-sub">Only people who attend the live workshop get access to these tools. They are not available for purchase separately.</div>
+    <div class="exclusive-grid">
+      <div class="exclusive-tool">
+        <div class="exclusive-tool-name">SignalSweep</div>
+        <div class="exclusive-tool-desc">Agentic AI research tool that pulls intelligence from 150+ sources — Reddit, X, YouTube, TikTok, Amazon reviews, patents, SEC filings, academic papers, and more — in a single command. One month of free access.</div>
+        <div class="exclusive-tool-use"><strong>For Amazon sellers:</strong> Research competitor strategies, find trending products, monitor customer sentiment across platforms, discover keyword opportunities, and track market shifts — all automated. What used to take a VA a full week takes 5 minutes.</div>
+      </div>
+      <div class="exclusive-tool">
+        <div class="exclusive-tool-name">SkillForge</div>
+        <div class="exclusive-tool-desc">Meta-skill that analyzes any workflow and creates custom AI skills from it — turning your one-time wins into reusable automation you can run forever. Lifetime access.</div>
+        <div class="exclusive-tool-use"><strong>For Amazon sellers:</strong> Built a great listing optimization process? SkillForge turns it into a skill any AI agent can run. Found a winning PPC audit workflow? Capture it once, run it on every product automatically. Your best practices become permanent tools.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Hosts -->
+<div class="section-wrap">
+  <div class="hosts-card">
+    <div class="host">
+      <p class="host-label">Your Hosts</p>
+      <p class="host-name">Jack Atlasov</p>
+      <p class="host-bio">Head of Growth & E-commerce @ BirdRock Brands (acq. 2026). Founder @ Tote Tails (acq. 2018). AI-native leader and operator. Built the research and automation tools you'll use in this workshop.</p>
+    </div>
+    <div class="host">
+      <p class="host-label">&nbsp;</p>
+      <p class="host-name">Dave Seybert</p>
+      <p class="host-bio">Head of Go to Market @ Swapt. Owner @ Amazing Marketing Co & Amazing Creative. Founder of Austin Amazon Group.</p>
+    </div>
+    <div class="host-org">
+      <p class="host-label">Hosted by</p>
+      <p style="font-weight: 800; font-size: 1.1rem; color: var(--yellow);">Austin Amazon Group</p>
+      <p style="font-size: 0.82rem; color: var(--text-muted);">Live & In Person</p>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs-wrap">
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="accounts">Accounts</button>
+    <button class="tab-btn" data-tab="prereqs">Prerequisites</button>
+    <button class="tab-btn" data-tab="claude">Claude Code</button>
+    <button class="tab-btn" data-tab="codex">OpenAI Codex</button>
+    <button class="tab-btn" data-tab="design">Claude Design</button>
+    <button class="tab-btn" data-tab="frameworks">Frameworks</button>
+    <button class="tab-btn" data-tab="checklist">Checklist</button>
+    <button class="tab-btn" data-tab="workshop">Workshop Day</button>
+  </div>
+
+  <!-- TAB: Accounts -->
+  <div class="tab-content active" id="tab-accounts">
+    <h2><span class="section-number">1</span>Accounts to Create</h2>
+    <p>Create these first — everything else depends on them. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~15 minutes</span></p>
+
+    <details style="margin-bottom: 20px;">
+      <summary>New to these tools? Quick glossary of terms you'll see on this page</summary>
+      <div class="detail-body" style="font-size: 0.85rem; line-height: 1.8;">
+        <strong style="color: var(--yellow);">CLI</strong> = Command Line Interface. A text-based way to talk to your computer (Terminal app on Mac).<br>
+        <strong style="color: var(--yellow);">Claude Code / Codex</strong> = AI assistants that live in your terminal and can read, write, and run code on your behalf.<br>
+        <strong style="color: var(--yellow);">Plugin</strong> = An add-on that gives your AI assistant new capabilities (like apps on a phone).<br>
+        <strong style="color: var(--yellow);">Skill</strong> = A reusable workflow template an AI agent can follow — like a standard operating procedure for AI.<br>
+        <strong style="color: var(--yellow);">MCP (Model Context Protocol)</strong> = A standard that lets AI tools connect to external services (browsers, databases, APIs). Think of it as USB for AI.<br>
+        <strong style="color: var(--yellow);">Remote Control / Dispatch</strong> = Send tasks to your AI from your phone while it works on your laptop.<br>
+        <strong style="color: var(--yellow);">Compound Engineering</strong> = A methodology where every task you complete makes the next task easier — your AI gets smarter over time.<br>
+        <strong style="color: var(--yellow);">Obsidian</strong> = A note-taking app that stores everything as plain text files — perfect for AI to read and write.<br>
+        <strong style="color: var(--yellow);">CONTEXT.md / STRATEGY.md</strong> = Plain text files that tell your AI about your business, products, and decisions so it doesn't start from scratch every session.<br>
+        <strong style="color: var(--yellow);">Vercel</strong> = A platform that puts your websites and tools on the internet with one command.
+      </div>
+    </details>
+
+    <div class="table-wrap">
+    <table class="accounts-table">
+      <thead>
+        <tr><th>Service</th><th>Plan</th><th>Cost</th><th>Link</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Anthropic (Claude)</strong></td><td>Max</td><td class="cost-paid">$100/mo</td><td><a href="https://claude.ai" target="_blank">claude.ai</a></td></tr>
+        <tr><td><strong>OpenAI (ChatGPT)</strong></td><td>Pro</td><td class="cost-paid">$100/mo</td><td><a href="https://chatgpt.com" target="_blank">chatgpt.com</a></td></tr>
+        <tr><td><strong>GitHub</strong></td><td>Free</td><td class="cost-free">Free</td><td><a href="https://github.com" target="_blank">github.com</a></td></tr>
+        <tr><td><strong>Vercel</strong></td><td>Hobby</td><td class="cost-free">Free</td><td><a href="https://vercel.com" target="_blank">vercel.com</a></td></tr>
+        <tr><td><strong>Linear</strong></td><td>Free</td><td class="cost-free">Free</td><td><a href="https://linear.app" target="_blank">linear.app</a></td></tr>
+        <tr><td><strong>NotebookLM</strong></td><td>Free</td><td class="cost-free">Free</td><td><a href="https://notebooklm.google.com" target="_blank">notebooklm.google.com</a></td></tr>
+        <tr><td><strong>Excalidraw</strong></td><td>Free</td><td class="cost-free">Free</td><td><a href="https://excalidraw.com" target="_blank">excalidraw.com</a></td></tr>
+        <tr><td><strong>Obsidian</strong></td><td>Free</td><td class="cost-free">Free</td><td><a href="https://obsidian.md" target="_blank">obsidian.md</a></td></tr>
+        <tr><td><strong>Claude Desktop</strong></td><td>Included w/ Max</td><td class="cost-free">Free</td><td><a href="https://claude.ai/download" target="_blank">claude.ai/download</a></td></tr>
+        <tr><td><strong>Codex Desktop (ChatGPT)</strong></td><td>Included w/ Pro</td><td class="cost-free">Free</td><td><a href="https://chatgpt.com/download" target="_blank">chatgpt.com/download</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="cost-total">Total: ~$200/month (Claude Max + OpenAI Pro). All others are free.</div>
+
+    <div class="callout warn" style="margin-top: 20px;">
+      <strong>Why $100/month plans?</strong> The workshop uses advanced features — remote control, computer use, extended context, agent dispatch — that require the higher-tier plans. The $20/month plans will not have access to everything we use in the live build.
+    </div>
+
+    <div class="callout info" style="margin-top: 12px;">
+      <strong>macOS required.</strong> This workshop assumes you are on a Mac. All CLI commands use Homebrew (<code>brew</code>) and macOS paths. Some features (Codex Computer Use) are macOS-only. If you are on Windows or Linux, contact Jack before the workshop to discuss compatibility.
+    </div>
+  </div>
+
+  <!-- TAB: Prerequisites -->
+  <div class="tab-content" id="tab-prereqs">
+    <h2><span class="section-number">2</span>Install Prerequisites</h2>
+    <p>Before installing either AI CLI, you need a few developer tools on your Mac. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~15 minutes</span></p>
+
+    <div class="callout warn" style="margin-bottom: 20px;">
+      <strong>Video walkthrough coming soon.</strong> Jack will record a step-by-step screen recording walking through this entire setup process. Check back here before May 25 for the link.
+    </div>
+
+    <details style="margin-bottom: 20px;">
+      <summary>First time using Terminal? Start here.</summary>
+      <div class="detail-body">
+        <p>Terminal is a built-in Mac app that lets you type commands to your computer. Everything in this setup guide uses Terminal.</p>
+        <p><strong>How to open Terminal:</strong></p>
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Press <code>Cmd + Space</code> to open Spotlight search</p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Type <code>Terminal</code> and press Enter</p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>A window with a text prompt appears &mdash; this is where you'll paste the commands from this guide</p></div></div>
+        <p style="margin-top: 12px;"><strong>How to run a command:</strong> Copy the command text (use the Copy button next to each code block), paste it into Terminal (<code>Cmd + V</code>), and press Enter. Wait for it to finish before running the next one.</p>
+        <p><strong>If something goes wrong:</strong> Don't panic. Copy the error message and bring it to your setup call with Jack. Most errors are one-line fixes.</p>
+      </div>
+    </details>
+
+    <h3>Homebrew (macOS package manager)</h3>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="comment"># Check if Homebrew is installed</span>
+brew --version
+
+<span class="comment"># If not installed, run this (one line):</span>
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+    </div>
+
+    <h3>Git</h3>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="comment"># Check if git is installed</span>
+git --version
+
+<span class="comment"># If not installed:</span>
+brew install git</code></pre>
+    </div>
+
+    <h3>Node.js 18+</h3>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="comment"># Check if Node.js 18+ is installed</span>
+node --version
+
+<span class="comment"># If not installed or below v18:</span>
+brew install node
+
+<span class="comment"># Or download from: https://nodejs.org</span></code></pre>
+    </div>
+
+    <h3>GitHub CLI</h3>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="comment"># Install GitHub CLI</span>
+brew install gh
+
+<span class="comment"># Authenticate</span>
+gh auth login
+<span class="comment"># Select: GitHub.com > HTTPS > Authenticate via browser</span></code></pre>
+    </div>
+
+    <h3>tmux (Terminal Multiplexer)</h3>
+    <p>tmux lets you run multiple terminal sessions side by side &mdash; essential for running Claude Code and Codex simultaneously.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code><span class="comment"># Install tmux</span>
+brew install tmux
+
+<span class="comment"># Verify</span>
+tmux -V</code></pre>
+    </div>
+
+    <h3>Obsidian</h3>
+    <p>Obsidian is your personal second brain &mdash; we'll connect it to our research tools during the workshop.</p>
+    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Download from <a href="https://obsidian.md" target="_blank">obsidian.md</a></p></div></div>
+    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Install and open the app</p></div></div>
+    <div class="step"><span class="step-num">3</span><div class="step-body"><p>Create a new vault (or open an existing one) &mdash; we'll configure it during the workshop</p></div></div>
+
+    <h3>Verify</h3>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>brew --version    <span class="comment"># Should show Homebrew version</span>
+git --version     <span class="comment"># Should show git version</span>
+node --version    <span class="comment"># Should show v18.x or higher</span>
+npm --version     <span class="comment"># Should show npm version</span>
+gh auth status    <span class="comment"># Should show "Logged in to github.com"</span>
+tmux -V           <span class="comment"># Should show tmux version</span></code></pre>
+    </div>
+  </div>
+
+  <!-- TAB: Claude Code -->
+  <div class="tab-content" id="tab-claude">
+    <h2><span class="section-number">3</span>Install & Configure Claude Code</h2>
+    <p>Claude Code is your primary AI development environment for the workshop. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~30 minutes</span></p>
+
+    <!-- 3.1 CLI -->
+    <details open>
+      <summary>3.1 &mdash; Install the CLI</summary>
+      <div class="detail-body">
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>npm install -g @anthropic-ai/claude-code
+claude --version     <span class="comment"># Verify installation</span>
+claude auth login    <span class="comment"># Opens browser — sign in with Claude Max account</span></code></pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- 3.2 Plugins -->
+    <details>
+      <summary>3.2 &mdash; Install Plugins</summary>
+      <div class="detail-body">
+        <p>Open a Claude Code session (<code>claude</code> in terminal), then run these commands inside the session:</p>
+
+        <p><strong>compound-engineering</strong> (code review, planning, brainstorming):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>/plugin install compound-engineering@compound-engineering-plugin</code></pre>
+        </div>
+
+        <p><strong>Vercel</strong> (deploy and manage projects):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>/plugin install vercel@claude-plugins-official</code></pre>
+        </div>
+
+        <div class="callout tip">Exit and restart Claude Code after installing plugins. They load at session start only.</div>
+      </div>
+    </details>
+
+    <!-- 3.3 Skills -->
+    <details>
+      <summary>3.3 &mdash; Install Skills</summary>
+      <div class="detail-body">
+        <p><strong>last30days</strong> (agentic research across 150+ sources):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>/plugin install last30days@last30days-skill</code></pre>
+        </div>
+
+        <p><strong>grill-with-docs & grill-me</strong> (stress-test plans and designs — <a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a>):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code><span class="comment"># Run in your regular terminal, NOT inside Claude Code</span>
+cd ~/Projects
+git clone https://github.com/mattpocock/skills.git mattpocock-skills
+cd mattpocock-skills
+bash scripts/link-skills.sh</code></pre>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">This symlinks ~16 skills into <code>~/.claude/skills/</code>, including grill-me and grill-with-docs.</p>
+
+        <p><strong>Goal skill</strong> (structured objective tracking — <a href="https://github.com/jthack/claude-goal" target="_blank">github.com/jthack/claude-goal</a>):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code><span class="comment"># Run in your regular terminal</span>
+cd ~/Projects
+git clone https://github.com/jthack/claude-goal.git
+cd claude-goal
+./install.sh</code></pre>
+        </div>
+
+        <div class="callout tip">Restart Claude Code after installing all skills.</div>
+      </div>
+    </details>
+
+    <!-- 3.4 MCP -->
+    <details>
+      <summary>3.4 &mdash; Configure MCP Servers</summary>
+      <div class="detail-body">
+        <p>MCP (Model Context Protocol) servers give Claude Code access to external tools.</p>
+
+        <p><strong>Excalidraw</strong> (create and edit diagrams):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>claude mcp add excalidraw -- npx -y @cmd8/excalidraw-mcp</code></pre>
+        </div>
+
+        <p><strong>Playwright</strong> (headless browser automation):</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>claude mcp add playwright -- npx @playwright/mcp@latest</code></pre>
+        </div>
+
+        <p><strong>Claude in Chrome</strong> (browser automation via your real Chrome):</p>
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Install from <a href="https://chromewebstore.google.com/detail/claude/fcoeoabgfenejglbffodgkkbkcdhcgfn" target="_blank">Chrome Web Store</a></p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Click "Add to Chrome"</p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>Sign in with your Claude account (requires Max plan)</p></div></div>
+        <div class="step"><span class="step-num">4</span><div class="step-body"><p>Pin the extension (puzzle piece icon &rarr; thumbtack next to Claude)</p></div></div>
+
+        <div class="callout info"><strong>Browser support:</strong> Google Chrome and Microsoft Edge only. Not supported on Brave, Arc, or other Chromium browsers. If the Chrome Web Store link above doesn't work, search "Claude" in the Chrome Web Store.</div>
+      </div>
+    </details>
+
+    <!-- 3.5 Remote Control -->
+    <details>
+      <summary>3.5 &mdash; Enable Remote Control</summary>
+      <div class="detail-body">
+        <p>Remote Control lets you send tasks to Claude Code from your phone or other devices.</p>
+
+        <p><strong>Option A &mdash; Always-on (recommended):</strong></p>
+        <p>Edit <code>~/.claude.json</code> and add:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag config">Config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>{
+  "remoteControlAtStartup": true
+}</code></pre>
+        </div>
+
+        <p><strong>Option B &mdash; Per-session:</strong></p>
+        <p>Type <code>/rc</code> or <code>/remote-control</code> inside a Claude Code session.</p>
+
+        <p><strong>Pairing with your phone:</strong></p>
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Start Claude Code &mdash; you'll see a session URL in the terminal</p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Press spacebar to show a QR code</p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>Scan with your iPhone to open in the Claude iOS app (Code tab)</p></div></div>
+
+        <div class="callout info"><strong>Requirements:</strong> Claude Code v2.1.51+, Max plan, authenticated via <code>claude auth login</code> (not API keys).</div>
+      </div>
+    </details>
+
+    <!-- 3.6 Dispatch -->
+    <details>
+      <summary>3.6 &mdash; Set Up Dispatch</summary>
+      <div class="detail-body">
+        <p>Dispatch lets you send tasks from your phone to a Claude Desktop (Cowork) session.</p>
+
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Install or update <strong>Claude Desktop</strong> from <a href="https://claude.ai/download" target="_blank">claude.ai/download</a></p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Open Claude Desktop &mdash; find the <strong>Dispatch</strong> tab in the left sidebar</p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>Click Dispatch &mdash; a QR code appears</p></div></div>
+        <div class="step"><span class="step-num">4</span><div class="step-body"><p>Open the <strong>Claude mobile app</strong> (iOS/Android), tap "Dispatch" in the sidebar</p></div></div>
+        <div class="step"><span class="step-num">5</span><div class="step-body"><p>Scan the QR code from your phone</p></div></div>
+        <div class="step"><span class="step-num">6</span><div class="step-body"><p>Grant permissions (directory access, keep-desktop-awake)</p></div></div>
+
+        <div class="callout info"><strong>Note:</strong> Dispatch is a Claude Desktop feature, not CLI. Remote Control (3.5) is for the CLI. You'll use both during the workshop.</div>
+      </div>
+    </details>
+
+    <!-- 3.7 Verify -->
+    <details>
+      <summary>3.7 &mdash; Verify Claude Code Setup</summary>
+      <div class="detail-body">
+        <p>Run this inside a Claude Code session:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>What plugins, skills, and MCP servers do I have installed?</code></pre>
+        </div>
+        <p>You should see: compound-engineering, Vercel, last30days, grill-me, grill-with-docs, goal, Excalidraw MCP, Playwright MCP, and Claude in Chrome listed.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- TAB: Codex -->
+  <div class="tab-content" id="tab-codex">
+    <h2><span class="section-number">4</span>Install & Configure OpenAI Codex</h2>
+    <p>Codex is your second AI development environment &mdash; used alongside Claude Code. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~25 minutes</span></p>
+
+    <!-- 4.1 CLI -->
+    <details open>
+      <summary>4.1 &mdash; Install the CLI</summary>
+      <div class="detail-body">
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>npm install -g @openai/codex
+codex --version    <span class="comment"># Verify installation</span>
+codex auth         <span class="comment"># Sign in with your ChatGPT Pro account</span></code></pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4.2 GitHub -->
+    <details>
+      <summary>4.2 &mdash; Connect GitHub</summary>
+      <div class="detail-body">
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Open <strong>Codex Desktop</strong> (or <a href="https://chatgpt.com" target="_blank">chatgpt.com</a> &rarr; Codex)</p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Go to <strong>Settings &gt; Apps</strong></p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>Select <strong>GitHub</strong> and authorize the "ChatGPT connector" app</p></div></div>
+        <div class="step"><span class="step-num">4</span><div class="step-body"><p>Grant access to the repos you want Codex to work with</p></div></div>
+      </div>
+    </details>
+
+    <!-- 4.3 Computer Use -->
+    <details>
+      <summary>4.3 &mdash; Install Computer Use</summary>
+      <div class="detail-body">
+        <p>Computer Use lets Codex control your mouse, keyboard, and screen.</p>
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Download and install <strong>Codex Desktop</strong> from <a href="https://chatgpt.com/download" target="_blank">chatgpt.com/download</a> (the app, not the CLI)</p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Go to <strong>Settings &gt; Computer Use</strong></p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>Click <strong>Install</strong></p></div></div>
+        <div class="step"><span class="step-num">4</span><div class="step-body"><p>Grant accessibility permissions when prompted</p></div></div>
+
+        <div class="callout warn"><strong>macOS only</strong> as of May 2026. This is a Desktop app feature &mdash; not available in the CLI alone.</div>
+      </div>
+    </details>
+
+    <!-- 4.4 Browser -->
+    <details>
+      <summary>4.4 &mdash; Install Browser Use & Codex in Chrome</summary>
+      <div class="detail-body">
+        <p><strong>Browser Use</strong> is built into Codex Desktop (Atlas browser). No separate install needed.</p>
+
+        <p><strong>Codex in Chrome</strong> extends browser capabilities into your real Chrome:</p>
+        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Install from <a href="https://chromewebstore.google.com/detail/codex/hehggadaopoacecdllhhajmbjkdcmajg" target="_blank">Chrome Web Store</a></p></div></div>
+        <div class="step"><span class="step-num">2</span><div class="step-body"><p>Click "Add to Chrome" and sign in with your ChatGPT account</p></div></div>
+        <div class="step"><span class="step-num">3</span><div class="step-body"><p>Pin the extension</p></div></div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">This lets Codex interact with sites where you're already authenticated (like Seller Central). If the link above doesn't work, search "Codex" in the Chrome Web Store.</p>
+      </div>
+    </details>
+
+    <!-- 4.5 Compound Engineering -->
+    <details>
+      <summary>4.5 &mdash; Install compound-engineering Plugin</summary>
+      <div class="detail-body">
+        <p>Advanced workflow skills (code review, planning, brainstorming) &mdash; same plugin used in Claude Code.</p>
+        <p>Inside a Codex session:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Codex Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>/plugins</code></pre>
+        </div>
+        <p>Browse the marketplace and select <strong>compound-engineering</strong> to install.</p>
+        <p>Or install directly via CLI:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>codex plugin install EveryInc/compound-engineering-plugin</code></pre>
+        </div>
+        <div class="callout tip">If the CLI command doesn't work, use the <code>/plugins</code> marketplace browser instead &mdash; it's the more reliable method.</div>
+      </div>
+    </details>
+
+    <!-- 4.6 Vercel -->
+    <details>
+      <summary>4.6 &mdash; Install Vercel Plugin</summary>
+      <div class="detail-body">
+        <p>Inside a Codex session:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Codex Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>/plugins</code></pre>
+        </div>
+        <p>Browse the marketplace and select <strong>Vercel</strong> to install.</p>
+      </div>
+    </details>
+
+    <!-- 4.6 Excalidraw -->
+    <details>
+      <summary>4.7 &mdash; Configure Excalidraw MCP</summary>
+      <div class="detail-body">
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>codex mcp add excalidraw -- npx -y @scofieldfree/excalidraw-mcp</code></pre>
+        </div>
+        <p>Or edit <code>~/.codex/config.toml</code> manually:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag config">Config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>[mcp_servers.excalidraw]
+command = "npx"
+args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
+        </div>
+        <div class="callout warn"><strong>Important:</strong> The section name must be <code>mcp_servers</code> (underscore). <code>mcp-servers</code> (hyphen) is silently ignored.</div>
+      </div>
+    </details>
+
+    <!-- 4.7 Remote Control -->
+    <details>
+      <summary>4.8 &mdash; Enable Remote Control</summary>
+      <div class="detail-body">
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>codex remote-control</code></pre>
+        </div>
+        <p>This starts a WebSocket server. Connect from another machine or the Codex mobile app:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>codex --remote ws://host:port</code></pre>
+        </div>
+        <p>On first use, you'll need to authorize via your phone.</p>
+      </div>
+    </details>
+
+    <!-- 4.9 Actions -->
+    <details>
+      <summary>4.9 &mdash; Actions & Task Coordination</summary>
+      <div class="detail-body">
+        <p>Codex uses these built-in capabilities for task coordination:</p>
+        <ul style="margin: 12px 0; padding-left: 20px; font-size: 0.9rem; line-height: 2;">
+          <li><code>codex exec</code> &mdash; run non-interactively for scripting</li>
+          <li><code>codex cloud</code> &mdash; launch and manage cloud-based tasks</li>
+          <li><code>AGENTS.md</code> &mdash; place in your repo to guide Codex on conventions</li>
+        </ul>
+        <div class="callout tip">We'll configure these during the workshop. No pre-setup needed.</div>
+      </div>
+    </details>
+
+    <!-- 4.10 Goal -->
+    <details>
+      <summary>4.10 &mdash; Goal Skill (Built-in)</summary>
+      <div class="detail-body">
+        <p>The Goal skill is <strong>built into Codex</strong> since v0.128.0. No installation needed.</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Codex Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>/goal find and fix the flaky auth tests
+/goal status
+/goal pause
+/goal resume
+/goal clear</code></pre>
+        </div>
+      </div>
+    </details>
+
+    <!-- 4.11 Verify -->
+    <details>
+      <summary>4.11 &mdash; Verify Codex Setup</summary>
+      <div class="detail-body">
+        <p>Run this inside a Codex session:</p>
+        <div class="code-wrap">
+          <div class="code-label"><span class="code-tag session">Codex Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+          <pre><code>What plugins, tools, and MCP servers do I have available?</code></pre>
+        </div>
+        <p>You should see: GitHub connected, Computer Use enabled, Codex in Chrome, Vercel plugin, and Excalidraw MCP listed.</p>
+      </div>
+    </details>
+  </div>
+
+  <!-- TAB: Claude Design -->
+  <div class="tab-content" id="tab-design">
+    <h2><span class="section-number">5</span>Claude Design Setup</h2>
+    <p>Anthropic's AI-native visual design workspace. We'll use it for design systems and visual workflows. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~5 minutes</span></p>
+
+    <h3>Access Claude Design</h3>
+    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Go to <a href="https://claude.ai/design" target="_blank">claude.ai/design</a></p></div></div>
+    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Sign in with your Claude account (requires Max, Pro, Team, or Enterprise plan)</p></div></div>
+
+    <h3>Set Up a Design System</h3>
+    <p>During onboarding (or later via <strong>Organization Settings</strong>):</p>
+
+    <div class="step"><span class="step-num">1</span><div class="step-body"><p><strong>Upload brand assets</strong> &mdash; any of: logo files, color palette / brand guidelines, typography specimens, screenshots of your product pages or listings, slide decks or design files</p></div></div>
+    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Claude analyzes your assets and extracts: <strong>color palette</strong>, <strong>typography</strong> (families, sizes, weights), and <strong>reusable components</strong> (buttons, cards, nav elements)</p></div></div>
+    <div class="step"><span class="step-num">3</span><div class="step-body"><p>Review the generated design system</p></div></div>
+    <div class="step"><span class="step-num">4</span><div class="step-body"><p>Toggle <strong>"Published"</strong> to ON</p></div></div>
+
+    <div class="callout tip">
+      <strong>Don't have brand assets?</strong> That's fine &mdash; skip this step. We'll set up a design system from scratch during the workshop. Just make sure you can access claude.ai/design.
+    </div>
+
+    <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;"><strong>Setup time:</strong> Under 5 minutes for logos + colors + fonts. ~15-20 minutes for a full codebase analysis.</p>
+  </div>
+
+  <!-- TAB: Frameworks -->
+  <div class="tab-content" id="tab-frameworks">
+    <h2><span class="section-number">6</span>Foundational Frameworks</h2>
+    <p>These diagrams illustrate the core concepts and methodologies we'll cover in the workshop. Study them before the session &mdash; we'll build real tools using each framework.</p>
+
+    <h3>Five Foundations for Working With AI</h3>
+    <p>The habits that make AI more valuable the more you use it &mdash; regardless of what you're working on.</p>
+    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
+      <a href="five-foundations-for-working-with-ai.png" target="_blank" title="Click to open full size">
+        <img src="five-foundations-for-working-with-ai.png" alt="Five Foundations for Working With AI — Gather Context, Curate &amp; Compress, Plan Build Verify, Compound Your Knowledge, Think One Level Up" style="width: 100%; height: auto; display: block;">
+      </a>
+    </div>
+    <div class="callout info">
+      <strong>For Amazon sellers:</strong> This is the operating system for how you'll work with AI. Gather context (competitor data, market research), compress it into knowledge your AI remembers, plan and execute in small verified steps, save what you learn so next time is faster, then turn winning processes into reusable skills that run automatically across all your products.
+    </div>
+
+    <hr>
+
+    <h3>The Shared Context Stack</h3>
+    <p>How persistent files make every AI session smarter than the last &mdash; so you never re-explain your business to AI again.</p>
+    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
+      <a href="shared-context-stack.png" target="_blank" title="Click to open full size">
+        <img src="shared-context-stack.png" alt="The Shared Context Stack — 6-layer vertical stack: Strategy, Language, Decisions, Requirements, Plans, Knowledge" style="width: 100%; height: auto; display: block;">
+      </a>
+    </div>
+    <div class="callout info"><strong>For Amazon sellers:</strong> Imagine your AI already knows your brand story, your target customer, your pricing strategy, why you chose that supplier, and every lesson from past launches. That's what these files do — they persist between sessions so your AI never starts from zero.</div>
+
+    <hr>
+
+    <h3>The Agentic CI/CD Pipeline</h3>
+    <p>The full loop from "I have an idea" to "it's live and verified" &mdash; every stage AI-augmented.</p>
+    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
+      <a href="agentic-cicd-pipeline.png" target="_blank" title="Click to open full size">
+        <img src="agentic-cicd-pipeline.png" alt="The Agentic CI/CD Pipeline — 8 stages: Spec, Plan, Implement, Test, Review, Deploy, Monitor, Compound" style="width: 100%; height: auto; display: block;">
+      </a>
+    </div>
+    <div class="callout info"><strong>For Amazon sellers:</strong> This is how you go from "I want to improve my listing" to "it's live, tested, and I can roll back if something breaks." Spec your idea, let AI plan and implement it, automatically test and review, deploy with a safety net, and capture what you learned so next time is even faster.</div>
+
+    <hr>
+
+    <h3>AI-Native Project Management</h3>
+    <p>How to give your AI agents a structured to-do list instead of free-form chat &mdash; so they know what to work on, what's done, and what's next.</p>
+    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
+      <a href="ai-native-project-management.png" target="_blank" title="Click to open full size">
+        <img src="ai-native-project-management.png" alt="AI-Native Project Management — Beads, Linear, Symphony tiers plus GStack/GasTown/GasCity agentic stack" style="width: 100%; height: auto; display: block;">
+      </a>
+    </div>
+    <div class="callout info"><strong>For Amazon sellers:</strong> Instead of telling AI "optimize my listings" in a chat that forgets everything, you create structured tasks: "Audit ASIN X for keyword gaps," "Pull competitor pricing for category Y." The AI picks up tasks, completes them, and the results are tracked — like having a VA that never loses the thread.</div>
+
+    <hr>
+
+    <h3>Domain-Driven Design for AI Agents</h3>
+    <p>Six proven patterns for managing complexity &mdash; originally developed for large software systems, now applied to AI agent workflows.</p>
+    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
+      <a href="ddd-for-ai-agents.png" target="_blank" title="Click to open full size">
+        <img src="ddd-for-ai-agents.png" alt="Domain-Driven Design for AI Agents — Ubiquitous Language, Bounded Contexts, Context Mapping, Aggregate Roots, Strategic Design, Event Storming mapped to Grill Sessions" style="width: 100%; height: auto; display: block;">
+      </a>
+    </div>
+    <div class="callout info"><strong>For Amazon sellers:</strong> The #1 reason AI gives bad answers is ambiguous language. Does "launch" mean first day of inventory or first day of PPC? Does "profitability" include FBA fees? These patterns give you and your AI a shared vocabulary — so it stops guessing and starts getting it right.</div>
+
+  </div>
+
+  <!-- TAB: Checklist -->
+  <div class="tab-content" id="tab-checklist">
+    <h2><span class="section-number">7</span>Verification Checklist</h2>
+    <p>Every item should be checked off before the workshop. Your progress is saved automatically.</p>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Accounts</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="acc-claude"><span>Claude Max ($100/mo) account active and logged in</span></li>
+        <li><input type="checkbox" data-key="acc-openai"><span>OpenAI Pro ($100/mo) account active and logged in</span></li>
+        <li><input type="checkbox" data-key="acc-github"><span>GitHub account created and <code>gh auth status</code> shows "Logged in"</span></li>
+        <li><input type="checkbox" data-key="acc-vercel"><span>Vercel account created (hobby/free tier)</span></li>
+        <li><input type="checkbox" data-key="acc-linear"><span>Linear account created</span></li>
+        <li><input type="checkbox" data-key="acc-notebook"><span>NotebookLM account created (Google account)</span></li>
+        <li><input type="checkbox" data-key="acc-excalidraw"><span>Excalidraw accessible at excalidraw.com</span></li>
+        <li><input type="checkbox" data-key="acc-obsidian"><span>Obsidian installed and a vault created</span></li>
+        <li><input type="checkbox" data-key="acc-claude-desktop"><span>Claude Desktop installed (<a href="https://claude.ai/download" target="_blank">download</a>)</span></li>
+        <li><input type="checkbox" data-key="acc-codex-desktop"><span>Codex Desktop (ChatGPT) installed (<a href="https://chatgpt.com/download" target="_blank">download</a>)</span></li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Claude Code</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="prereq-brew"><span><code>brew --version</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="prereq-git"><span><code>git --version</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="prereq-node"><span><code>node --version</code> shows v18.x or higher</span></li>
+        <li><input type="checkbox" data-key="prereq-tmux"><span><code>tmux -V</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="cc-version"><span><code>claude --version</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="cc-auth"><span><code>claude auth login</code> completed successfully</span></li>
+        <li><input type="checkbox" data-key="cc-compound"><span>compound-engineering plugin installed</span></li>
+        <li><input type="checkbox" data-key="cc-vercel"><span>Vercel plugin installed</span></li>
+        <li><input type="checkbox" data-key="cc-last30"><span>last30days skill installed</span></li>
+        <li><input type="checkbox" data-key="cc-grill-docs"><span>grill-with-docs skill installed</span></li>
+        <li><input type="checkbox" data-key="cc-grill-me"><span>grill-me skill installed</span></li>
+        <li><input type="checkbox" data-key="cc-goal"><span>Goal skill installed</span></li>
+        <li><input type="checkbox" data-key="cc-excalidraw"><span>Excalidraw MCP configured</span></li>
+        <li><input type="checkbox" data-key="cc-playwright"><span>Playwright MCP configured</span></li>
+        <li><input type="checkbox" data-key="cc-chrome"><span>Claude in Chrome extension installed and signed in</span></li>
+        <li><input type="checkbox" data-key="cc-remote"><span>Remote Control enabled (<code>/rc</code> shows session URL)</span></li>
+        <li><input type="checkbox" data-key="cc-dispatch"><span>Dispatch working (Claude Desktop + phone paired)</span></li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">OpenAI Codex</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="cx-version"><span><code>codex --version</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="cx-auth"><span><code>codex auth</code> completed successfully</span></li>
+        <li><input type="checkbox" data-key="cx-github"><span>GitHub connector authorized (Settings &gt; Apps)</span></li>
+        <li><input type="checkbox" data-key="cx-compound"><span>compound-engineering plugin installed</span></li>
+        <li><input type="checkbox" data-key="cx-computer"><span>Computer Use installed (Codex Desktop &gt; Settings)</span></li>
+        <li><input type="checkbox" data-key="cx-chrome"><span>Codex in Chrome extension installed</span></li>
+        <li><input type="checkbox" data-key="cx-vercel"><span>Vercel plugin installed (via <code>/plugins</code>)</span></li>
+        <li><input type="checkbox" data-key="cx-excalidraw"><span>Excalidraw MCP configured</span></li>
+        <li><input type="checkbox" data-key="cx-remote"><span>Remote Control tested (<code>codex remote-control</code> starts)</span></li>
+        <li><input type="checkbox" data-key="cx-goal"><span><code>/goal test</code> works inside a Codex session</span></li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Claude Design</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="cd-access"><span>Can access claude.ai/design</span></li>
+        <li><input type="checkbox" data-key="cd-system"><span>Design system created (optional &mdash; can do during workshop)</span></li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
+      <div class="checklist-group-title">Smoke Tests</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="smoke-prereqs"><span><code>brew --version && git --version && node --version && npm --version && gh auth status && tmux -V</code> &mdash; all return versions</span></li>
+        <li><input type="checkbox" data-key="smoke-claude"><span>In Claude Code session: "What plugins, skills, and MCP servers do I have installed?" &mdash; lists all expected items</span></li>
+        <li><input type="checkbox" data-key="smoke-codex"><span>In Codex session: "What plugins, tools, and MCP servers do I have available?" &mdash; lists all expected items</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TAB: Workshop Day -->
+  <div class="tab-content" id="tab-workshop">
+    <h2><span class="section-number">8</span>Workshop Day</h2>
+
+    <h3>What to Bring</h3>
+    <div class="bring-grid">
+      <div class="bring-card">
+        <div class="bring-icon">&#x1F4BB;</div>
+        <div class="bring-title">Laptop</div>
+        <div class="bring-desc">With everything installed and verified</div>
+      </div>
+      <div class="bring-card">
+        <div class="bring-icon">&#x1F4F6;</div>
+        <div class="bring-title">Internet</div>
+        <div class="bring-desc">Stable connection required</div>
+      </div>
+      <div class="bring-card">
+        <div class="bring-icon">&#x1F4E6;</div>
+        <div class="bring-title">SC Login</div>
+        <div class="bring-desc">Seller Central (if you have one)</div>
+      </div>
+      <div class="bring-card">
+        <div class="bring-icon">&#x1F50D;</div>
+        <div class="bring-title">A Product/Niche</div>
+        <div class="bring-desc">For the SignalSweep demo</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3>What You'll Get After</h3>
+    <div class="perk-list">
+      <div class="perk"><div class="perk-icon purple">&#x1F3AC;</div><div>Recording of the full talk + workshop + all slides</div></div>
+      <div class="perk"><div class="perk-icon blue">&#x1F4D6;</div><div>Foundational Principles guides & frameworks</div></div>
+      <div class="perk"><div class="perk-icon blue">&#x1F4DA;</div><div>Best Practices reference library & resources</div></div>
+      <div class="perk" style="border-color: var(--accent);"><div class="perk-icon green">&#x1F50D;</div><div><strong style="color: var(--yellow);">1 month free SignalSweep</strong> — agentic research across 150+ sources (live attendees only)</div></div>
+      <div class="perk" style="border-color: var(--accent);"><div class="perk-icon green">&#x267E;&#xFE0F;</div><div><strong style="color: var(--yellow);">Lifetime SkillForge access</strong> — turn any workflow into a reusable AI skill (live attendees only)</div></div>
+      <div class="perk"><div class="perk-icon green">&#x1F4DE;</div><div><strong>Free 30-minute follow-up call</strong> with Jack</div></div>
+    </div>
+
+    <hr>
+
+    <h3>Troubleshooting</h3>
+
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">"brew: command not found"?</div>
+      <div class="faq-a">Homebrew isn't installed. Run: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code> then restart your terminal.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Can't install Claude Code or Codex?</div>
+      <div class="faq-a">Make sure you have Node.js 18+ installed: <code>node --version</code>. Install with <code>brew install node</code> or from <a href="https://nodejs.org" target="_blank">nodejs.org</a>.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Claude Code authentication failing?</div>
+      <div class="faq-a"><code>claude auth logout && claude auth login</code></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Codex authentication failing?</div>
+      <div class="faq-a">Run <code>codex auth</code> again. Ensure you're on the Pro ($100/mo) plan.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Plugin or skill not showing up?</div>
+      <div class="faq-a">Restart Claude Code or Codex after installing. Plugins and skills load at session start only.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Playwright MCP not working?</div>
+      <div class="faq-a">Ensure Node.js 18+ (Node 16 gives "performance is not defined" error). On Linux: <code>npx playwright install-deps</code></div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Claude in Chrome not connecting?</div>
+      <div class="faq-a">Must be Google Chrome or Microsoft Edge. Brave, Arc, and other Chromium browsers are not supported.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Computer Use not available in Codex?</div>
+      <div class="faq-a">Requires the <strong>Codex Desktop app</strong> (not CLI) and is <strong>macOS only</strong> as of May 2026.</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 32px;">
+      <p style="color: var(--text-muted); margin-bottom: 12px;">Still stuck? Book a free setup call:</p>
+      <a class="cta-btn" href="https://calendar.app.google/NYDkWnSjQQqsnYrT7" target="_blank">Book Setup Call with Jack</a>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 0.8rem;">
+  Last updated: May 20, 2026
+</div>
+
+<script>
+  // Tab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Checklist persistence
+  const STORAGE_KEY = 'workshop-checklist';
+  function loadChecklist() {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+      cb.checked = !!saved[cb.dataset.key];
+    });
+    updateProgress();
+  }
+  function saveChecklist() {
+    const state = {};
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+      state[cb.dataset.key] = cb.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateProgress();
+  }
+  function updateProgress() {
+    const all = document.querySelectorAll('.checklist input[type="checkbox"]');
+    const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked');
+    const pct = all.length ? Math.round((checked.length / all.length) * 100) : 0;
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = checked.length + ' / ' + all.length;
+  }
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', saveChecklist);
+  });
+  loadChecklist();
+
+  // Copy button
+  function copyCode(btn) {
+    const code = btn.closest('.code-wrap').querySelector('code').textContent;
+    navigator.clipboard.writeText(code).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    });
+  }
+</script>
+<div class="help-bar">
+  <span>Stuck on a step?</span>
+  <a href="https://calendar.app.google/NYDkWnSjQQqsnYrT7" target="_blank">Book a free setup call with Jack</a>
+</div>
+<div style="height: 44px;"></div>
+</body>
+</html>
