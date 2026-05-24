@@ -100,7 +100,7 @@ Talk track:
 If installing live, use the fast GitHub installer:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/tripleyak/everlearn/main/scripts/install.sh | bash -s -- --profile ecommerce
+curl -fsSL https://raw.githubusercontent.com/tripleyak/everlearn/v2026-05-27-workshop/scripts/install.sh | bash -s -- --ref v2026-05-27-workshop --profile ecommerce
 ```
 
 If using the ZIP fallback, use:
