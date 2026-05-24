@@ -996,6 +996,7 @@
     <button class="tab-btn" data-tab="codex">OpenAI Codex</button>
     <button class="tab-btn" data-tab="design">Claude Design</button>
     <button class="tab-btn" data-tab="frameworks">Frameworks</button>
+    <button class="tab-btn" data-tab="everlearn">Everlearn</button>
     <button class="tab-btn" data-tab="checklist">Checklist</button>
     <button class="tab-btn" data-tab="workshop">Workshop Day</button>
   </div>
@@ -1563,9 +1564,70 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 
   </div>
 
+  <!-- TAB: Everlearn -->
+  <div class="tab-content" id="tab-everlearn">
+    <h2><span class="section-number">7</span>Everlearn Knowledge Capture</h2>
+    <p>Install the local-first learning system that lets Claude Code and Codex save useful lessons into your own Markdown or Obsidian vault. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~5 minutes</span></p>
+
+    <div class="callout info">
+      <strong>General system, ecommerce profile.</strong> Everlearn is not just for Amazon sellers. Tonight we use the ecommerce profile so you can capture customer signals, product ideas, ad learnings, and market research. Later you can switch to general, coding, research, or operations.
+    </div>
+
+    <h3>1. Download Everlearn</h3>
+    <p>Download the workshop package, then unzip it from Terminal.</p>
+    <p style="margin: 16px 0;">
+      <a class="cta-btn" href="everlearn-workshop.zip" download>Download Everlearn ZIP</a>
+    </p>
+
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>cd ~/Downloads
+unzip -o everlearn-workshop.zip
+cd everlearn</code></pre>
+    </div>
+
+    <h3>2. Install The Ecommerce Profile</h3>
+    <p>This creates <code>~/Everlearn Vault</code>, installs the Everlearn skill for Claude Code and Codex, and adds a local <code>everlearn</code> command.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>./scripts/setup.sh --profile ecommerce
+~/.everlearn/bin/everlearn verify</code></pre>
+    </div>
+
+    <h3>3. Capture A Test Signal</h3>
+    <p>This creates your first note in the vault.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>~/.everlearn/bin/everlearn capture \
+  --type signal \
+  --title "Customer asked for a cheaper bundle" \
+  "A shopper wanted a lower-priced starter bundle before buying the full kit."</code></pre>
+    </div>
+
+    <h3>4. Open The Vault In Obsidian</h3>
+    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Open Obsidian</p></div></div>
+    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Choose <strong>Open folder as vault</strong></p></div></div>
+    <div class="step"><span class="step-num">3</span><div class="step-body"><p>Select <code>~/Everlearn Vault</code></p></div></div>
+
+    <h3>5. Use It From Claude Code Or Codex</h3>
+    <p>After setup, restart Claude Code or Codex so the new skill loads. Then use prompts like these:</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag prompt">Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>Use Everlearn to capture the reusable learning from this session.</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag prompt">Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>Save this as an Everlearn customer signal note in my vault.</code></pre>
+    </div>
+
+    <div class="callout tip">
+      <strong>Privacy default:</strong> Everlearn only captures what you or your agent explicitly write into it. It does not scrape private chats, browser history, customer data, or your computer.
+    </div>
+  </div>
+
   <!-- TAB: Checklist -->
   <div class="tab-content" id="tab-checklist">
-    <h2><span class="section-number">7</span>Verification Checklist</h2>
+    <h2><span class="section-number">8</span>Verification Checklist</h2>
     <p>Every item should be checked off before the workshop. Your progress is saved automatically.</p>
 
     <div class="checklist-group">
@@ -1632,6 +1694,17 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
     </div>
 
     <div class="checklist-group">
+      <div class="checklist-group-title">Everlearn</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="el-download"><span>Everlearn ZIP downloaded and unzipped</span></li>
+        <li><input type="checkbox" data-key="el-setup"><span><code>./scripts/setup.sh --profile ecommerce</code> completed successfully</span></li>
+        <li><input type="checkbox" data-key="el-verify"><span><code>~/.everlearn/bin/everlearn verify</code> passes</span></li>
+        <li><input type="checkbox" data-key="el-capture"><span>Test capture appears in <code>~/Everlearn Vault</code></span></li>
+        <li><input type="checkbox" data-key="el-agent"><span>Claude Code or Codex restarted after Everlearn install</span></li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
       <div class="checklist-group-title">Smoke Tests</div>
       <ul class="checklist">
         <li><input type="checkbox" data-key="smoke-prereqs"><span><code>brew --version && git --version && node --version && npm --version && gh auth status && tmux -V</code> &mdash; all return versions</span></li>
@@ -1643,7 +1716,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 
   <!-- TAB: Workshop Day -->
   <div class="tab-content" id="tab-workshop">
-    <h2><span class="section-number">8</span>Workshop Day</h2>
+    <h2><span class="section-number">9</span>Workshop Day</h2>
 
     <h3>What to Bring</h3>
     <div class="bring-grid">
@@ -1706,6 +1779,14 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
       <div class="faq-a">Restart Claude Code or Codex after installing. Plugins and skills load at session start only.</div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Everlearn ZIP will not unzip?</div>
+      <div class="faq-a">Make sure the file is in <code>~/Downloads</code>, then run <code>cd ~/Downloads && unzip -o everlearn-workshop.zip</code>. If your browser renamed it, use the exact filename shown in Finder.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Everlearn note not visible in Obsidian?</div>
+      <div class="faq-a">Open Obsidian and choose <strong>Open folder as vault</strong>, then select <code>~/Everlearn Vault</code>. The test note should be inside <code>30 Research/Customer Signals</code>.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Playwright MCP not working?</div>
       <div class="faq-a">Ensure Node.js 18+ (Node 16 gives "performance is not defined" error). On Linux: <code>npx playwright install-deps</code></div>
     </div>
@@ -1726,7 +1807,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 </div>
 
 <div style="text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 0.8rem;">
-  Last updated: May 20, 2026
+  Last updated: May 24, 2026
 </div>
 
 <script>
