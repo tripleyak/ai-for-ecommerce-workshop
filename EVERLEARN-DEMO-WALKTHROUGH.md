@@ -97,7 +97,13 @@ Talk track:
 
 ## Step 3: Install Or Verify
 
-If installing live, use:
+If installing live, use the fast GitHub installer:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tripleyak/everlearn/main/scripts/install.sh | bash -s -- --profile ecommerce
+```
+
+If using the ZIP fallback, use:
 
 ```bash
 cd ~/Downloads

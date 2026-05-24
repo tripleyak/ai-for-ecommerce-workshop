@@ -1691,8 +1691,15 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
       <strong>General system, ecommerce profile.</strong> Everlearn is not just for Amazon sellers. Tonight we use the ecommerce profile so you can capture customer signals, product ideas, ad learnings, and market research. Later you can switch to general, coding, research, or operations.
     </div>
 
-    <h3>1. Download Everlearn</h3>
-    <p>Download the workshop package, then unzip it from Terminal.</p>
+    <h3>1. Fast Install Or Update</h3>
+    <p>If you are comfortable pasting one Terminal command, this downloads the latest Everlearn package from GitHub, installs the ecommerce profile, and verifies the setup.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/everlearn/main/scripts/install.sh | bash -s -- --profile ecommerce</code></pre>
+    </div>
+
+    <h3>2. Manual ZIP Install</h3>
+    <p>Prefer this if you want to download the workshop package first, then run setup yourself.</p>
     <p style="margin: 16px 0;">
       <a class="cta-btn" href="everlearn-workshop.zip" download>Download Everlearn ZIP</a>
     </p>
@@ -1700,11 +1707,11 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>cd ~/Downloads
-unzip -o everlearn-workshop.zip
-cd everlearn</code></pre>
+	unzip -o everlearn-workshop.zip
+	cd everlearn</code></pre>
     </div>
 
-    <h3>2. Install The Ecommerce Profile</h3>
+    <h3>3. Manual ZIP Setup</h3>
     <p>This creates <code>~/Everlearn Vault</code>, installs the Everlearn skill for Claude Code and Codex, adds a local <code>everlearn</code> command, and installs <code>/everlearn</code> command files for Claude Code and Codex.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1712,7 +1719,7 @@ cd everlearn</code></pre>
 ~/.everlearn/bin/everlearn verify</code></pre>
     </div>
 
-    <h3>3. Capture A Test Signal</h3>
+    <h3>4. Capture A Test Signal</h3>
     <p>This creates your first note in the vault.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1722,12 +1729,12 @@ cd everlearn</code></pre>
   "A shopper wanted a lower-priced starter bundle before buying the full kit."</code></pre>
     </div>
 
-    <h3>4. Open The Vault In Obsidian</h3>
+    <h3>5. Open The Vault In Obsidian</h3>
     <div class="step"><span class="step-num">1</span><div class="step-body"><p>Open Obsidian</p></div></div>
     <div class="step"><span class="step-num">2</span><div class="step-body"><p>Choose <strong>Open folder as vault</strong></p></div></div>
     <div class="step"><span class="step-num">3</span><div class="step-body"><p>Select <code>~/Everlearn Vault</code></p></div></div>
 
-    <h3>5. Use It From Claude Code Or Codex</h3>
+    <h3>6. Use It From Claude Code Or Codex</h3>
     <p>After setup, restart Claude Code or Codex so the new skill loads. In Claude Code and supported Codex builds, use the slash command:</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag prompt">Claude Code / Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1743,7 +1750,7 @@ cd everlearn</code></pre>
       <pre><code>Save this as an Everlearn customer signal note in my vault.</code></pre>
     </div>
 
-    <h3>6. Optional: Capture SignalSweep Research</h3>
+    <h3>7. Optional: Capture SignalSweep Research</h3>
     <p>If SignalSweep is installed, Everlearn can run it and save that one research run into the Everlearn vault without changing SignalSweep's normal save location.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1840,8 +1847,8 @@ cd everlearn</code></pre>
     <div class="checklist-group">
       <div class="checklist-group-title">Everlearn</div>
       <ul class="checklist">
-        <li><input type="checkbox" data-key="el-download"><span>Everlearn ZIP downloaded and unzipped</span></li>
-        <li><input type="checkbox" data-key="el-setup"><span><code>./scripts/setup.sh --profile ecommerce</code> completed successfully</span></li>
+        <li><input type="checkbox" data-key="el-install"><span>Everlearn installed with curl-bash or the ZIP workflow</span></li>
+        <li><input type="checkbox" data-key="el-setup"><span><code>~/.everlearn/bin/everlearn verify</code> completed successfully</span></li>
         <li><input type="checkbox" data-key="el-verify"><span><code>~/.everlearn/bin/everlearn verify</code> passes</span></li>
         <li><input type="checkbox" data-key="el-capture"><span>Test capture appears in <code>~/Everlearn Vault</code></span></li>
         <li><input type="checkbox" data-key="el-agent"><span>Claude Code or Codex restarted after Everlearn install</span></li>
