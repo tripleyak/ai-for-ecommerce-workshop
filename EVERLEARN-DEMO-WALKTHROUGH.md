@@ -89,7 +89,7 @@ Show the setup page's Everlearn tab, then explain the four pieces:
 | Obsidian | The visual app for browsing the vault |
 | Everlearn skill | Instructions Claude Code and Codex can follow |
 | `everlearn` command | The local tool that writes notes and runs reviews |
-| `/everlearn` | Claude Code shortcut for the same workflow |
+| `/everlearn` | Claude Code and Codex shortcut for the same workflow where custom commands are exposed |
 
 Talk track:
 
@@ -171,7 +171,7 @@ If the agent does not invoke the skill cleanly, use the command fallback:
   "Customers keep asking whether the starter bundle includes replacement filters. The listing should answer maintenance questions before price comparison starts."
 ```
 
-Claude Code shortcut:
+Claude Code and Codex shortcut:
 
 ```text
 /everlearn signal Customers keep asking whether the starter bundle includes replacement filters.
@@ -254,7 +254,7 @@ Prompt 1:
 Use Everlearn to capture the most reusable learning from this session.
 ```
 
-Claude Code shortcut:
+Claude Code and Codex shortcut:
 
 ```text
 /everlearn learning The most reusable learning from this session was ...

@@ -11,6 +11,7 @@ Static prerequisite and setup guide for the AI for Ecommerce x Amazon Sellers Wo
 
 - Main file: `index.html`
 - Facilitator guide: `EVERLEARN-DEMO-WALKTHROUGH.md`
+- Dedicated workshop tabs: SignalSweep and SkillForge install, verification, and demo prep
 - Vercel project: `ai-for-ecommerce-workshop`
 - Deploy command: `vercel --yes --prod`
 
