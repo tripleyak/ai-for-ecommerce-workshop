@@ -1393,19 +1393,21 @@ cd claude-goal
       </table>
     </div>
 
-    <h3>2. Download The Starter Kit</h3>
-    <p>The starter kit runs locally with Node. It has no external API keys, no paid model calls, and no private data requirement.</p>
-    <p style="margin: 16px 0;">
-      <a class="cta-btn" href="autoresearch-starter-kit.zip" download>Download Autoresearch Starter Kit</a>
-    </p>
+    <h3>2. Install With One Command</h3>
+    <p>The starter kit runs locally with Node. The installer downloads the files, creates <code>~/autoresearch-starter-kit</code>, runs both smoke tests, and makes the baseline Git commit.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>cd ~/Downloads
-unzip -o autoresearch-starter-kit.zip
-cd autoresearch-starter-kit
-node response-curves/train.js
-node demand-forecast/train.js</code></pre>
+      <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash</code></pre>
     </div>
+    <p>To install somewhere else, add <code>--dir</code>. To replace an earlier copy, add <code>--force</code>.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash -s -- --dir ~/Documents/autoresearch-starter-kit
+curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash -s -- --force</code></pre>
+    </div>
+    <p style="margin: 16px 0;">
+      <a class="cta-btn" href="autoresearch-starter-kit.zip" download>Download ZIP Backup</a>
+    </p>
 
     <h3>3. The Autoresearch Pattern</h3>
     <div class="table-wrap">
@@ -1972,7 +1974,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
     <div class="checklist-group">
       <div class="checklist-group-title">Autoresearch Lab</div>
       <ul class="checklist">
-        <li><input type="checkbox" data-key="autoresearch-download"><span>Autoresearch starter kit downloaded and unzipped</span></li>
+        <li><input type="checkbox" data-key="autoresearch-download"><span>Autoresearch starter kit installed with the one-line Terminal command</span></li>
         <li><input type="checkbox" data-key="autoresearch-response"><span><code>node response-curves/train.js</code> prints portfolio WMAPE</span></li>
         <li><input type="checkbox" data-key="autoresearch-demand"><span><code>node demand-forecast/train.js</code> prints portfolio WMAPE</span></li>
         <li><input type="checkbox" data-key="autoresearch-git"><span>Starter folder initialized with a baseline Git commit</span></li>

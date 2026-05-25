@@ -42,7 +42,7 @@ If the workshop is running behind, skip the install walkthrough and start from a
 
 Before the live session:
 
-- Open the public setup page: https://ai-for-ecommerce-workshop.vercel.app
+- Open the public setup page: https://ai-ecommerce-workshop.vercel.app
 - Download `everlearn-workshop.zip` from the Everlearn tab.
 - Confirm the local command works:
 

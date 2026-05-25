@@ -4,7 +4,7 @@ Static prerequisite and setup guide for the AI for Ecommerce x Amazon Sellers Wo
 
 ## Live Site
 
-- Current public URL: https://ai-for-ecommerce-workshop.vercel.app
+- Current public URL: https://ai-ecommerce-workshop.vercel.app
 - Previous URL: https://ai-ecommerce-workshop-site.vercel.app
 
 ## Project
