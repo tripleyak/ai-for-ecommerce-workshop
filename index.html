@@ -325,6 +325,96 @@
   .callout.tip { background: var(--green-bg); border-color: var(--green); }
   .callout strong { font-weight: 600; }
 
+  /* Compact diagram library */
+  .diagram-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0 24px;
+  }
+  .diagram-grid-opening {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .diagram-section {
+    margin-top: 28px;
+  }
+  .diagram-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+    padding-top: 22px;
+    margin-top: 12px;
+  }
+  .diagram-section-head h3 {
+    margin: 0;
+  }
+  .diagram-section-head span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+  .diagram-card {
+    background: rgba(255,255,255,0.035);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    min-width: 0;
+  }
+  .diagram-image-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 140px;
+    padding: 8px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--border);
+  }
+  .diagram-grid-opening .diagram-image-link {
+    height: 165px;
+  }
+  .diagram-thumb {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    min-width: 0;
+  }
+  .diagram-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background: #1e40af;
+    color: #ffffff;
+    border: 1px solid #1e3a5f;
+    font-size: 0.78rem;
+    font-weight: 800;
+    z-index: 1;
+  }
+  .diagram-meta {
+    padding: 10px 11px 12px;
+  }
+  .diagram-meta h4 {
+    color: var(--text);
+    font-size: 0.82rem;
+    line-height: 1.25;
+    margin: 0 0 6px;
+  }
+  .diagram-meta p {
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    line-height: 1.35;
+    margin: 0;
+  }
+
   /* Code blocks */
   .code-wrap {
     position: relative;
@@ -776,6 +866,11 @@
 
     /* Images in frameworks */
     .tab-content img { min-width: 0; }
+    .diagram-grid,
+    .diagram-grid-opening { grid-template-columns: 1fr; }
+    .diagram-image-link,
+    .diagram-grid-opening .diagram-image-link { height: 160px; }
+    .diagram-section-head { align-items: flex-start; flex-direction: column; gap: 4px; }
 
     /* Cost total badge */
     .cost-total { font-size: 0.82rem; padding: 8px 12px; }
@@ -1887,73 +1982,694 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
   <!-- TAB: Frameworks -->
   <div class="tab-content" id="tab-frameworks">
     <h2><span class="section-number">10</span>Foundational Frameworks</h2>
-    <p>These diagrams illustrate the core concepts and methodologies we'll cover in the workshop. Study them before the session &mdash; we'll build real tools using each framework.</p>
+    <p>All rendered workflow diagrams are now available here as a compact visual library. The first group is the recommended opening sequence; the sections after it include the full workshop diagram set.</p>
 
-    <h3>Five Foundations for Working With AI</h3>
-    <p>The habits that make AI more valuable the more you use it &mdash; regardless of what you're working on.</p>
-    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
-      <a href="five-foundations-for-working-with-ai.png" target="_blank" title="Click to open full size">
-        <img src="five-foundations-for-working-with-ai.png" alt="Five Foundations for Working With AI: outcome, context, guardrails, evidence, and learning." style="width: 100%; height: auto; display: block;">
-      </a>
-    </div>
     <div class="callout info">
-      <strong>For Amazon sellers:</strong> This is the operating system for how you'll work with AI. Start with a seller outcome, package the right context, set guardrails, require evidence before using the result, and save what worked so the next AI session starts smarter.
+      <strong>How to use this tab:</strong> scan the smaller thumbnails to understand the whole library, then click any diagram to open it full-size. The diagrams are intentionally grouped by how attendees will use them: core principles first, then the applied Amazon/ecommerce labs and support workflows.
     </div>
 
-    <hr>
-
-    <h3>From Product Intent to Verified Output</h3>
-    <p>A high-level operating system for turning seller intent into a trusted asset, decision, workflow, or software change while keeping judgment, priorities, and final acceptance with humans.</p>
-    <div style="margin: 16px auto; max-width: 888px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
-      <a href="product-intent-to-shipped-software.png" target="_blank" title="Click to open full size">
-        <img src="product-intent-to-shipped-software.png" alt="From Product Intent to Verified Output: define seller intent, prepare context, let AI execute, validate evidence, use the output, and capture learning." style="width: 100%; height: auto; display: block;">
-      </a>
+    <h3>Opening Sequence</h3>
+    <p>This is the principles-first order for the short presentation section at the beginning of the workshop.</p>
+    <div class="diagram-grid diagram-grid-opening">
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="workshop-operating-loop.png" target="_blank" title="Open full size: Workshop Operating Loop">
+          <span class="diagram-badge">1</span><img class="diagram-thumb" loading="lazy" src="workshop-operating-loop.png" alt="Workshop Operating Loop: The shared model behind every lab: intent, AI work, validation, human judgment, and captured learning.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Workshop Operating Loop</h4>
+          <p>What loop will I use in every lab?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="five-foundations-for-working-with-ai.png" target="_blank" title="Open full size: Five Foundations for Working With AI">
+          <span class="diagram-badge">2</span><img class="diagram-thumb" loading="lazy" src="five-foundations-for-working-with-ai.png" alt="Five Foundations for Working With AI: The habits that make AI useful instead of random.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Five Foundations for Working With AI</h4>
+          <p>What habits make AI useful instead of random?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="shared-context-stack.png" target="_blank" title="Open full size: Shared Context Stack">
+          <span class="diagram-badge">3</span><img class="diagram-thumb" loading="lazy" src="shared-context-stack.png" alt="Shared Context Stack: Persistent artifacts keep each session from starting cold.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Shared Context Stack</h4>
+          <p>What context does AI need before it can help my business?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="ddd-for-ai-agents.png" target="_blank" title="Open full size: Domain-Driven Design for AI Agents">
+          <span class="diagram-badge">4</span><img class="diagram-thumb" loading="lazy" src="ddd-for-ai-agents.png" alt="Domain-Driven Design for AI Agents: Prevent ambiguous agent work by separating language, boundaries, workflows, and proof.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Domain-Driven Design for AI Agents</h4>
+          <p>How do I define the business boundary clearly enough for AI to execute?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="product-intent-to-shipped-software.png" target="_blank" title="Open full size: From Product Intent to Shipped Software">
+          <span class="diagram-badge">5</span><img class="diagram-thumb" loading="lazy" src="product-intent-to-shipped-software.png" alt="From Product Intent to Shipped Software: Turn a seller goal into validated, deployed software.">
+        </a>
+        <div class="diagram-meta">
+          <h4>From Product Intent to Shipped Software</h4>
+          <p>How does human intent become validated, deployed software?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="agentic-cicd-pipeline.png" target="_blank" title="Open full size: Agentic CI/CD Pipeline">
+          <span class="diagram-badge">6</span><img class="diagram-thumb" loading="lazy" src="agentic-cicd-pipeline.png" alt="Agentic CI/CD Pipeline: A nontechnical view of how AI work becomes reliable.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Agentic CI/CD Pipeline</h4>
+          <p>How do quality gates keep AI work from becoming guesswork?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="applied-labs-map.png" target="_blank" title="Open full size: Applied Labs Map">
+          <span class="diagram-badge">7</span><img class="diagram-thumb" loading="lazy" src="applied-labs-map.png" alt="Applied Labs Map: Each lab teaches the same operating system from a different angle.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Applied Labs Map</h4>
+          <p>Which lab teaches which part of the operating system?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="signalsweep-market-signal-flow.png" target="_blank" title="Open full size: SignalSweep Market Signal Flow">
+          <span class="diagram-badge">8</span><img class="diagram-thumb" loading="lazy" src="signalsweep-market-signal-flow.png" alt="SignalSweep Market Signal Flow: From messy public evidence to seller actions.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SignalSweep Market Signal Flow</h4>
+          <p>How do public customer signals become seller actions?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="autoresearch-experiment-loop.png" target="_blank" title="Open full size: Autoresearch Experiment Loop">
+          <span class="diagram-badge">9</span><img class="diagram-thumb" loading="lazy" src="autoresearch-experiment-loop.png" alt="Autoresearch Experiment Loop: AI improves a measurable workflow only when the scorecard stays fixed.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Autoresearch Experiment Loop</h4>
+          <p>How does AI improve a measurable workflow without moving the goalposts?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="skillforge-repeatable-workflow-capture.png" target="_blank" title="Open full size: Repeatable Workflow Capture">
+          <span class="diagram-badge">10</span><img class="diagram-thumb" loading="lazy" src="skillforge-repeatable-workflow-capture.png" alt="Repeatable Workflow Capture: The workshop pattern: notice repetition, capture it, package it, and reuse it.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Repeatable Workflow Capture</h4>
+          <p>How do I turn a repeated process into a reusable AI workflow?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="browser-computer-use-safety-boundary.png" target="_blank" title="Open full size: Browser And Computer-Use Safety Boundary">
+          <span class="diagram-badge">11</span><img class="diagram-thumb" loading="lazy" src="browser-computer-use-safety-boundary.png" alt="Browser And Computer-Use Safety Boundary: Visible software operation is powerful only with explicit boundaries.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Browser And Computer-Use Safety Boundary</h4>
+          <p>How can AI operate browser/software safely under human judgment?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="everlearn-capture-loop.png" target="_blank" title="Open full size: Everlearn Capture Loop">
+          <span class="diagram-badge">12</span><img class="diagram-thumb" loading="lazy" src="everlearn-capture-loop.png" alt="Everlearn Capture Loop: Capture useful learning where future AI sessions can actually use it.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Everlearn Capture Loop</h4>
+          <p>How do I save learnings so future AI sessions start smarter?</p>
+        </div>
+      </article>
+      <article class="diagram-card opening-card">
+        <a class="diagram-image-link" href="claude-design-operating-system.png" target="_blank" title="Open full size: Claude Design Operating System">
+          <span class="diagram-badge">13</span><img class="diagram-thumb" loading="lazy" src="claude-design-operating-system.png" alt="Claude Design Operating System: Claude Design becomes useful when research, brand context, QA, and testing surround generation.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Claude Design Operating System</h4>
+          <p>How do research, brand rules, QA, and testing surround creative generation?</p>
+        </div>
+      </article>
     </div>
-    <div class="callout info"><strong>For Amazon sellers:</strong> This is the bridge from AI principles to applied labs. A seller starts with intent, such as improve a listing, evaluate ad spend, or prepare an SBV campaign. The system turns that intent into structured work, lets AI execute the repeatable steps, validates the result, and brings the human back in for judgment and QA.</div>
 
-    <hr>
+    <h3>Full Workshop Diagram Library</h3>
+    <p>Every rendered PNG from the workshop diagram library is included below. These are smaller by default so the whole diagram fits in a single viewport more easily; click any thumbnail for the full-size image.</p>
 
-    <h3>The Shared Context Stack</h3>
-    <p>How persistent files make every AI session smarter than the last &mdash; so you never re-explain your business to AI again.</p>
-    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
-      <a href="shared-context-stack.png" target="_blank" title="Click to open full size">
-        <img src="shared-context-stack.png" alt="The Shared Context Stack — 6-layer vertical stack: Strategy, Language, Decisions, Requirements, Plans, Knowledge" style="width: 100%; height: auto; display: block;">
-      </a>
-    </div>
-    <div class="callout info"><strong>For Amazon sellers:</strong> Imagine your AI already knows your brand story, your target customer, your pricing strategy, why you chose that supplier, and every lesson from past launches. That's what these files do — they persist between sessions so your AI never starts from zero.</div>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>Core AI Frameworks</h3>
+        <span>10 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="agentic-cicd-pipeline.png" target="_blank" title="Open full size: Agentic CI/CD Pipeline">
+          <span class="diagram-badge">6</span><img class="diagram-thumb" loading="lazy" src="agentic-cicd-pipeline.png" alt="Agentic CI/CD Pipeline: A nontechnical view of how AI work becomes reliable.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Agentic CI/CD Pipeline</h4>
+          <p>How do quality gates keep AI work from becoming guesswork?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="ai-native-project-management.png" target="_blank" title="Open full size: AI-Native Project Management">
+          <img class="diagram-thumb" loading="lazy" src="ai-native-project-management.png" alt="AI-Native Project Management: Coordinate human decisions, agent tasks, evidence, and next actions.">
+        </a>
+        <div class="diagram-meta">
+          <h4>AI-Native Project Management</h4>
+          <p>Coordinate human decisions, agent tasks, evidence, and next actions.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="applied-labs-map.png" target="_blank" title="Open full size: Applied Labs Map">
+          <span class="diagram-badge">7</span><img class="diagram-thumb" loading="lazy" src="applied-labs-map.png" alt="Applied Labs Map: Each lab teaches the same operating system from a different angle.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Applied Labs Map</h4>
+          <p>Which lab teaches which part of the operating system?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="ddd-for-ai-agents.png" target="_blank" title="Open full size: Domain-Driven Design for AI Agents">
+          <span class="diagram-badge">4</span><img class="diagram-thumb" loading="lazy" src="ddd-for-ai-agents.png" alt="Domain-Driven Design for AI Agents: Prevent ambiguous agent work by separating language, boundaries, workflows, and proof.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Domain-Driven Design for AI Agents</h4>
+          <p>How do I define the business boundary clearly enough for AI to execute?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="five-foundations-for-working-with-ai.png" target="_blank" title="Open full size: Five Foundations for Working With AI">
+          <span class="diagram-badge">2</span><img class="diagram-thumb" loading="lazy" src="five-foundations-for-working-with-ai.png" alt="Five Foundations for Working With AI: The habits that make AI useful instead of random.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Five Foundations for Working With AI</h4>
+          <p>What habits make AI useful instead of random?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="product-intent-to-shipped-software.png" target="_blank" title="Open full size: From Product Intent to Shipped Software">
+          <span class="diagram-badge">5</span><img class="diagram-thumb" loading="lazy" src="product-intent-to-shipped-software.png" alt="From Product Intent to Shipped Software: Turn a seller goal into validated, deployed software.">
+        </a>
+        <div class="diagram-meta">
+          <h4>From Product Intent to Shipped Software</h4>
+          <p>How does human intent become validated, deployed software?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="research-memory-everlearn-flow.png" target="_blank" title="Open full size: Research To Durable Memory">
+          <img class="diagram-thumb" loading="lazy" src="research-memory-everlearn-flow.png" alt="Research To Durable Memory: How noisy research becomes reusable judgment.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Research To Durable Memory</h4>
+          <p>How noisy research becomes reusable judgment.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="shared-context-stack.png" target="_blank" title="Open full size: Shared Context Stack">
+          <span class="diagram-badge">3</span><img class="diagram-thumb" loading="lazy" src="shared-context-stack.png" alt="Shared Context Stack: Persistent artifacts keep each session from starting cold.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Shared Context Stack</h4>
+          <p>What context does AI need before it can help my business?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="workshop-ai-operating-system.png" target="_blank" title="Open full size: Workshop AI Operating System">
+          <img class="diagram-thumb" loading="lazy" src="workshop-ai-operating-system.png" alt="Workshop AI Operating System: What does Workshop AI Operating System help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Workshop AI Operating System</h4>
+          <p>What does Workshop AI Operating System help me understand?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="workshop-operating-loop.png" target="_blank" title="Open full size: Workshop Operating Loop">
+          <span class="diagram-badge">1</span><img class="diagram-thumb" loading="lazy" src="workshop-operating-loop.png" alt="Workshop Operating Loop: The shared model behind every lab: intent, AI work, validation, human judgment, and captured learning.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Workshop Operating Loop</h4>
+          <p>What loop will I use in every lab?</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-    <hr>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>SignalSweep Market Research Workflows</h3>
+        <span>4 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="signalsweep-demo-to-seller-actions.png" target="_blank" title="Open full size: SignalSweep Demo To Seller Actions">
+          <img class="diagram-thumb" loading="lazy" src="signalsweep-demo-to-seller-actions.png" alt="SignalSweep Demo To Seller Actions: Pickleball grip demo path from topic to concrete business ideas.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SignalSweep Demo To Seller Actions</h4>
+          <p>Pickleball grip demo path from topic to concrete business ideas.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="signalsweep-market-signal-flow.png" target="_blank" title="Open full size: SignalSweep Market Signal Flow">
+          <span class="diagram-badge">8</span><img class="diagram-thumb" loading="lazy" src="signalsweep-market-signal-flow.png" alt="SignalSweep Market Signal Flow: From messy public evidence to seller actions.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SignalSweep Market Signal Flow</h4>
+          <p>How do public customer signals become seller actions?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="signalsweep-market-signal-loop.png" target="_blank" title="Open full size: SignalSweep Market Signal Loop">
+          <img class="diagram-thumb" loading="lazy" src="signalsweep-market-signal-loop.png" alt="SignalSweep Market Signal Loop: How do market signals become seller decisions and reusable learning?">
+        </a>
+        <div class="diagram-meta">
+          <h4>SignalSweep Market Signal Loop</h4>
+          <p>How do market signals become seller decisions and reusable learning?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="signalsweep-source-safety-model.png" target="_blank" title="Open full size: SignalSweep Source Safety Model">
+          <img class="diagram-thumb" loading="lazy" src="signalsweep-source-safety-model.png" alt="SignalSweep Source Safety Model: Workshop mode uses safe public sources and avoids private data by default.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SignalSweep Source Safety Model</h4>
+          <p>Workshop mode uses safe public sources and avoids private data by default.</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-    <h3>The Agentic CI/CD Pipeline</h3>
-    <p>The full loop from "I have an idea" to "it's live and verified" &mdash; every stage AI-augmented.</p>
-    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
-      <a href="agentic-cicd-pipeline.png" target="_blank" title="Click to open full size">
-        <img src="agentic-cicd-pipeline.png" alt="The Agentic CI/CD Pipeline — 8 stages: Spec, Plan, Implement, Test, Review, Deploy, Monitor, Compound" style="width: 100%; height: auto; display: block;">
-      </a>
-    </div>
-    <div class="callout info"><strong>For Amazon sellers:</strong> This is how you go from "I want to improve my listing" to "it's live, tested, and I can roll back if something breaks." Spec your idea, let AI plan and implement it, automatically test and review, deploy with a safety net, and capture what you learned so next time is even faster.</div>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>Autoresearch And Measurement Workflows</h3>
+        <span>6 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="autoresearch-benchmark-claims-boundary.png" target="_blank" title="Open full size: Benchmark And Claims Boundary">
+          <img class="diagram-thumb" loading="lazy" src="autoresearch-benchmark-claims-boundary.png" alt="Benchmark And Claims Boundary: What the workshop can say versus what belongs to the original CurveLab evidence.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Benchmark And Claims Boundary</h4>
+          <p>What the workshop can say versus what belongs to the original CurveLab evidence.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="autoresearch-byo-data-sanitization.png" target="_blank" title="Open full size: Bring Your Own Data Sanitization">
+          <img class="diagram-thumb" loading="lazy" src="autoresearch-byo-data-sanitization.png" alt="Bring Your Own Data Sanitization: Participant data must be useful enough to model and clean enough to share safely.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Bring Your Own Data Sanitization</h4>
+          <p>Participant data must be useful enough to model and clean enough to share safely.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="autoresearch-demand-forecast-track.png" target="_blank" title="Open full size: Autoresearch Demand-Forecast Track">
+          <img class="diagram-thumb" loading="lazy" src="autoresearch-demand-forecast-track.png" alt="Autoresearch Demand-Forecast Track: A second track for forecasting demand against a fixed error metric.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Autoresearch Demand-Forecast Track</h4>
+          <p>A second track for forecasting demand against a fixed error metric.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="autoresearch-experiment-loop.png" target="_blank" title="Open full size: Autoresearch Experiment Loop">
+          <span class="diagram-badge">9</span><img class="diagram-thumb" loading="lazy" src="autoresearch-experiment-loop.png" alt="Autoresearch Experiment Loop: AI improves a measurable workflow only when the scorecard stays fixed.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Autoresearch Experiment Loop</h4>
+          <p>How does AI improve a measurable workflow without moving the goalposts?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="autoresearch-fixed-harness-loop.png" target="_blank" title="Open full size: Autoresearch Fixed Harness Loop">
+          <img class="diagram-thumb" loading="lazy" src="autoresearch-fixed-harness-loop.png" alt="Autoresearch Fixed Harness Loop: What does Autoresearch Fixed Harness Loop help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Autoresearch Fixed Harness Loop</h4>
+          <p>What does Autoresearch Fixed Harness Loop help me understand?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="autoresearch-response-curve-track.png" target="_blank" title="Open full size: Autoresearch Response-Curve Track">
+          <img class="diagram-thumb" loading="lazy" src="autoresearch-response-curve-track.png" alt="Autoresearch Response-Curve Track: Use ad-spend response curves to teach diminishing returns and model validation.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Autoresearch Response-Curve Track</h4>
+          <p>Use ad-spend response curves to teach diminishing returns and model validation.</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-    <hr>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>SkillForge Reusable Workflow Patterns</h3>
+        <span>4 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="skillforge-context-advisor-loop.png" target="_blank" title="Open full size: SkillForge Context Advisor Loop">
+          <img class="diagram-thumb" loading="lazy" src="skillforge-context-advisor-loop.png" alt="SkillForge Context Advisor Loop: Advisor checks context, scores relevant skills, and surfaces suggestions only within proactivity settings.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SkillForge Context Advisor Loop</h4>
+          <p>Advisor checks context, scores relevant skills, and surfaces suggestions only within proactivity settings.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="skillforge-four-phase-architecture.png" target="_blank" title="Open full size: SkillForge Four-Phase Architecture">
+          <img class="diagram-thumb" loading="lazy" src="skillforge-four-phase-architecture.png" alt="SkillForge Four-Phase Architecture: Turn a vague request or repeated workflow into a reusable skill.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SkillForge Four-Phase Architecture</h4>
+          <p>Turn a vague request or repeated workflow into a reusable skill.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="skillforge-repeatable-workflow-capture.png" target="_blank" title="Open full size: Repeatable Workflow Capture">
+          <span class="diagram-badge">10</span><img class="diagram-thumb" loading="lazy" src="skillforge-repeatable-workflow-capture.png" alt="Repeatable Workflow Capture: The workshop pattern: notice repetition, capture it, package it, and reuse it.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Repeatable Workflow Capture</h4>
+          <p>How do I turn a repeated process into a reusable AI workflow?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="skillforge-reusable-skill-loop.png" target="_blank" title="Open full size: SkillForge Reusable Skill Loop">
+          <img class="diagram-thumb" loading="lazy" src="skillforge-reusable-skill-loop.png" alt="SkillForge Reusable Skill Loop: How does a repeated workflow become a reusable skill?">
+        </a>
+        <div class="diagram-meta">
+          <h4>SkillForge Reusable Skill Loop</h4>
+          <p>How does a repeated workflow become a reusable skill?</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-    <h3>AI-Native Project Management</h3>
-    <p>How to give your AI agents a structured to-do list instead of free-form chat &mdash; so they know what to work on, what's done, and what's next.</p>
-    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
-      <a href="ai-native-project-management.png" target="_blank" title="Click to open full size">
-        <img src="ai-native-project-management.png" alt="AI-Native Project Management — Beads, Linear, Symphony tiers plus GStack/GasTown/GasCity agentic stack" style="width: 100%; height: auto; display: block;">
-      </a>
-    </div>
-    <div class="callout info"><strong>For Amazon sellers:</strong> Instead of telling AI "optimize my listings" in a chat that forgets everything, you create structured tasks: "Audit ASIN X for keyword gaps," "Pull competitor pricing for category Y." The AI picks up tasks, completes them, and the results are tracked — like having a VA that never loses the thread.</div>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>Amazon SBV, Browser, And Computer-Use Workflows</h3>
+        <span>5 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="amazon-sbv-browser-execution-rails.png" target="_blank" title="Open full size: Amazon SBV Browser Execution Rails">
+          <img class="diagram-thumb" loading="lazy" src="amazon-sbv-browser-execution-rails.png" alt="Amazon SBV Browser Execution Rails: What does Amazon SBV Browser Execution Rails help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Amazon SBV Browser Execution Rails</h4>
+          <p>What does Amazon SBV Browser Execution Rails help me understand?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="amazon-sbv-campaign-setup.png" target="_blank" title="Open full size: Amazon SBV Campaign Setup">
+          <img class="diagram-thumb" loading="lazy" src="amazon-sbv-campaign-setup.png" alt="Amazon SBV Campaign Setup: A campaign is built from a brief, validated assets, portal entry, and evidence package.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Amazon SBV Campaign Setup</h4>
+          <p>A campaign is built from a brief, validated assets, portal entry, and evidence package.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="amazon-sbv-launch-gate.png" target="_blank" title="Open full size: Amazon SBV Launch Gate">
+          <img class="diagram-thumb" loading="lazy" src="amazon-sbv-launch-gate.png" alt="Amazon SBV Launch Gate: Spend boundaries require explicit human confirmation.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Amazon SBV Launch Gate</h4>
+          <p>Spend boundaries require explicit human confirmation.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="amazon-sbv-portal-evidence-loop.png" target="_blank" title="Open full size: SBV Portal Evidence Loop">
+          <img class="diagram-thumb" loading="lazy" src="amazon-sbv-portal-evidence-loop.png" alt="SBV Portal Evidence Loop: Visible browser operation needs notes, screenshots when allowed, and rejection reasons.">
+        </a>
+        <div class="diagram-meta">
+          <h4>SBV Portal Evidence Loop</h4>
+          <p>Visible browser operation needs notes, screenshots when allowed, and rejection reasons.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="browser-computer-use-safety-boundary.png" target="_blank" title="Open full size: Browser And Computer-Use Safety Boundary">
+          <span class="diagram-badge">11</span><img class="diagram-thumb" loading="lazy" src="browser-computer-use-safety-boundary.png" alt="Browser And Computer-Use Safety Boundary: Visible software operation is powerful only with explicit boundaries.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Browser And Computer-Use Safety Boundary</h4>
+          <p>How can AI operate browser/software safely under human judgment?</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-    <hr>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>Everlearn Memory And Knowledge Capture</h3>
+        <span>5 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="everlearn-capture-loop.png" target="_blank" title="Open full size: Everlearn Capture Loop">
+          <span class="diagram-badge">12</span><img class="diagram-thumb" loading="lazy" src="everlearn-capture-loop.png" alt="Everlearn Capture Loop: Capture useful learning where future AI sessions can actually use it.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Everlearn Capture Loop</h4>
+          <p>How do I save learnings so future AI sessions start smarter?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="everlearn-knowledge-capture-loop.png" target="_blank" title="Open full size: Everlearn Knowledge Capture Loop">
+          <img class="diagram-thumb" loading="lazy" src="everlearn-knowledge-capture-loop.png" alt="Everlearn Knowledge Capture Loop: What does Everlearn Knowledge Capture Loop help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Everlearn Knowledge Capture Loop</h4>
+          <p>What does Everlearn Knowledge Capture Loop help me understand?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="everlearn-nested-signalsweep.png" target="_blank" title="Open full size: Nested SignalSweep In Everlearn">
+          <img class="diagram-thumb" loading="lazy" src="everlearn-nested-signalsweep.png" alt="Nested SignalSweep In Everlearn: Run research, compress it, and save the reusable signal in one loop.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Nested SignalSweep In Everlearn</h4>
+          <p>Run research, compress it, and save the reusable signal in one loop.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="everlearn-profiles-and-note-quality.png" target="_blank" title="Open full size: Everlearn Profiles And Note Quality">
+          <img class="diagram-thumb" loading="lazy" src="everlearn-profiles-and-note-quality.png" alt="Everlearn Profiles And Note Quality: Profiles make captures more useful by matching the type of work.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Everlearn Profiles And Note Quality</h4>
+          <p>Profiles make captures more useful by matching the type of work.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="everlearn-weekly-review-promotion.png" target="_blank" title="Open full size: Everlearn Weekly Review Promotion">
+          <img class="diagram-thumb" loading="lazy" src="everlearn-weekly-review-promotion.png" alt="Everlearn Weekly Review Promotion: Review turns scattered notes into higher-level reusable assets.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Everlearn Weekly Review Promotion</h4>
+          <p>Review turns scattered notes into higher-level reusable assets.</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
-    <h3>Domain-Driven Design for AI Agents</h3>
-    <p>Six proven patterns for managing complexity &mdash; originally developed for large software systems, now applied to AI agent workflows.</p>
-    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
-      <a href="ddd-for-ai-agents.png" target="_blank" title="Click to open full size">
-        <img src="ddd-for-ai-agents.png" alt="Domain-Driven Design for AI Agents — Ubiquitous Language, Bounded Contexts, Context Mapping, Aggregate Roots, Strategic Design, Event Storming mapped to Grill Sessions" style="width: 100%; height: auto; display: block;">
-      </a>
-    </div>
-    <div class="callout info"><strong>For Amazon sellers:</strong> The #1 reason AI gives bad answers is ambiguous language. Does "launch" mean first day of inventory or first day of PPC? Does "profitability" include FBA fees? These patterns give you and your AI a shared vocabulary — so it stops guessing and starts getting it right.</div>
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>AI Creative And Design Workflows</h3>
+        <span>6 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="ai-creative-research-to-asset-test.png" target="_blank" title="Open full size: AI Creative Research To Asset Test">
+          <img class="diagram-thumb" loading="lazy" src="ai-creative-research-to-asset-test.png" alt="AI Creative Research To Asset Test: The creative operations loop: signal, brief, asset, QA, test, and learning.">
+        </a>
+        <div class="diagram-meta">
+          <h4>AI Creative Research To Asset Test</h4>
+          <p>The creative operations loop: signal, brief, asset, QA, test, and learning.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="claude-design-brand-system-to-brief.png" target="_blank" title="Open full size: Brand System To Creative Brief">
+          <img class="diagram-thumb" loading="lazy" src="claude-design-brand-system-to-brief.png" alt="Brand System To Creative Brief: Good design prompts are structured around context, proof, claims, and channel rules.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Brand System To Creative Brief</h4>
+          <p>Good design prompts are structured around context, proof, claims, and channel rules.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="claude-design-channel-playbooks.png" target="_blank" title="Open full size: Claude Design Channel Playbooks">
+          <img class="diagram-thumb" loading="lazy" src="claude-design-channel-playbooks.png" alt="Claude Design Channel Playbooks: Each channel has a different design job.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Claude Design Channel Playbooks</h4>
+          <p>Each channel has a different design job.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="claude-design-creative-production-loop.png" target="_blank" title="Open full size: Claude Design Creative Production Loop">
+          <img class="diagram-thumb" loading="lazy" src="claude-design-creative-production-loop.png" alt="Claude Design Creative Production Loop: What does Claude Design Creative Production Loop help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Claude Design Creative Production Loop</h4>
+          <p>What does Claude Design Creative Production Loop help me understand?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="claude-design-operating-system.png" target="_blank" title="Open full size: Claude Design Operating System">
+          <span class="diagram-badge">13</span><img class="diagram-thumb" loading="lazy" src="claude-design-operating-system.png" alt="Claude Design Operating System: Claude Design becomes useful when research, brand context, QA, and testing surround generation.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Claude Design Operating System</h4>
+          <p>How do research, brand rules, QA, and testing surround creative generation?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="claude-design-qa-measurement.png" target="_blank" title="Open full size: Claude Design QA And Measurement">
+          <img class="diagram-thumb" loading="lazy" src="claude-design-qa-measurement.png" alt="Claude Design QA And Measurement: Speed only helps when every asset passes brand, product, platform, claims, and metric checks.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Claude Design QA And Measurement</h4>
+          <p>Speed only helps when every asset passes brand, product, platform, claims, and metric checks.</p>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>Concept And Metric Diagrams</h3>
+        <span>3 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="customer-signal-to-product-decision.png" target="_blank" title="Open full size: Customer Signal To Product Decision">
+          <img class="diagram-thumb" loading="lazy" src="customer-signal-to-product-decision.png" alt="Customer Signal To Product Decision: A general seller method repeated across SignalSweep, Claude Design, and Everlearn.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Customer Signal To Product Decision</h4>
+          <p>A general seller method repeated across SignalSweep, Claude Design, and Everlearn.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="response-curves-wmape-holdout.png" target="_blank" title="Open full size: Response Curves, WMAPE, And Holdout">
+          <img class="diagram-thumb" loading="lazy" src="response-curves-wmape-holdout.png" alt="Response Curves, WMAPE, And Holdout: A seller-friendly map of the Autoresearch math concepts.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Response Curves, WMAPE, And Holdout</h4>
+          <p>A seller-friendly map of the Autoresearch math concepts.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="wmape-response-curve-decision-flow.png" target="_blank" title="Open full size: WMAPE And Response Curve Decision Flow">
+          <img class="diagram-thumb" loading="lazy" src="wmape-response-curve-decision-flow.png" alt="WMAPE And Response Curve Decision Flow: What does WMAPE And Response Curve Decision Flow help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>WMAPE And Response Curve Decision Flow</h4>
+          <p>What does WMAPE And Response Curve Decision Flow help me understand?</p>
+        </div>
+      </article>
+      </div>
+    </section>
+
+    <section class="diagram-section">
+      <div class="diagram-section-head">
+        <h3>Setup, Support, And Workshop Operations</h3>
+        <span>10 diagrams</span>
+      </div>
+      <div class="diagram-grid">
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="attendee-setup-path.png" target="_blank" title="Open full size: Attendee Setup Path">
+          <img class="diagram-thumb" loading="lazy" src="attendee-setup-path.png" alt="Attendee Setup Path: Accounts, tools, installs, and final verification for a prepared attendee.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Attendee Setup Path</h4>
+          <p>Accounts, tools, installs, and final verification for a prepared attendee.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="day-of-smoke-test.png" target="_blank" title="Open full size: Day-Of Smoke Test">
+          <img class="diagram-thumb" loading="lazy" src="day-of-smoke-test.png" alt="Day-Of Smoke Test: The minimum checks to run before the room starts.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Day-Of Smoke Test</h4>
+          <p>The minimum checks to run before the room starts.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="deck-production-pipeline.png" target="_blank" title="Open full size: Deck Production Pipeline">
+          <img class="diagram-thumb" loading="lazy" src="deck-production-pipeline.png" alt="Deck Production Pipeline: How source notes become a participant-ready presentation.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Deck Production Pipeline</h4>
+          <p>How source notes become a participant-ready presentation.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="package-distribution-fallbacks.png" target="_blank" title="Open full size: Package Distribution And Fallbacks">
+          <img class="diagram-thumb" loading="lazy" src="package-distribution-fallbacks.png" alt="Package Distribution And Fallbacks: Workshop continuity depends on multiple delivery surfaces.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Package Distribution And Fallbacks</h4>
+          <p>Workshop continuity depends on multiple delivery surfaces.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="participant-day-flow.png" target="_blank" title="Open full size: Participant Day Flow">
+          <img class="diagram-thumb" loading="lazy" src="participant-day-flow.png" alt="Participant Day Flow: The workshop day should move forward even if a few machines are not ready.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Participant Day Flow</h4>
+          <p>The workshop day should move forward even if a few machines are not ready.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="public-attendee-setup-and-fallback-flow.png" target="_blank" title="Open full size: Public Attendee Setup And Fallback Flow">
+          <img class="diagram-thumb" loading="lazy" src="public-attendee-setup-and-fallback-flow.png" alt="Public Attendee Setup And Fallback Flow: How do I get ready even if my machine or install path differs?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Public Attendee Setup And Fallback Flow</h4>
+          <p>How do I get ready even if my machine or install path differs?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="source-to-deck-production-pipeline.png" target="_blank" title="Open full size: Source To Deck Production Pipeline">
+          <img class="diagram-thumb" loading="lazy" src="source-to-deck-production-pipeline.png" alt="Source To Deck Production Pipeline: What does Source To Deck Production Pipeline help me understand?">
+        </a>
+        <div class="diagram-meta">
+          <h4>Source To Deck Production Pipeline</h4>
+          <p>What does Source To Deck Production Pipeline help me understand?</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="source-truth-refresh-loop.png" target="_blank" title="Open full size: Source Truth And Refresh Loop">
+          <img class="diagram-thumb" loading="lazy" src="source-truth-refresh-loop.png" alt="Source Truth And Refresh Loop: When workshop assets change, the vault records where truth came from and what must be refreshed.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Source Truth And Refresh Loop</h4>
+          <p>When workshop assets change, the vault records where truth came from and what must be refreshed.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="speaker-notes-source-map.png" target="_blank" title="Open full size: Speaker Notes Source Map">
+          <img class="diagram-thumb" loading="lazy" src="speaker-notes-source-map.png" alt="Speaker Notes Source Map: Every slide needs a principle, failure mode, ecommerce example, and next lab.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Speaker Notes Source Map</h4>
+          <p>Every slide needs a principle, failure mode, ecommerce example, and next lab.</p>
+        </div>
+      </article>
+      <article class="diagram-card">
+        <a class="diagram-image-link" href="support-triage-fallbacks.png" target="_blank" title="Open full size: Day-Of Support Triage">
+          <img class="diagram-thumb" loading="lazy" src="support-triage-fallbacks.png" alt="Day-Of Support Triage: Protect workshop time by routing setup problems quickly.">
+        </a>
+        <div class="diagram-meta">
+          <h4>Day-Of Support Triage</h4>
+          <p>Protect workshop time by routing setup problems quickly.</p>
+        </div>
+      </article>
+      </div>
+    </section>
 
   </div>
 
