@@ -479,6 +479,78 @@
   .step-body { flex: 1; }
   .step-body p { margin: 4px 0; font-size: 0.9rem; }
 
+  /* Autoresearch workflow */
+  .workflow-diagram {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .workflow-node {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    min-height: 120px;
+    position: relative;
+  }
+  .workflow-node:not(:last-child)::after {
+    content: '>';
+    position: absolute;
+    right: -9px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--yellow);
+    font-weight: 900;
+    z-index: 2;
+  }
+  .workflow-label {
+    color: var(--yellow);
+    font-size: 0.72rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  .workflow-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+  .workflow-copy {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .metric-card {
+    background: var(--surface-hover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+  }
+  .metric-card strong {
+    display: block;
+    color: var(--yellow);
+    font-size: 0.82rem;
+    margin-bottom: 6px;
+  }
+  .metric-value {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .metric-note {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    margin-top: 4px;
+  }
+
   /* Links */
   a { color: var(--accent-light); text-decoration: none; }
   a:hover { color: var(--yellow); }
@@ -637,6 +709,16 @@
     /* Steps */
     .step { gap: 10px; }
     .step-body p { font-size: 0.85rem; }
+    .workflow-diagram { grid-template-columns: 1fr; }
+    .workflow-node { min-height: 0; }
+    .workflow-node:not(:last-child)::after {
+      content: 'v';
+      right: 16px;
+      top: auto;
+      bottom: -14px;
+      transform: none;
+    }
+    .metric-grid { grid-template-columns: 1fr; }
 
     /* Details/collapsible */
     summary { padding: 12px 14px; font-size: 0.85rem; }
@@ -1393,7 +1475,56 @@ cd claude-goal
       </table>
     </div>
 
-    <h3>2. Install With One Command</h3>
+    <h3>2. Workflow And Benchmarks</h3>
+    <div class="workflow-diagram" aria-label="Autoresearch workflow">
+      <div class="workflow-node">
+        <div class="workflow-label">Step 1</div>
+        <div class="workflow-title">Fix The Scorecard</div>
+        <div class="workflow-copy">Keep <code>prepare.js</code>, sample data, holdout split, and WMAPE metric stable.</div>
+      </div>
+      <div class="workflow-node">
+        <div class="workflow-label">Step 2</div>
+        <div class="workflow-title">Edit One File</div>
+        <div class="workflow-copy">The agent changes only <code>train.js</code>, so the model improves without moving the goalposts.</div>
+      </div>
+      <div class="workflow-node">
+        <div class="workflow-label">Step 3</div>
+        <div class="workflow-title">Run The Harness</div>
+        <div class="workflow-copy"><code>run-experiment.sh</code> scores the attempt and appends a row to <code>results.tsv</code>.</div>
+      </div>
+      <div class="workflow-node">
+        <div class="workflow-label">Step 4</div>
+        <div class="workflow-title">Keep Or Discard</div>
+        <div class="workflow-copy">Better WMAPE gets kept. Worse WMAPE gets rolled back inside the starter repo.</div>
+      </div>
+      <div class="workflow-node">
+        <div class="workflow-label">Step 5</div>
+        <div class="workflow-title">Package The Pattern</div>
+        <div class="workflow-copy">The same loop becomes a reusable workflow for other measurable ecommerce tasks.</div>
+      </div>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card">
+        <strong>Original CurveLab Autoresearch</strong>
+        <div class="metric-value">0.341 -> 0.122</div>
+        <div class="metric-note">384 experiments across 1,073 product families.</div>
+      </div>
+      <div class="metric-card">
+        <strong>Workshop Response-Curve Starter</strong>
+        <div class="metric-value">0.472456</div>
+        <div class="metric-note">Small MacBook-safe sample baseline; attendees improve this locally.</div>
+      </div>
+      <div class="metric-card">
+        <strong>Workshop Demand-Forecast Starter</strong>
+        <div class="metric-value">0.072079</div>
+        <div class="metric-note">Separate toy demand track baseline, not the CurveLab benchmark.</div>
+      </div>
+    </div>
+    <div class="callout info">
+      <strong>Benchmark distinction:</strong> the <code>0.122</code> result is the older full CurveLab run. The workshop kit starts from smaller sample baselines so everyone can run the same improvement loop live on a MacBook.
+    </div>
+
+    <h3>3. Install With One Command</h3>
     <p>The starter kit is MacBook-first. It adapts the <a href="https://github.com/miolini/autoresearch-macos" target="_blank">autoresearch-macos</a> workflow shape, then swaps the LLM-training workload for fast ecommerce WMAPE experiments that do not need a GPU.</p>
     <p>The installer downloads the files, creates <code>~/autoresearch-starter-kit</code>, runs both smoke tests, and makes the baseline Git commit.</p>
     <div class="code-wrap">
@@ -1408,9 +1539,10 @@ curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | ba
     </div>
     <p style="margin: 16px 0;">
       <a class="cta-btn" href="autoresearch-starter-kit.zip" download>Download ZIP Backup</a>
+      <a class="cta-btn" href="https://github.com/tripleyak/ai-for-ecommerce-workshop/tree/main/autoresearch-starter-kit" target="_blank" style="margin-left: 8px;">View Starter Kit Source</a>
     </p>
 
-    <h3>3. The Autoresearch Pattern</h3>
+    <h3>4. The Autoresearch Pattern</h3>
     <div class="table-wrap">
       <table class="accounts-table">
         <thead>
@@ -1429,7 +1561,7 @@ curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | ba
       </table>
     </div>
 
-    <h3>4. Start A MacBook Run Branch</h3>
+    <h3>5. Start A MacBook Run Branch</h3>
     <p>The installer creates the starter repo. Use one of these commands to create an autoresearch branch and record a baseline.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1440,7 +1572,7 @@ curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | ba
 ./scripts/setup-run.sh demand-forecast</code></pre>
     </div>
 
-    <h3>5. Agent Prompt</h3>
+    <h3>6. Agent Prompt</h3>
     <p>Run this from the starter kit root after choosing a track.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag session">Claude / Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1457,14 +1589,14 @@ Rules:
 - Prefer simple changes that improve the metric.</code></pre>
     </div>
 
-    <h3>6. What The Agent Will Try</h3>
+    <h3>7. What The Agent Will Try</h3>
     <div class="step"><span class="step-num">1</span><div class="step-body"><p>Run the baseline model and read the current WMAPE.</p></div></div>
     <div class="step"><span class="step-num">2</span><div class="step-body"><p>Modify the editable model file with one experiment idea.</p></div></div>
     <div class="step"><span class="step-num">3</span><div class="step-body"><p>Rerun the fixed harness against the chronological holdout set.</p></div></div>
     <div class="step"><span class="step-num">4</span><div class="step-body"><p>Keep the change if WMAPE improves; discard it if the metric gets worse.</p></div></div>
     <div class="step"><span class="step-num">5</span><div class="step-body"><p>Repeat until the loop finds a better response-curve or demand-forecasting method.</p></div></div>
 
-    <h3>7. Bring Your Own Data Later</h3>
+    <h3>8. Bring Your Own Data Later</h3>
     <p>Use sample data during the live workshop. Afterward, replace the sample CSV with sanitized exports from your own catalog.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag config">Response CSV</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1477,7 +1609,7 @@ Dog Ramp,2026-04-06,1460,1905</code></pre>
 Dog Ramp,2026-04-06,157,79,1460,72,0</code></pre>
     </div>
 
-    <h3>8. Safety Rules</h3>
+    <h3>9. Safety Rules</h3>
     <div class="table-wrap">
       <table class="accounts-table">
         <thead>

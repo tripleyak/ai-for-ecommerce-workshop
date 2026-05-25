@@ -1,0 +1,15 @@
+{
+  "name": "autoresearch-starter-kit",
+  "version": "2026.05.27",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "response": "node response-curves/train.js",
+    "demand": "node demand-forecast/train.js",
+    "check": "./scripts/check.sh",
+    "setup:response": "./scripts/setup-run.sh response-curves",
+    "setup:demand": "./scripts/setup-run.sh demand-forecast",
+    "experiment:response": "./scripts/run-experiment.sh response-curves",
+    "experiment:demand": "./scripts/run-experiment.sh demand-forecast"
+  }
+}
