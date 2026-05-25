@@ -1394,7 +1394,8 @@ cd claude-goal
     </div>
 
     <h3>2. Install With One Command</h3>
-    <p>The starter kit runs locally with Node. The installer downloads the files, creates <code>~/autoresearch-starter-kit</code>, runs both smoke tests, and makes the baseline Git commit.</p>
+    <p>The starter kit is MacBook-first. It adapts the <a href="https://github.com/miolini/autoresearch-macos" target="_blank">autoresearch-macos</a> workflow shape, then swaps the LLM-training workload for fast ecommerce WMAPE experiments that do not need a GPU.</p>
+    <p>The installer downloads the files, creates <code>~/autoresearch-starter-kit</code>, runs both smoke tests, and makes the baseline Git commit.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash</code></pre>
@@ -1416,35 +1417,41 @@ curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | ba
           <tr><th>Piece</th><th>Purpose</th><th>Rule</th></tr>
         </thead>
         <tbody>
-          <tr><td><strong><code>program.md</code></strong></td><td>Defines the research goal, metric, and allowed ideas.</td><td>Read first.</td></tr>
+          <tr><td><strong><code>program.md</code></strong></td><td>Defines the MacBook-local autoresearch workflow.</td><td>Read first.</td></tr>
+          <tr><td><strong><code>&lt;track&gt;/program.md</code></strong></td><td>Defines the track goal, metric, and allowed ideas.</td><td>Read second.</td></tr>
           <tr><td><strong><code>prepare.js</code></strong></td><td>Loads data, splits holdout, and scores WMAPE.</td><td>Do not edit.</td></tr>
           <tr><td><strong><code>train.js</code></strong></td><td>Contains the model or fitting logic.</td><td>This is the only file the agent edits.</td></tr>
           <tr><td><strong><code>results.tsv</code></strong></td><td>Logs every experiment, metric, status, and description.</td><td>Append after each run.</td></tr>
+          <tr><td><strong><code>scripts/setup-run.sh</code></strong></td><td>Creates an <code>autoresearch/&lt;track&gt;</code> branch and baseline result.</td><td>Run once per track.</td></tr>
+          <tr><td><strong><code>scripts/run-experiment.sh</code></strong></td><td>Runs the fixed scorecard and appends the result.</td><td>Run after each idea.</td></tr>
           <tr><td><strong>Git</strong></td><td>Keeps good experiments and discards bad ones.</td><td>Only inside the starter folder.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>4. Prepare The Experiment Folder</h3>
-    <p>Initialize Git inside the starter kit before asking an agent to run experiments.</p>
+    <h3>4. Start A MacBook Run Branch</h3>
+    <p>The installer creates the starter repo. Use one of these commands to create an autoresearch branch and record a baseline.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>git init
-git add .
-git commit -m "baseline autoresearch starter"</code></pre>
+      <pre><code>cd ~/autoresearch-starter-kit
+<span class="comment"># Pick one track</span>
+./scripts/setup-run.sh response-curves
+<span class="comment"># or</span>
+./scripts/setup-run.sh demand-forecast</code></pre>
     </div>
 
     <h3>5. Agent Prompt</h3>
-    <p>Run this from inside either <code>response-curves</code> or <code>demand-forecast</code>.</p>
+    <p>Run this from the starter kit root after choosing a track.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag session">Claude / Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>Read program.md. Run the baseline. Then start an autoresearch loop.
+      <pre><code>Read program.md and the selected track program.md. Start or continue an autoresearch loop.
 
 Rules:
 - Only edit train.js.
 - Do not edit prepare.js or data files.
-- After each idea, run node train.js.
-- Log the result in results.tsv.
+- After each idea, commit the attempted train.js change.
+- Run ./scripts/run-experiment.sh response-curves pending "short description"
+  or ./scripts/run-experiment.sh demand-forecast pending "short description".
 - Keep the change only if holdout WMAPE improves.
 - If it gets worse, discard the train.js change and try a new idea.
 - Prefer simple changes that improve the metric.</code></pre>
@@ -1975,9 +1982,9 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
       <div class="checklist-group-title">Autoresearch Lab</div>
       <ul class="checklist">
         <li><input type="checkbox" data-key="autoresearch-download"><span>Autoresearch starter kit installed with the one-line Terminal command</span></li>
-        <li><input type="checkbox" data-key="autoresearch-response"><span><code>node response-curves/train.js</code> prints portfolio WMAPE</span></li>
-        <li><input type="checkbox" data-key="autoresearch-demand"><span><code>node demand-forecast/train.js</code> prints portfolio WMAPE</span></li>
-        <li><input type="checkbox" data-key="autoresearch-git"><span>Starter folder initialized with a baseline Git commit</span></li>
+        <li><input type="checkbox" data-key="autoresearch-response"><span><code>./scripts/check.sh</code> prints portfolio WMAPE for both tracks</span></li>
+        <li><input type="checkbox" data-key="autoresearch-demand"><span><code>./scripts/setup-run.sh response-curves</code> creates a local autoresearch branch</span></li>
+        <li><input type="checkbox" data-key="autoresearch-git"><span>Starter folder has a baseline Git commit and a recorded baseline result</span></li>
         <li><input type="checkbox" data-key="autoresearch-safe-data"><span>Any real data has customer, order, account, and credential fields removed</span></li>
       </ul>
     </div>

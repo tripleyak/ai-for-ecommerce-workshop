@@ -68,6 +68,9 @@ need_command() {
 need_command curl
 need_command unzip
 need_command node
+if [[ "$INIT_GIT" -eq 1 ]]; then
+  need_command git
+fi
 
 TMP_DIR="$(mktemp -d)"
 cleanup() {
@@ -104,7 +107,7 @@ fi
 mkdir -p "$(dirname "$INSTALL_DIR")"
 mv "$TMP_DIR/autoresearch-starter-kit" "$INSTALL_DIR"
 
-if [[ "$INIT_GIT" -eq 1 ]] && command -v git >/dev/null 2>&1; then
+if [[ "$INIT_GIT" -eq 1 ]]; then
   (
     cd "$INSTALL_DIR"
     git init -q
@@ -122,20 +125,36 @@ fi
 if [[ "$VERIFY" -eq 1 ]]; then
   (
     cd "$INSTALL_DIR"
-    node response-curves/train.js
-    node demand-forecast/train.js
+    ./scripts/check.sh
   )
 fi
 
-cat <<EOF
+if [[ "$INIT_GIT" -eq 1 ]]; then
+  cat <<EOF
 
 Autoresearch starter kit installed.
 
 Next:
   cd "$INSTALL_DIR"
-  cd response-curves
+  # Pick one track:
+  ./scripts/setup-run.sh response-curves
+  # or:
+  ./scripts/setup-run.sh demand-forecast
 
 Then paste this into Claude Code or Codex:
-  Read program.md. Run the baseline. Then start an autoresearch loop.
+  Read program.md and the selected track program.md. Continue the autoresearch loop.
 
 EOF
+else
+  cat <<EOF
+
+Autoresearch starter kit installed without Git setup.
+
+Next:
+  cd "$INSTALL_DIR"
+  ./scripts/check.sh
+
+Git is required for the full autoresearch keep/discard loop.
+
+EOF
+fi
