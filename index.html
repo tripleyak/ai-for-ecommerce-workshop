@@ -927,8 +927,8 @@
         <div style="font-size: 0.82rem; color: var(--text-muted);">Use browser and computer use to have AI agents update listings and manage ad campaigns inside your actual SC account.</div>
       </div>
       <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--yellow);">
-        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Generate Actionable Insights From Data</div>
-        <div style="font-size: 0.82rem; color: var(--text-muted);">Turn raw competitor and market data into strategies — pricing, keywords, listing copy, PPC adjustments — with AI analysis.</div>
+        <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Build Your Own Autoresearch Loop</div>
+        <div style="font-size: 0.82rem; color: var(--text-muted);">Set up a local self-improving experiment system for response curves, ProfitCurve-style spend decisions, and demand forecasting.</div>
       </div>
       <div style="padding: 16px; background: var(--surface-hover); border-radius: var(--radius-sm); border-left: 3px solid var(--yellow);">
         <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 4px;">Turn Any Workflow Into a Reusable AI Skill</div>
@@ -1000,6 +1000,7 @@
     <button class="tab-btn" data-tab="codex">OpenAI Codex</button>
     <button class="tab-btn" data-tab="design">Claude Design</button>
     <button class="tab-btn" data-tab="signalsweep">SignalSweep</button>
+    <button class="tab-btn" data-tab="analysis">Autoresearch Lab</button>
     <button class="tab-btn" data-tab="skillforge">SkillForge</button>
     <button class="tab-btn" data-tab="everlearn">Everlearn</button>
     <button class="tab-btn" data-tab="frameworks">Frameworks</button>
@@ -1322,7 +1323,7 @@ cd claude-goal
 
   <!-- TAB: SignalSweep -->
   <div class="tab-content" id="tab-signalsweep">
-    <h2><span class="section-number">4</span>SignalSweep Research Setup</h2>
+    <h2><span class="section-number">6</span>SignalSweep Research Setup</h2>
     <p>SignalSweep is the workshop research engine. It turns one product, niche, or customer problem into a cross-source market scan across reviews, social platforms, videos, filings, patents, papers, and more. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~8 minutes</span></p>
 
     <div class="callout info">
@@ -1366,9 +1367,130 @@ cd claude-goal
     </div>
   </div>
 
+  <!-- TAB: Autoresearch Lab -->
+  <div class="tab-content" id="tab-analysis">
+    <h2><span class="section-number">7</span>Autoresearch Lab: Build A Self-Improving Forecast Tool</h2>
+    <p>This module shows you how to set up a local recursive self-improvement loop on your MacBook. The examples are ProfitCurve-style response curves and demand forecasting, but the pattern works for any measurable business workflow. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~30 minutes</span></p>
+
+    <div class="callout info">
+      <strong>What you are building.</strong> A local autoresearch workspace with a fixed evaluation harness, one editable model file, sample ecommerce data, an experiment log, and an agent prompt that lets Codex or Claude Code improve the model over many runs.
+    </div>
+
+    <div class="callout tip">
+      <strong>Operating-system fit:</strong> this lab maps to the Product Intent to Shipped Software loop. You define the business decision, fix the scorecard, let AI run controlled experiments, validate the result, then capture the improved workflow.
+    </div>
+
+    <h3>1. Two Starter Tracks</h3>
+    <div class="table-wrap">
+      <table class="accounts-table">
+        <thead>
+          <tr><th>Track</th><th>Input data</th><th>What the loop improves</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Response curves</strong></td><td><code>family,date,spend,sales</code></td><td>Recreate the core ProfitCurve idea: fit spend-to-sales curves and reduce holdout WMAPE.</td></tr>
+          <tr><td><strong>Demand forecasting</strong></td><td><code>series,date,units,price,ad_spend,market_signal,promo</code></td><td>Build a forecasting loop that improves future unit-demand predictions.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>2. Download The Starter Kit</h3>
+    <p>The starter kit runs locally with Node. It has no external API keys, no paid model calls, and no private data requirement.</p>
+    <p style="margin: 16px 0;">
+      <a class="cta-btn" href="autoresearch-starter-kit.zip" download>Download Autoresearch Starter Kit</a>
+    </p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>cd ~/Downloads
+unzip -o autoresearch-starter-kit.zip
+cd autoresearch-starter-kit
+node response-curves/train.js
+node demand-forecast/train.js</code></pre>
+    </div>
+
+    <h3>3. The Autoresearch Pattern</h3>
+    <div class="table-wrap">
+      <table class="accounts-table">
+        <thead>
+          <tr><th>Piece</th><th>Purpose</th><th>Rule</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong><code>program.md</code></strong></td><td>Defines the research goal, metric, and allowed ideas.</td><td>Read first.</td></tr>
+          <tr><td><strong><code>prepare.js</code></strong></td><td>Loads data, splits holdout, and scores WMAPE.</td><td>Do not edit.</td></tr>
+          <tr><td><strong><code>train.js</code></strong></td><td>Contains the model or fitting logic.</td><td>This is the only file the agent edits.</td></tr>
+          <tr><td><strong><code>results.tsv</code></strong></td><td>Logs every experiment, metric, status, and description.</td><td>Append after each run.</td></tr>
+          <tr><td><strong>Git</strong></td><td>Keeps good experiments and discards bad ones.</td><td>Only inside the starter folder.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>4. Prepare The Experiment Folder</h3>
+    <p>Initialize Git inside the starter kit before asking an agent to run experiments.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>git init
+git add .
+git commit -m "baseline autoresearch starter"</code></pre>
+    </div>
+
+    <h3>5. Agent Prompt</h3>
+    <p>Run this from inside either <code>response-curves</code> or <code>demand-forecast</code>.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag session">Claude / Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>Read program.md. Run the baseline. Then start an autoresearch loop.
+
+Rules:
+- Only edit train.js.
+- Do not edit prepare.js or data files.
+- After each idea, run node train.js.
+- Log the result in results.tsv.
+- Keep the change only if holdout WMAPE improves.
+- If it gets worse, discard the train.js change and try a new idea.
+- Prefer simple changes that improve the metric.</code></pre>
+    </div>
+
+    <h3>6. What The Agent Will Try</h3>
+    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Run the baseline model and read the current WMAPE.</p></div></div>
+    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Modify the editable model file with one experiment idea.</p></div></div>
+    <div class="step"><span class="step-num">3</span><div class="step-body"><p>Rerun the fixed harness against the chronological holdout set.</p></div></div>
+    <div class="step"><span class="step-num">4</span><div class="step-body"><p>Keep the change if WMAPE improves; discard it if the metric gets worse.</p></div></div>
+    <div class="step"><span class="step-num">5</span><div class="step-body"><p>Repeat until the loop finds a better response-curve or demand-forecasting method.</p></div></div>
+
+    <h3>7. Bring Your Own Data Later</h3>
+    <p>Use sample data during the live workshop. Afterward, replace the sample CSV with sanitized exports from your own catalog.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag config">Response CSV</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>family,date,spend,sales
+Dog Ramp,2026-04-06,1460,1905</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag config">Forecast CSV</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>series,date,units,price,ad_spend,market_signal,promo
+Dog Ramp,2026-04-06,157,79,1460,72,0</code></pre>
+    </div>
+
+    <h3>8. Safety Rules</h3>
+    <div class="table-wrap">
+      <table class="accounts-table">
+        <thead>
+          <tr><th>Risk</th><th>Rule</th><th>Why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Private data</strong></td><td>Use sample data first; sanitize real exports later.</td><td>No customer, order, account, credential, or private revenue data on the projector.</td></tr>
+          <tr><td><strong>Runaway edits</strong></td><td>Only edit <code>train.js</code>.</td><td>The harness and metric stay fixed, so improvement is real.</td></tr>
+          <tr><td><strong>Bad Git reset</strong></td><td>Run Git resets only inside the starter kit.</td><td>Protects unrelated projects on your Mac.</td></tr>
+          <tr><td><strong>False confidence</strong></td><td>Trust holdout improvement, not a pretty fitted chart.</td><td>The goal is predictive accuracy, not just a smooth curve.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <strong>Workshop boundary:</strong> the module teaches the self-improvement system. ProfitCurve and demand planning are the example use cases, not the only possible outputs.
+    </div>
+  </div>
+
   <!-- TAB: SkillForge -->
   <div class="tab-content" id="tab-skillforge">
-    <h2><span class="section-number">5</span>SkillForge Setup</h2>
+    <h2><span class="section-number">8</span>SkillForge Setup</h2>
     <p>SkillForge turns repeatable ecommerce work into reusable AI skills: listing audits, PPC checks, review-mining workflows, launch checklists, account SOPs, and research loops you want to run again. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~5 minutes</span></p>
 
     <div class="callout info">
@@ -1428,7 +1550,7 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 
   <!-- TAB: Codex -->
   <div class="tab-content" id="tab-codex">
-    <h2><span class="section-number">6</span>Install & Configure OpenAI Codex</h2>
+    <h2><span class="section-number">4</span>Install & Configure OpenAI Codex</h2>
     <p>Codex is your second AI development environment &mdash; used alongside Claude Code. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~25 minutes</span></p>
 
     <!-- 4.1 CLI -->
@@ -1598,7 +1720,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 
   <!-- TAB: Claude Design -->
   <div class="tab-content" id="tab-design">
-    <h2><span class="section-number">7</span>Claude Design Setup</h2>
+    <h2><span class="section-number">5</span>Claude Design Setup</h2>
     <p>Anthropic's AI-native visual design workspace. We'll use it for design systems and visual workflows. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~5 minutes</span></p>
 
     <h3>Access Claude Design</h3>
@@ -1622,7 +1744,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 
   <!-- TAB: Frameworks -->
   <div class="tab-content" id="tab-frameworks">
-    <h2><span class="section-number">8</span>Foundational Frameworks</h2>
+    <h2><span class="section-number">10</span>Foundational Frameworks</h2>
     <p>These diagrams illustrate the core concepts and methodologies we'll cover in the workshop. Study them before the session &mdash; we'll build real tools using each framework.</p>
 
     <h3>Five Foundations for Working With AI</h3>
@@ -1635,6 +1757,17 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
     <div class="callout info">
       <strong>For Amazon sellers:</strong> This is the operating system for how you'll work with AI. Gather context (competitor data, market research), compress it into knowledge your AI remembers, plan and execute in small verified steps, save what you learn so next time is faster, then turn winning processes into reusable skills that run automatically across all your products.
     </div>
+
+    <hr>
+
+    <h3>From Product Intent to Shipped Software</h3>
+    <p>A high-level operating system for turning human intent into validated, deployed work &mdash; while keeping judgment, priorities, and final acceptance with humans.</p>
+    <div style="margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; background: #fff;">
+      <a href="product-intent-to-shipped-software.png" target="_blank" title="Click to open full size">
+        <img src="product-intent-to-shipped-software.png" alt="From Product Intent to Shipped Software — Define Intent, Prepare Work, Orchestrate and Execute, Validate and Review, Deploy and Verify, Human QA and Learn" style="width: 100%; height: auto; display: block;">
+      </a>
+    </div>
+    <div class="callout info"><strong>For Amazon sellers:</strong> This is the bridge from AI principles to applied labs. A seller starts with intent, such as improve a listing, evaluate ad spend, or prepare an SBV campaign. The system turns that intent into structured work, uses AI agents to execute the repeatable steps, validates the result, and brings the human back in at the right moment for judgment and QA.</div>
 
     <hr>
 
@@ -1766,7 +1899,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 
   <!-- TAB: Checklist -->
   <div class="tab-content" id="tab-checklist">
-    <h2><span class="section-number">10</span>Verification Checklist</h2>
+    <h2><span class="section-number">11</span>Verification Checklist</h2>
     <p>Every item should be checked off before the workshop. Your progress is saved automatically.</p>
 
     <div class="checklist-group">
@@ -1837,6 +1970,17 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
     </div>
 
     <div class="checklist-group">
+      <div class="checklist-group-title">Autoresearch Lab</div>
+      <ul class="checklist">
+        <li><input type="checkbox" data-key="autoresearch-download"><span>Autoresearch starter kit downloaded and unzipped</span></li>
+        <li><input type="checkbox" data-key="autoresearch-response"><span><code>node response-curves/train.js</code> prints portfolio WMAPE</span></li>
+        <li><input type="checkbox" data-key="autoresearch-demand"><span><code>node demand-forecast/train.js</code> prints portfolio WMAPE</span></li>
+        <li><input type="checkbox" data-key="autoresearch-git"><span>Starter folder initialized with a baseline Git commit</span></li>
+        <li><input type="checkbox" data-key="autoresearch-safe-data"><span>Any real data has customer, order, account, and credential fields removed</span></li>
+      </ul>
+    </div>
+
+    <div class="checklist-group">
       <div class="checklist-group-title">Claude Design</div>
       <ul class="checklist">
         <li><input type="checkbox" data-key="cd-access"><span>Can access claude.ai/design</span></li>
@@ -1868,7 +2012,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 
   <!-- TAB: Workshop Day -->
   <div class="tab-content" id="tab-workshop">
-    <h2><span class="section-number">11</span>Workshop Day</h2>
+    <h2><span class="section-number">12</span>Workshop Day</h2>
 
     <h3>What to Bring</h3>
     <div class="bring-grid">
@@ -1891,6 +2035,11 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
         <div class="bring-icon">&#x1F50D;</div>
         <div class="bring-title">A Product/Niche</div>
         <div class="bring-desc">For the SignalSweep demo</div>
+      </div>
+      <div class="bring-card">
+        <div class="bring-icon">&#x1F4CA;</div>
+        <div class="bring-title">Optional Data Export</div>
+        <div class="bring-desc">Spend, sales, or demand history</div>
       </div>
     </div>
 
@@ -1959,7 +2108,7 @@ args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
 </div>
 
 <div style="text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 0.8rem;">
-  Last updated: May 24, 2026
+  Last updated: May 25, 2026
 </div>
 
 <script>
