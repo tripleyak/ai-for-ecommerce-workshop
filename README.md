@@ -24,6 +24,7 @@ Static setup guide, downloadable kits, and facilitator materials for the AI for 
 | Module | Surface | Purpose |
 |---|---|---|
 | Setup guide | `index.html` | Account, tool, and prerequisite setup for attendees |
+| Claude / Codex desktop setup | `index.html` | Desktop-app-first setup for Claude Desktop and Codex app, with optional Ghostty CLI paths |
 | SignalSweep | `index.html` | Research-engine install and smoke test |
 | Autoresearch Lab | `autoresearch-starter-kit/`, `install_autoresearch.sh` | MacBook-local recursive improvement loop for response curves and demand forecasts |
 | SkillForge | `index.html` | Turn repeated ecommerce workflows into reusable AI skills |
