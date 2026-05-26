@@ -491,6 +491,18 @@
   }
   details[open] > summary::before { transform: rotate(90deg); }
   .detail-body { padding: 18px; }
+  .optional-tag {
+    color: var(--yellow);
+    background: var(--yellow-bg);
+    border: 1px solid rgba(234,179,8,0.32);
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    padding: 4px 8px;
+    text-transform: uppercase;
+  }
 
   /* Checklist */
   .checklist { list-style: none; }
@@ -1899,7 +1911,7 @@ bun --version</code></pre>
 
 	    <!-- 3.5 MCP -->
 	    <details>
-	      <summary>3.5 &mdash; Configure MCP Servers and Desktop Extensions</summary>
+	      <summary>3.5 &mdash; Configure MCP Servers and Desktop Extensions <span class="optional-tag">Optional</span></summary>
 	      <div class="detail-body">
 	        <p>MCP gives Claude access to external tools. In Claude Desktop, prefer graphical Connectors and Extensions when available. In the CLI, use <code>claude mcp add</code>. Copy CLI commands one line at a time.</p>
 
@@ -1950,9 +1962,9 @@ bun --version</code></pre>
 	      </div>
 	    </details>
 
-	    <!-- 3.7 Agent Setup -->
+	    <!-- 3.6 Agent Setup -->
 	    <details>
-	      <summary>3.7 &mdash; OpenClaw / Hermes Agent Setup</summary>
+	      <summary>3.6 &mdash; OpenClaw / Hermes Agent Setup <span class="optional-tag">Optional</span></summary>
 	      <div class="detail-body">
 	        <div class="callout warn">
 	          <strong>Install the app or CLI first.</strong> OpenClaw, Hermes, or any other agent can help configure Claude only after Claude Desktop or Claude Code CLI is installed and signed in on this Mac.
@@ -1965,9 +1977,9 @@ bun --version</code></pre>
 	      </div>
 	    </details>
 
-	    <!-- 3.6 Remote Control -->
+	    <!-- 3.7 Remote Control -->
 	    <details>
-	      <summary>3.8 &mdash; Remote Control and Dispatch</summary>
+	      <summary>3.7 &mdash; Remote Control and Dispatch <span class="optional-tag">Optional</span></summary>
 	      <div class="detail-body">
 	        <p><strong>Desktop path:</strong> Dispatch lets you send work from your phone to Claude Desktop.</p>
 	        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Open Claude Desktop and click <strong>Dispatch</strong> in the sidebar.</p></div></div>
@@ -1982,9 +1994,9 @@ bun --version</code></pre>
 	      </div>
 	    </details>
 
-	    <!-- 3.7 Verify -->
+	    <!-- 3.8 Verify -->
 	    <details>
-	      <summary>3.9 &mdash; Verify Claude Setup</summary>
+	      <summary>3.8 &mdash; Verify Claude Setup</summary>
 	      <div class="detail-body">
 	        <p>Run this at the bottom of your setup pass in Claude Desktop Code tab or inside a Claude Code CLI session:</p>
 	        <div class="code-wrap">
@@ -2587,7 +2599,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 
 	    <!-- 4.7 MCP -->
 	    <details>
-	      <summary>4.7 &mdash; Configure MCP Servers</summary>
+	      <summary>4.7 &mdash; Configure MCP Servers <span class="optional-tag">Optional</span></summary>
 	      <div class="detail-body">
 	        <p>Use Codex app <strong>Settings &gt; Integrations & MCP</strong> for graphical setup. For CLI setup, use <code>codex mcp add</code> or edit <code>~/.codex/config.toml</code>. Copy CLI commands one line at a time.</p>
 	        <h3>Codex app clickpath</h3>
@@ -2631,7 +2643,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 
 	    <!-- 4.8 Agent Setup -->
 	    <details>
-	      <summary>4.8 &mdash; OpenClaw / Hermes Agent Setup</summary>
+	      <summary>4.8 &mdash; OpenClaw / Hermes Agent Setup <span class="optional-tag">Optional</span></summary>
 	      <div class="detail-body">
 	        <div class="callout warn">
 	          <strong>Install the app or CLI first.</strong> OpenClaw, Hermes, or any other agent can help configure Codex only after the Codex app or Codex CLI is installed and signed in on this Mac.
@@ -2644,9 +2656,9 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	      </div>
 	    </details>
 
-	    <!-- 4.8 Remote Control -->
+	    <!-- 4.9 Remote Control -->
 	    <details>
-	      <summary>4.9 &mdash; Remote Control</summary>
+	      <summary>4.9 &mdash; Remote Control <span class="optional-tag">Optional</span></summary>
 	      <div class="detail-body">
 	        <p>Remote Control lets you start, steer, approve, and review Codex work from a connected device. In team/workspace environments, admins may need to enable this permission.</p>
 	        <div class="code-wrap">
@@ -2656,7 +2668,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	      </div>
 	    </details>
 
-	    <!-- 4.9 Verify -->
+	    <!-- 4.10 Verify -->
 	    <details>
 	      <summary>4.10 &mdash; Verify Codex Setup</summary>
 	      <div class="detail-body">
