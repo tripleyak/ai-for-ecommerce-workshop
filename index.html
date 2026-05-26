@@ -1239,7 +1239,7 @@
   <div class="tab-bar">
     <button class="tab-btn active" data-tab="accounts">Accounts</button>
     <button class="tab-btn" data-tab="prereqs">Prerequisites</button>
-    <button class="tab-btn" data-tab="claude">Claude Code</button>
+    <button class="tab-btn" data-tab="claude">Claude</button>
     <button class="tab-btn" data-tab="codex">OpenAI Codex</button>
     <button class="tab-btn" data-tab="design">Claude Design</button>
     <button class="tab-btn" data-tab="signalsweep">SignalSweep</button>
@@ -1307,16 +1307,16 @@
 	  <!-- TAB: Prerequisites -->
 	  <div class="tab-content" id="tab-prereqs">
 	    <h2><span class="section-number">2</span>Install Prerequisites</h2>
-	    <p>Most attendees should use the desktop apps first. Install the terminal tools too if you want the full Claude Code or Codex CLI experience. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~20 minutes</span></p>
+	    <p>Install the core tools first. Most attendees will use Claude Desktop and the Codex app; the terminal tools here are mainly for installers, smoke tests, and anyone who chooses the CLI path. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~20 minutes</span></p>
 
 	    <div class="callout warn" style="margin-bottom: 20px;">
 	      <strong>Setup help is available.</strong> If you get stuck, book a setup call from the help bar at the bottom of this page and bring the exact error message with you.
 	    </div>
 
 	    <div class="callout info">
-	      <strong>Quick verification:</strong> before installing anything new, run the checks at the bottom of this tab. If a command fails, install only that missing item.
+	      <strong>Start here:</strong> run the core checks below. If a command fails, install only that missing item from this tab, then run the checks again.
 	    </div>
-	    <p>You can paste this whole verification block at the top and again at the bottom of this tab.</p>
+	    <p>You can paste this whole core verification block at the top and again at the bottom of this tab.</p>
 	    <div class="code-wrap">
 	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	      <pre><code>brew --version
@@ -1324,27 +1324,26 @@ git --version
 node --version
 npm --version
 python3.12 --version
-gh auth status
-tmux -V
-open -a Ghostty</code></pre>
+gh auth status</code></pre>
 	    </div>
 
 	    <div class="path-grid">
 	      <div class="path-card recommended">
 	        <span class="path-badge">Recommended</span>
 	        <h4>Desktop app path</h4>
-	        <p>Use Claude Desktop and the Codex app. This gives you visual setup, app permissions, plugins, MCP/connectors, browser use, and computer use without needing to live in Terminal.</p>
+	        <p>Use Claude Desktop and the Codex app as your main workshop interface. You still need the core tools above because several workshop installers and checks use Terminal.</p>
 	        <ul>
-	          <li>Install Claude Desktop and Codex app.</li>
+	          <li>Install the core tools on this tab.</li>
+	          <li>Install Claude Desktop and the Codex app on the next two tabs.</li>
 	          <li>Use each app's settings screens for plugins, MCP/connectors, skills, browser use, and computer use.</li>
-	          <li>Use Terminal only for package installers and smoke tests.</li>
+	          <li>Use Terminal only when this guide gives you a command to paste.</li>
 	        </ul>
 	      </div>
 	      <div class="path-card">
 	        <h4>Optional terminal path</h4>
-	        <p>Use Ghostty, Claude Code CLI, and Codex CLI if you want the command-line workflow. This is powerful, but you need a few developer prerequisites first.</p>
+	        <p>Use Ghostty, Claude Code CLI, and Codex CLI if you want the command-line workflow. This is optional for most attendees.</p>
 	        <ul>
-	          <li>Install Ghostty, Homebrew, Git, Node.js, Python 3.12, GitHub CLI, and tmux.</li>
+	          <li>Install Ghostty and tmux after the core tools work.</li>
 	          <li>Run Claude Code and Codex from a Git-tracked project folder.</li>
 	          <li>Use safer permission settings unless you are in a throwaway workshop folder.</li>
 	        </ul>
@@ -1364,7 +1363,7 @@ open -a Ghostty</code></pre>
 	      </div>
 	    </details>
 
-    <h3>Homebrew (macOS package manager)</h3>
+    <h3>Core Tool 1: Homebrew</h3>
     <p>Copy and run one line at a time. If the first line works, skip the install line.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1375,20 +1374,7 @@ open -a Ghostty</code></pre>
 	      <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
 	    </div>
 
-	    <h3>Ghostty (optional but recommended for CLI users)</h3>
-	    <p>Ghostty is a fast Mac terminal that works well for long Claude Code and Codex sessions. You can install it with Homebrew or download the signed macOS app directly.</p>
-	    <div class="code-wrap">
-	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	      <pre><code>brew install --cask ghostty</code></pre>
-	    </div>
-	    <div class="code-wrap">
-	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	      <pre><code>open -a Ghostty</code></pre>
-	    </div>
-	    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Alternative: download the signed macOS app from <a href="https://ghostty.org/download" target="_blank">ghostty.org/download</a></p></div></div>
-	    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Open the <code>.dmg</code>, drag Ghostty into Applications, then launch it from Spotlight.</p></div></div>
-
-    <h3>Git</h3>
+    <h3>Core Tool 2: Git</h3>
     <p>Copy and run one line at a time. If the version check works, skip the install line.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1399,7 +1385,7 @@ open -a Ghostty</code></pre>
       <pre><code>brew install git</code></pre>
     </div>
 
-    <h3>Node.js 18+</h3>
+    <h3>Core Tool 3: Node.js 18+</h3>
     <p>Copy and run one line at a time. If your Node version starts with v18 or higher, skip the install line.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1410,7 +1396,7 @@ open -a Ghostty</code></pre>
       <pre><code>brew install node</code></pre>
     </div>
 
-    <h3>Python 3.12+</h3>
+    <h3>Core Tool 4: Python 3.12+</h3>
     <p>Copy and run one line at a time. SignalSweep requires Python 3.12 or newer.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1421,22 +1407,7 @@ open -a Ghostty</code></pre>
       <pre><code>python3.12 --version</code></pre>
     </div>
 
-    <h3>Bun (only for Compound Engineering agents in Codex)</h3>
-    <p>Install Bun only if you plan to use the Compound Engineering plugin inside Codex. Copy and run one line at a time.</p>
-    <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>brew tap oven-sh/bun</code></pre>
-    </div>
-    <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>brew install bun</code></pre>
-    </div>
-    <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>bun --version</code></pre>
-    </div>
-
-    <h3>GitHub CLI</h3>
+    <h3>Core Tool 5: GitHub CLI</h3>
     <p>Copy and run one line at a time. The login command opens an interactive browser login.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1448,25 +1419,57 @@ open -a Ghostty</code></pre>
     </div>
     <p>When prompted, choose <strong>GitHub.com</strong>, <strong>HTTPS</strong>, and <strong>Authenticate via browser</strong>.</p>
 
-    <h3>tmux (Terminal Multiplexer)</h3>
-    <p>tmux lets you run multiple terminal sessions side by side &mdash; essential for running Claude Code and Codex simultaneously.</p>
-    <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>brew install tmux</code></pre>
-    </div>
-    <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>tmux -V</code></pre>
-    </div>
-
     <h3>Obsidian</h3>
     <p>Obsidian is your personal second brain &mdash; we'll connect it to our research tools during the workshop.</p>
     <div class="step"><span class="step-num">1</span><div class="step-body"><p>Download from <a href="https://obsidian.md" target="_blank">obsidian.md</a></p></div></div>
     <div class="step"><span class="step-num">2</span><div class="step-body"><p>Install and open the app</p></div></div>
     <div class="step"><span class="step-num">3</span><div class="step-body"><p>Create a new vault (or open an existing one) &mdash; we'll configure it during the workshop</p></div></div>
 
-    <h3>Verify</h3>
-    <p>You can paste this whole verification block at once. If one line fails, install or fix that item, then run the block again.</p>
+    <h3>Optional CLI Add-ons</h3>
+    <p>Install these only if you want the full terminal workflow or the Codex Compound Engineering agent installer.</p>
+
+	    <h4>Ghostty</h4>
+	    <p>Ghostty is a fast Mac terminal that works well for long Claude Code and Codex sessions. You can install it with Homebrew or download the signed macOS app directly.</p>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>brew install --cask ghostty</code></pre>
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>open -a Ghostty</code></pre>
+	    </div>
+	    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Alternative: download the signed macOS app from <a href="https://ghostty.org/download" target="_blank">ghostty.org/download</a>.</p></div></div>
+	    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Open the <code>.dmg</code>, drag Ghostty into Applications, then launch it from Spotlight.</p></div></div>
+
+	    <h4>tmux</h4>
+	    <p>tmux lets you run multiple terminal sessions side by side. It is useful if you want Claude Code and Codex running at the same time.</p>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>brew install tmux</code></pre>
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>tmux -V</code></pre>
+	    </div>
+
+	    <h4>Bun</h4>
+	    <p>Install Bun only if you plan to use the Compound Engineering plugin inside Codex.</p>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>brew tap oven-sh/bun</code></pre>
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>brew install bun</code></pre>
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>bun --version</code></pre>
+	    </div>
+
+    <h3>Final Verification</h3>
+    <p>Paste the core block first. If you installed the optional CLI add-ons, paste the optional block too.</p>
+    <h4>Core checks</h4>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>brew --version
@@ -1474,13 +1477,18 @@ git --version
 node --version
 npm --version
 python3.12 --version
-gh auth status
+gh auth status</code></pre>
+	    </div>
+	    <h4>Optional CLI checks</h4>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>open -a Ghostty
 tmux -V
-open -a Ghostty</code></pre>
+bun --version</code></pre>
 	    </div>
   </div>
 
-	  <!-- TAB: Claude Code -->
+	  <!-- TAB: Claude -->
 	  <div class="tab-content" id="tab-claude">
 	    <h2><span class="section-number">3</span>Install & Configure Claude</h2>
 	    <p>Use Claude Desktop if you want the lowest-friction setup. Use Claude Code in Ghostty if you want the terminal workflow. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~30 minutes</span></p>
@@ -1935,13 +1943,13 @@ open -a Ghostty</code></pre>
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/signalsweep-open/v3.28.4/scripts/install_workshop.sh | bash</code></pre>
     </div>
-    <p style="color: var(--text-muted); font-size: 0.85rem;">This downloads the public <code>signalsweep-open.skill</code>, verifies checksum <code>db4a060a3642b6160d8f61e4ccf5c16512b73a7baab59730330b146f73d013de</code>, installs it into Claude Code and Codex, and creates the free public-key template.</p>
+    <p style="color: var(--text-muted); font-size: 0.85rem;">This downloads the public <code>signalsweep-open.skill</code>, verifies checksum <code>db4a060a3642b6160d8f61e4ccf5c16512b73a7baab59730330b146f73d013de</code>, installs it into Claude and Codex local skill folders, and creates the free public-key template.</p>
 
     <h3>2. Restart Your AI Apps</h3>
-    <p>Quit and reopen Claude Code and Codex after installing. Skills load when a new session starts.</p>
+    <p>Quit and reopen Claude Desktop, Claude Code CLI, the Codex app, or Codex CLI after installing. Skills load when a new session starts.</p>
 
     <h3>3. Run The Workshop Smoke Test</h3>
-    <p>Inside Claude Code, run a small seller-style research query:</p>
+    <p>Inside Claude Desktop Code or Claude Code CLI, run a small seller-style research query:</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>/signalsweep pickleball paddle grip sweaty hands</code></pre>
@@ -1957,8 +1965,8 @@ open -a Ghostty</code></pre>
       <div class="faq-a">Run <code>HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12</code>, then rerun the install command.</div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
-      <div class="faq-q">Skill not showing in Claude Code?</div>
-      <div class="faq-a">Quit Claude Code completely and start a new session. Then ask, <code>What skills do I have installed?</code></div>
+      <div class="faq-q">Skill not showing in Claude?</div>
+      <div class="faq-a">Quit Claude Desktop or Claude Code completely and start a new session. Then ask, <code>What skills do I have installed?</code></div>
     </div>
     <div class="faq-item" onclick="this.classList.toggle('open')">
       <div class="faq-q">Download blocked?</div>
@@ -2048,11 +2056,14 @@ open -a Ghostty</code></pre>
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash</code></pre>
     </div>
-    <p>To install somewhere else, add <code>--dir</code>. To replace an earlier copy, add <code>--force</code>.</p>
+    <p>To install somewhere else, use the first command below. To replace an earlier copy, use the second command below. Copy only one of these commands.</p>
     <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash -s -- --dir ~/Documents/autoresearch-starter-kit
-curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash -s -- --force</code></pre>
+      <div class="code-label"><span class="code-tag terminal">Custom Folder</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash -s -- --dir ~/Documents/autoresearch-starter-kit</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Replace Existing</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | bash -s -- --force</code></pre>
     </div>
     <p style="margin: 16px 0;">
       <a class="cta-btn" href="autoresearch-starter-kit.zip" download>Download ZIP Backup</a>
@@ -2176,8 +2187,8 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
     </div>
     <p style="color: var(--text-muted); font-size: 0.85rem;">No output means the checks passed.</p>
 
-    <h3>3. Restart Claude Code And Codex</h3>
-    <p>After restart, Claude Code should have the slash command:</p>
+    <h3>3. Restart Claude And Codex</h3>
+    <p>After restart, Claude should have the slash command:</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>/skillforge</code></pre>
@@ -3274,7 +3285,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
   <!-- TAB: Everlearn -->
   <div class="tab-content" id="tab-everlearn">
     <h2><span class="section-number">9</span>Everlearn Knowledge Capture</h2>
-    <p>Install the local-first learning system that lets Claude Code and Codex save useful lessons into your own Markdown or Obsidian vault. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~5 minutes</span></p>
+    <p>Install the local-first learning system that lets Claude and Codex save useful lessons into your own Markdown or Obsidian vault. <span style="color: var(--yellow); font-weight: 600; font-size: 0.85rem;">~5 minutes</span></p>
 
     <div class="callout info">
       <strong>General system, ecommerce profile.</strong> Everlearn is not just for Amazon sellers. Tonight we use the ecommerce profile so you can capture customer signals, product ideas, ad learnings, and market research. Later you can switch to general, coding, research, or operations.
@@ -3295,17 +3306,26 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>cd ~/Downloads
-	unzip -o everlearn-workshop.zip
-	cd everlearn</code></pre>
+      <pre><code>cd ~/Downloads</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>unzip -o everlearn-workshop.zip</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>cd everlearn</code></pre>
     </div>
 
     <h3>3. Manual ZIP Setup</h3>
-    <p>This creates <code>~/Everlearn Vault</code>, installs the Everlearn skill for Claude Code and Codex, adds a local <code>everlearn</code> command, and installs <code>/everlearn</code> command files for Claude Code and Codex.</p>
+    <p>This creates <code>~/Everlearn Vault</code>, installs the Everlearn skill for Claude and Codex, adds a local <code>everlearn</code> command, and installs <code>/everlearn</code> command files for Claude Code and supported Codex builds.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>./scripts/setup.sh --profile ecommerce
-~/.everlearn/bin/everlearn verify</code></pre>
+      <pre><code>./scripts/setup.sh --profile ecommerce</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>~/.everlearn/bin/everlearn verify</code></pre>
     </div>
 
     <h3>4. Capture A Test Signal</h3>
@@ -3323,8 +3343,8 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
     <div class="step"><span class="step-num">2</span><div class="step-body"><p>Choose <strong>Open folder as vault</strong></p></div></div>
     <div class="step"><span class="step-num">3</span><div class="step-body"><p>Select <code>~/Everlearn Vault</code></p></div></div>
 
-    <h3>6. Use It From Claude Code Or Codex</h3>
-    <p>After setup, restart Claude Code or Codex so the new skill loads. In Claude Code and supported Codex builds, use the slash command:</p>
+    <h3>6. Use It From Claude Or Codex</h3>
+    <p>After setup, restart Claude or Codex so the new skill loads. In Claude Code and supported Codex builds, use the slash command:</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag prompt">Claude Code / Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>/everlearn signal Customers keep asking whether the starter bundle includes replacement filters.</code></pre>
@@ -3430,7 +3450,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
       <div class="checklist-group-title">Workshop Tools</div>
       <ul class="checklist">
         <li><input type="checkbox" data-key="tool-signalsweep-smoke"><span>SignalSweep smoke test ran: <code>/signalsweep pickleball paddle grip sweaty hands</code></span></li>
-        <li><input type="checkbox" data-key="tool-skillforge-command"><span>SkillForge slash command opens in Claude Code: <code>/skillforge</code></span></li>
+        <li><input type="checkbox" data-key="tool-skillforge-command"><span>SkillForge slash command opens in Claude: <code>/skillforge</code></span></li>
         <li><input type="checkbox" data-key="tool-demo-topic"><span>One product, niche, or repeatable workflow chosen for the live demos</span></li>
       </ul>
     </div>
@@ -3461,8 +3481,8 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
         <li><input type="checkbox" data-key="el-setup"><span><code>~/.everlearn/bin/everlearn verify</code> completed successfully</span></li>
         <li><input type="checkbox" data-key="el-verify"><span><code>~/.everlearn/bin/everlearn verify</code> passes</span></li>
         <li><input type="checkbox" data-key="el-capture"><span>Test capture appears in <code>~/Everlearn Vault</code></span></li>
-        <li><input type="checkbox" data-key="el-agent"><span>Claude Code or Codex restarted after Everlearn install</span></li>
-        <li><input type="checkbox" data-key="el-slash"><span><code>/everlearn</code> command is available in Claude Code and supported Codex builds</span></li>
+        <li><input type="checkbox" data-key="el-agent"><span>Claude or Codex restarted after Everlearn install</span></li>
+        <li><input type="checkbox" data-key="el-slash"><span><code>/everlearn</code> command is available in Claude and supported Codex builds</span></li>
       </ul>
     </div>
 
@@ -3628,11 +3648,28 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
   // Copy button
   function copyCode(btn) {
     const code = btn.closest('.code-wrap').querySelector('code').textContent;
-    navigator.clipboard.writeText(code).then(() => {
+    const markCopied = () => {
       btn.textContent = 'Copied!';
       btn.classList.add('copied');
       setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
-    });
+    };
+    const fallbackCopy = () => {
+      const textarea = document.createElement('textarea');
+      textarea.value = code;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      markCopied();
+    };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(code).then(markCopied).catch(fallbackCopy);
+    } else {
+      fallbackCopy();
+    }
   }
 </script>
 <div class="help-bar">

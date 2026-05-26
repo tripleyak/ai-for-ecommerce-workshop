@@ -136,12 +136,14 @@ Autoresearch starter kit installed.
 
 Next:
   cd "$INSTALL_DIR"
-  # Pick one track:
+
+Start the response-curves track:
   ./scripts/setup-run.sh response-curves
-  # or:
+
+Or start the demand-forecast track:
   ./scripts/setup-run.sh demand-forecast
 
-Then paste this into Claude Code or Codex:
+Then paste this into Claude or Codex:
   Read program.md and the selected track program.md. Continue the autoresearch loop.
 
 EOF

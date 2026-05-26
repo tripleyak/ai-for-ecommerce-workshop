@@ -36,9 +36,12 @@ The installer downloads the starter kit, runs both smoke tests, and creates a ba
 ## Start A Run
 
 ```bash
-# Pick one track.
 ./scripts/setup-run.sh response-curves
-# or:
+```
+
+or:
+
+```bash
 ./scripts/setup-run.sh demand-forecast
 ```
 
