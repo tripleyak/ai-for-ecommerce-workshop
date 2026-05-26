@@ -1313,6 +1313,22 @@
 	      <strong>Setup help is available.</strong> If you get stuck, book a setup call from the help bar at the bottom of this page and bring the exact error message with you.
 	    </div>
 
+	    <div class="callout info">
+	      <strong>Quick verification:</strong> before installing anything new, run the checks at the bottom of this tab. If a command fails, install only that missing item.
+	    </div>
+	    <p>You can paste this whole verification block at the top and again at the bottom of this tab.</p>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>brew --version
+git --version
+node --version
+npm --version
+python3.12 --version
+gh auth status
+tmux -V
+open -a Ghostty</code></pre>
+	    </div>
+
 	    <div class="path-grid">
 	      <div class="path-card recommended">
 	        <span class="path-badge">Recommended</span>
@@ -1349,78 +1365,98 @@
 	    </details>
 
     <h3>Homebrew (macOS package manager)</h3>
+    <p>Copy and run one line at a time. If the first line works, skip the install line.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># Check if Homebrew is installed</span>
-brew --version
-
-<span class="comment"># If not installed, run this (one line):</span>
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+      <pre><code>brew --version</code></pre>
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
 	    </div>
 
 	    <h3>Ghostty (optional but recommended for CLI users)</h3>
 	    <p>Ghostty is a fast Mac terminal that works well for long Claude Code and Codex sessions. You can install it with Homebrew or download the signed macOS app directly.</p>
 	    <div class="code-wrap">
 	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	      <pre><code><span class="comment"># Option A: install with Homebrew</span>
-	brew install --cask ghostty
-
-	<span class="comment"># Open it after install</span>
-	open -a Ghostty</code></pre>
+	      <pre><code>brew install --cask ghostty</code></pre>
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>open -a Ghostty</code></pre>
 	    </div>
 	    <div class="step"><span class="step-num">1</span><div class="step-body"><p>Alternative: download the signed macOS app from <a href="https://ghostty.org/download" target="_blank">ghostty.org/download</a></p></div></div>
 	    <div class="step"><span class="step-num">2</span><div class="step-body"><p>Open the <code>.dmg</code>, drag Ghostty into Applications, then launch it from Spotlight.</p></div></div>
 
     <h3>Git</h3>
+    <p>Copy and run one line at a time. If the version check works, skip the install line.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># Check if git is installed</span>
-git --version
-
-<span class="comment"># If not installed:</span>
-brew install git</code></pre>
+      <pre><code>git --version</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>brew install git</code></pre>
     </div>
 
     <h3>Node.js 18+</h3>
+    <p>Copy and run one line at a time. If your Node version starts with v18 or higher, skip the install line.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># Check if Node.js 18+ is installed</span>
-node --version
-
-<span class="comment"># If not installed or below v18:</span>
-brew install node
-
-<span class="comment"># Or download from: https://nodejs.org</span></code></pre>
+      <pre><code>node --version</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>brew install node</code></pre>
     </div>
 
     <h3>Python 3.12+</h3>
+    <p>Copy and run one line at a time. SignalSweep requires Python 3.12 or newer.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># SignalSweep requires Python 3.12 or newer</span>
-HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12
-python3.12 --version</code></pre>
+      <pre><code>HOMEBREW_NO_AUTO_UPDATE=1 brew install python@3.12</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>python3.12 --version</code></pre>
+    </div>
+
+    <h3>Bun (only for Compound Engineering agents in Codex)</h3>
+    <p>Install Bun only if you plan to use the Compound Engineering plugin inside Codex. Copy and run one line at a time.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>brew tap oven-sh/bun</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>brew install bun</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>bun --version</code></pre>
     </div>
 
     <h3>GitHub CLI</h3>
+    <p>Copy and run one line at a time. The login command opens an interactive browser login.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># Install GitHub CLI</span>
-brew install gh
-
-<span class="comment"># Authenticate</span>
-gh auth login
-<span class="comment"># Select: GitHub.com > HTTPS > Authenticate via browser</span></code></pre>
+      <pre><code>brew install gh</code></pre>
     </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>gh auth login</code></pre>
+    </div>
+    <p>When prompted, choose <strong>GitHub.com</strong>, <strong>HTTPS</strong>, and <strong>Authenticate via browser</strong>.</p>
 
     <h3>tmux (Terminal Multiplexer)</h3>
     <p>tmux lets you run multiple terminal sessions side by side &mdash; essential for running Claude Code and Codex simultaneously.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># Install tmux</span>
-brew install tmux
-
-<span class="comment"># Verify</span>
-tmux -V</code></pre>
+      <pre><code>brew install tmux</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>tmux -V</code></pre>
     </div>
 
     <h3>Obsidian</h3>
@@ -1430,15 +1466,17 @@ tmux -V</code></pre>
     <div class="step"><span class="step-num">3</span><div class="step-body"><p>Create a new vault (or open an existing one) &mdash; we'll configure it during the workshop</p></div></div>
 
     <h3>Verify</h3>
+    <p>You can paste this whole verification block at once. If one line fails, install or fix that item, then run the block again.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>brew --version    <span class="comment"># Should show Homebrew version</span>
-git --version     <span class="comment"># Should show git version</span>
-node --version    <span class="comment"># Should show v18.x or higher</span>
-npm --version     <span class="comment"># Should show npm version</span>
-gh auth status    <span class="comment"># Should show "Logged in to github.com"</span>
-	tmux -V           <span class="comment"># Should show tmux version</span>
-	open -a Ghostty   <span class="comment"># Optional: should open Ghostty if installed</span></code></pre>
+      <pre><code>brew --version
+git --version
+node --version
+npm --version
+python3.12 --version
+gh auth status
+tmux -V
+open -a Ghostty</code></pre>
 	    </div>
   </div>
 
@@ -1449,6 +1487,14 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 
 	    <div class="callout info">
 	      <strong>Recommended path:</strong> Claude Desktop &rarr; Code tab &rarr; Local session. You can still install the CLI later; the workshop does not assume everyone lives in Terminal.
+	    </div>
+
+	    <div class="callout tip">
+	      <strong>Verify first:</strong> paste this prompt into Claude Desktop Code or Claude Code CLI before setup. Paste it again after setup.
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag session">Claude</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>Audit this Claude session for workshop readiness. List installed plugins, plugin marketplaces, skills, connectors, MCP servers, browser tools, computer-use permissions, model, reasoning effort, and permission mode. Then list only the missing workshop items and the exact next setup step for each missing item.</code></pre>
 	    </div>
 
 	    <!-- 3.1 Desktop -->
@@ -1463,23 +1509,125 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 
 	        <div class="path-grid">
 	          <div class="path-card">
-	            <h4>Plugins in Claude Desktop</h4>
-	            <p>In a local Code session, click the <strong>+</strong> button next to the prompt box, choose <strong>Plugins</strong>, then <strong>Add plugin</strong>. Install or enable:</p>
-	            <ul>
-	              <li>compound-engineering</li>
-	              <li>Vercel</li>
-	              <li>Any plugin Jack asks you to add live</li>
-	            </ul>
+	            <h4>Default plugin install</h4>
+	            <p>Use this when the plugin already appears in Claude's plugin browser.</p>
+	            <ol>
+	              <li>Open Claude Desktop.</li>
+	              <li>Click <strong>Code</strong>.</li>
+	              <li>Start or open a <strong>Local</strong> session.</li>
+	              <li>Click the <strong>+</strong> button next to the prompt box.</li>
+	              <li>Choose <strong>Plugins</strong>.</li>
+	              <li>Choose <strong>Add plugin</strong>.</li>
+	              <li>Search for the plugin.</li>
+	              <li>Click <strong>Install</strong> or <strong>Enable</strong>.</li>
+	              <li>Restart the Claude session after install.</li>
+	            </ol>
 	          </div>
 	          <div class="path-card">
-	            <h4>Skills in Claude Desktop</h4>
-	            <p>In the Code tab, type <code>/</code> or click <strong>+</strong> &rarr; <strong>Slash commands</strong> to see available skills. For regular Claude Chat/Cowork, go to <strong>Customize &gt; Skills</strong> and upload ZIP skills if provided.</p>
+	            <h4>Custom plugin marketplace</h4>
+	            <p>Use this when a plugin is not in the default plugin list.</p>
+	            <ol>
+	              <li>Open Claude Desktop.</li>
+	              <li>Click <strong>Customize</strong> in the sidebar.</li>
+	              <li>Click <strong>Plugins</strong>.</li>
+	              <li>Click <strong>Browse plugins</strong>.</li>
+	              <li>Click <strong>Add marketplace</strong>.</li>
+	              <li>Paste the marketplace URL or GitHub shorthand.</li>
+	              <li>Click <strong>Add</strong>, <strong>Save</strong>, or <strong>Update</strong>.</li>
+	              <li>Search the new marketplace for the plugin.</li>
+	              <li>Click <strong>Install</strong>.</li>
+	              <li>Return to <strong>Code</strong> &rarr; <strong>+</strong> &rarr; <strong>Plugins</strong> and confirm the plugin is enabled.</li>
+	            </ol>
 	          </div>
 	          <div class="path-card">
-	            <h4>Connectors and MCP</h4>
-	            <p>Use <strong>+</strong> &rarr; <strong>Connectors</strong> for graphical setup of GitHub, Linear, Slack, Notion, and similar tools. Use <strong>Settings &gt; Extensions</strong> for Claude Desktop MCP extensions.</p>
+	            <h4>Plugin file upload</h4>
+	            <p>Use this if someone gives you a plugin package file instead of a marketplace.</p>
+	            <ol>
+	              <li>Open Claude Desktop.</li>
+	              <li>Click <strong>Customize</strong>.</li>
+	              <li>Click <strong>Plugins</strong>.</li>
+	              <li>Click the upload option on the Plugins page.</li>
+	              <li>Select the plugin package file.</li>
+	              <li>Follow the install prompts.</li>
+	              <li>Open the installed plugin and review its skills, connectors, agents, and hooks.</li>
+	            </ol>
 	          </div>
 	        </div>
+
+	        <h3>Compound Engineering plugin in Claude Desktop</h3>
+	        <p>Add the marketplace first, then install the plugin from that marketplace. The marketplace source is:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag config">Marketplace</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>EveryInc/compound-engineering-plugin</code></pre>
+	        </div>
+	        <ol>
+	          <li>Open Claude Desktop &rarr; <strong>Customize</strong> &rarr; <strong>Plugins</strong>.</li>
+	          <li>Click <strong>Browse plugins</strong>.</li>
+	          <li>Click <strong>Add marketplace</strong>.</li>
+	          <li>Paste <code>EveryInc/compound-engineering-plugin</code>.</li>
+	          <li>Click <strong>Add</strong> or <strong>Save</strong>.</li>
+	          <li>Search for <strong>compound-engineering</strong>.</li>
+	          <li>Click <strong>Install</strong>.</li>
+	          <li>Open <strong>Code</strong> &rarr; start a <strong>Local</strong> session &rarr; click <strong>+</strong> &rarr; <strong>Plugins</strong>.</li>
+	          <li>Confirm <strong>compound-engineering</strong> is available, then start a new session.</li>
+	        </ol>
+
+	        <h3>Connectors, MCP, and custom desktop extensions</h3>
+	        <div class="path-grid">
+	          <div class="path-card recommended">
+	            <span class="path-badge">Desktop</span>
+	            <h4>Built-in connectors</h4>
+	            <ol>
+	              <li>Open Claude Desktop.</li>
+	              <li>Open a <strong>Code</strong> local session.</li>
+	              <li>Click the <strong>+</strong> button next to the prompt box.</li>
+	              <li>Choose <strong>Connectors</strong>.</li>
+	              <li>Select GitHub, Linear, Slack, Notion, Google Drive, or another connector.</li>
+	              <li>Sign in when prompted.</li>
+	              <li>Ask Claude what connectors are available in the session.</li>
+	            </ol>
+	          </div>
+	          <div class="path-card">
+	            <h4>Desktop extensions</h4>
+	            <ol>
+	              <li>Open Claude Desktop.</li>
+	              <li>Open <strong>Settings</strong>.</li>
+	              <li>Click <strong>Extensions</strong>.</li>
+	              <li>Click <strong>Browse extensions</strong>.</li>
+	              <li>Click the extension you want.</li>
+	              <li>Click <strong>Install</strong>.</li>
+	              <li>Complete any required settings or sign-in prompts.</li>
+	            </ol>
+	          </div>
+	          <div class="path-card">
+	            <h4>Custom .mcpb extension</h4>
+	            <ol>
+	              <li>Download the <code>.mcpb</code> file from the extension's official release page.</li>
+	              <li>Open Claude Desktop &rarr; <strong>Settings</strong> &rarr; <strong>Extensions</strong>.</li>
+	              <li>Click <strong>Advanced settings</strong>.</li>
+	              <li>Find <strong>Extension Developer</strong>.</li>
+	              <li>Click <strong>Install Extension...</strong>.</li>
+	              <li>Select the <code>.mcpb</code> file.</li>
+	              <li>Follow the prompts, then restart Claude Desktop.</li>
+	            </ol>
+	          </div>
+	        </div>
+
+	        <h3>Excalidraw MCP in Claude Desktop</h3>
+	        <p>Use the official Excalidraw MCP App when you want Claude to create or edit diagrams. The remote MCP URL is:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag config">MCP URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>https://mcp.excalidraw.com</code></pre>
+	        </div>
+	        <ol>
+	          <li>Open Claude Desktop.</li>
+	          <li>Open <strong>Settings</strong> &rarr; <strong>Extensions</strong>.</li>
+	          <li>If Excalidraw appears in <strong>Browse extensions</strong>, click it and install it.</li>
+	          <li>If you have an <code>excalidraw-mcp-app.mcpb</code> file, use <strong>Advanced settings</strong> &rarr; <strong>Install Extension...</strong>.</li>
+	          <li>If your Claude plan exposes custom connectors, add a custom connector or MCP with the URL <code>https://mcp.excalidraw.com</code>.</li>
+	          <li>Restart Claude Desktop.</li>
+	          <li>Ask Claude: <code>What Excalidraw MCP tools are available?</code></li>
+	        </ol>
 
 	        <div class="callout warn">
 	          <strong>Computer use permissions:</strong> If you want Claude to operate desktop apps, enable Computer Use in Claude Desktop settings and grant macOS Accessibility and Screen Recording. Stay present for Seller Central, payments, credentials, and account settings.
@@ -1491,26 +1639,35 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	    <details>
 	      <summary>3.2 &mdash; Optional: Claude Code CLI in Ghostty</summary>
 	      <div class="detail-body">
-	        <p>Open Ghostty, then install Claude Code. The native installer is the recommended current path; npm is a fallback if the native installer fails.</p>
+	        <p>Open Ghostty, then install Claude Code. Copy and run one line at a time.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code><span class="comment"># Recommended native install</span>
-	curl -fsSL https://claude.ai/install.sh | bash
-
-	<span class="comment"># Verify and start</span>
-	claude --version
-	claude doctor
-	claude</code></pre>
+	          <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>claude --version</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>claude doctor</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>claude</code></pre>
+	        </div>
+	        <p>Fallback if the native installer does not work:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Fallback</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
 	        </div>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Fallback</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code><span class="comment"># Fallback if the native installer does not work</span>
-	npm install -g @anthropic-ai/claude-code
-	claude --version</code></pre>
+	          <pre><code>claude --version</code></pre>
 	        </div>
 
 	        <h3>Safe starter settings</h3>
-	        <p>This keeps Claude useful while protecting common secret locations. You can still change model, effort, and permissions from <code>/config</code>, <code>/model</code>, and <code>/permissions</code> inside Claude Code.</p>
+	        <p>Copy this whole block once. It creates a settings file that keeps Claude useful while protecting common secret locations. You can still change model, effort, and permissions from <code>/config</code>, <code>/model</code>, and <code>/permissions</code> inside Claude Code.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag config">Config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>mkdir -p ~/.claude
@@ -1540,18 +1697,63 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	    <details>
 	      <summary>3.3 &mdash; Install Claude Code Plugins</summary>
 	      <div class="detail-body">
-	        <p>Desktop path: use <strong>+</strong> &rarr; <strong>Plugins</strong> &rarr; <strong>Add plugin</strong>. Terminal path: open a Claude Code session and run:</p>
+	        <p>Claude plugins may come from the default marketplace, a custom marketplace, a Git repository, a local marketplace folder, or an uploaded plugin package. For CLI setup, paste one line at a time inside a Claude Code session unless the guide says otherwise.</p>
 
-	        <p><strong>compound-engineering</strong> (code review, planning, brainstorming):</p>
+	        <h3>Add the Compound Engineering marketplace</h3>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace add EveryInc/compound-engineering-plugin</code></pre>
+	        </div>
+
+	        <h3>Install Compound Engineering</h3>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>/plugin install compound-engineering@compound-engineering-plugin</code></pre>
 	        </div>
 
-	        <p><strong>Vercel</strong> (deploy and manage projects):</p>
+	        <h3>Install Vercel from the official marketplace</h3>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>/plugin install vercel@claude-plugins-official</code></pre>
+	        </div>
+
+	        <h3>If the official marketplace is missing or stale</h3>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace update claude-plugins-official</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace add anthropics/claude-plugins-official</code></pre>
+	        </div>
+
+	        <h3>Other custom marketplace shapes</h3>
+	        <p>Use one of these only when a plugin author gives you that kind of source.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">GitHub</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace add owner/repo</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Git URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace add https://github.com/example/plugins.git</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Local</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace add ./my-marketplace</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Remote JSON</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin marketplace add https://example.com/marketplace.json</code></pre>
+	        </div>
+
+	        <h3>Verify plugin setup</h3>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugin</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/reload-plugins</code></pre>
 	        </div>
 
 	        <div class="callout tip">Restart Claude Desktop or Claude Code after installing plugins. Plugins load at session start.</div>
@@ -1568,22 +1770,41 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	        <p><strong>Claude Code local skills:</strong> skills live in <code>~/.claude/skills/</code> for personal skills or <code>.claude/skills/</code> for project skills.</p>
 
 	        <p><strong>grill-with-docs & grill-me</strong> (stress-test plans and designs &mdash; <a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a>):</p>
+	        <p>Copy and run one line at a time in Ghostty or Terminal.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code><span class="comment"># Run in Ghostty or Terminal, not inside Claude Code</span>
-	cd ~/Projects
-	git clone https://github.com/mattpocock/skills.git mattpocock-skills
-	cd mattpocock-skills
-	bash scripts/link-skills.sh</code></pre>
+	          <pre><code>cd ~/Projects</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>git clone https://github.com/mattpocock/skills.git mattpocock-skills</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>cd mattpocock-skills</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>bash scripts/link-skills.sh</code></pre>
 	        </div>
 
 	        <p><strong>Goal skill</strong> (structured objective tracking &mdash; <a href="https://github.com/jthack/claude-goal" target="_blank">github.com/jthack/claude-goal</a>):</p>
+	        <p>Copy and run one line at a time in Ghostty or Terminal.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>cd ~/Projects
-	git clone https://github.com/jthack/claude-goal.git
-	cd claude-goal
-	./install.sh</code></pre>
+	          <pre><code>cd ~/Projects</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>git clone https://github.com/jthack/claude-goal.git</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>cd claude-goal</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>./install.sh</code></pre>
 	        </div>
 	      </div>
 	    </details>
@@ -1592,7 +1813,7 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	    <details>
 	      <summary>3.5 &mdash; Configure MCP Servers and Desktop Extensions</summary>
 	      <div class="detail-body">
-	        <p>MCP gives Claude access to external tools. In Claude Desktop, prefer graphical Connectors and Extensions when available. In the CLI, use <code>claude mcp add</code>.</p>
+	        <p>MCP gives Claude access to external tools. In Claude Desktop, prefer graphical Connectors and Extensions when available. In the CLI, use <code>claude mcp add</code>. Copy CLI commands one line at a time.</p>
 
 	        <div class="path-grid">
 	          <div class="path-card recommended">
@@ -1606,19 +1827,26 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	          </div>
 	          <div class="path-card">
 	            <h4>Import desktop MCP into CLI</h4>
-	            <p>If you already configured MCP servers in Claude Desktop, import them into Claude Code:</p>
+	            <p>If you already configured MCP servers in Claude Desktop chat, import them into Claude Code CLI. This is useful, but the Code tab also reads Claude Code MCP from <code>~/.claude.json</code> and project <code>.mcp.json</code>.</p>
 	            <div class="code-wrap">
 	              <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	              <pre><code>claude mcp add-from-claude-desktop
-	claude mcp list</code></pre>
+	              <pre><code>claude mcp add-from-claude-desktop</code></pre>
+	            </div>
+	            <div class="code-wrap">
+	              <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	              <pre><code>claude mcp list</code></pre>
 	            </div>
 	          </div>
 	        </div>
 
-	        <p><strong>Excalidraw</strong> (create and edit diagrams):</p>
+	        <p><strong>Excalidraw official remote MCP</strong> (create and edit diagrams):</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>claude mcp add excalidraw -- npx -y @cmd8/excalidraw-mcp</code></pre>
+	          <pre><code>claude mcp add --transport http --scope user excalidraw https://mcp.excalidraw.com</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>claude mcp list</code></pre>
 	        </div>
 
 	        <p><strong>Playwright</strong> (browser automation for local app testing):</p>
@@ -1634,9 +1862,24 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	      </div>
 	    </details>
 
+	    <!-- 3.7 Agent Setup -->
+	    <details>
+	      <summary>3.7 &mdash; OpenClaw / Hermes Agent Setup</summary>
+	      <div class="detail-body">
+	        <div class="callout warn">
+	          <strong>Install the app or CLI first.</strong> OpenClaw, Hermes, or any other agent can help configure Claude only after Claude Desktop or Claude Code CLI is installed and signed in on this Mac.
+	        </div>
+	        <p>Paste this whole prompt into your OpenClaw or Hermes agent if you want it to help finish Claude setup:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag prompt">Agent Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>Help me prepare Claude for the AI for Ecommerce Workshop. First verify whether Claude Desktop or Claude Code CLI is installed and signed in. Do not proceed if neither is installed. Then configure Claude for the workshop: verify model and permission settings, add the EveryInc/compound-engineering-plugin marketplace, install compound-engineering, install the Vercel plugin from claude-plugins-official, verify available skills, configure Excalidraw MCP using https://mcp.excalidraw.com if supported, verify Playwright MCP if requested, confirm browser and computer-use permissions, and report what is ready versus missing. Ask before changing broad permissions or touching folders with secrets, customer data, financial exports, or production credentials.</code></pre>
+	        </div>
+	      </div>
+	    </details>
+
 	    <!-- 3.6 Remote Control -->
 	    <details>
-	      <summary>3.6 &mdash; Remote Control and Dispatch</summary>
+	      <summary>3.8 &mdash; Remote Control and Dispatch</summary>
 	      <div class="detail-body">
 	        <p><strong>Desktop path:</strong> Dispatch lets you send work from your phone to Claude Desktop.</p>
 	        <div class="step"><span class="step-num">1</span><div class="step-body"><p>Open Claude Desktop and click <strong>Dispatch</strong> in the sidebar.</p></div></div>
@@ -1653,12 +1896,12 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 
 	    <!-- 3.7 Verify -->
 	    <details>
-	      <summary>3.7 &mdash; Verify Claude Setup</summary>
+	      <summary>3.9 &mdash; Verify Claude Setup</summary>
 	      <div class="detail-body">
-	        <p>Run this in Claude Desktop Code tab or inside a Claude Code CLI session:</p>
+	        <p>Run this at the bottom of your setup pass in Claude Desktop Code tab or inside a Claude Code CLI session:</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Claude</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>What plugins, skills, connectors, MCP servers, browser tools, and computer-use permissions do I have available for this session?</code></pre>
+	          <pre><code>Verify my Claude workshop setup. Confirm the active model, reasoning effort, permission mode, plugin marketplaces, installed plugins, skills, connectors, MCP servers, browser tools, and computer-use permissions. Specifically check for compound-engineering, Vercel, SignalSweep, SkillForge, grill-me, grill-with-docs, Goal, Excalidraw MCP, Playwright MCP, Claude in Chrome, and Dispatch or Remote Control. For anything missing, give me the exact clickpath or single command to fix it.</code></pre>
 	        </div>
 	        <p>You should see the relevant desktop or CLI path: compound-engineering, Vercel, SignalSweep, SkillForge, grill-me/grill-with-docs, Excalidraw or Playwright MCP if installed, Chrome/browser support, and computer use if enabled.</p>
 	      </div>
@@ -1668,8 +1911,12 @@ gh auth status    <span class="comment"># Should show "Logged in to github.com"<
 	      <a href="https://code.claude.com/docs/en/desktop" target="_blank">Claude Desktop Code docs</a>
 	      <a href="https://code.claude.com/docs/en/getting-started" target="_blank">Claude Code install docs</a>
 	      <a href="https://code.claude.com/docs/en/settings" target="_blank">Claude Code settings</a>
+	      <a href="https://code.claude.com/docs/en/discover-plugins" target="_blank">Claude plugin marketplaces</a>
+	      <a href="https://claude.com/docs/cowork/guide/plugins" target="_blank">Claude Desktop plugin install</a>
 	      <a href="https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop" target="_blank">Claude Desktop MCP extensions</a>
 	      <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank">Claude Skills</a>
+	      <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">Compound Engineering plugin</a>
+	      <a href="https://github.com/excalidraw/excalidraw-mcp" target="_blank">Excalidraw MCP</a>
 	    </div>
 	  </div>
 
@@ -1832,14 +2079,18 @@ curl -fsSL https://ai-ecommerce-workshop.vercel.app/install_autoresearch.sh | ba
     </div>
 
     <h3>5. Start A MacBook Run Branch</h3>
-    <p>The installer creates the starter repo. Use one of these commands to create an autoresearch branch and record a baseline.</p>
+    <p>The installer creates the starter repo. Copy one line at a time. Choose either response-curves or demand-forecast, not both unless Jack asks you to run both tracks.</p>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code>cd ~/autoresearch-starter-kit
-<span class="comment"># Pick one track</span>
-./scripts/setup-run.sh response-curves
-<span class="comment"># or</span>
-./scripts/setup-run.sh demand-forecast</code></pre>
+      <pre><code>cd ~/autoresearch-starter-kit</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Response Curves</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>./scripts/setup-run.sh response-curves</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Demand Forecast</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>./scripts/setup-run.sh demand-forecast</code></pre>
     </div>
 
     <h3>6. Agent Prompt</h3>
@@ -1946,12 +2197,12 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
     <h3>5. Optional Proactivity Levels</h3>
     <p>Balanced is the default. Use these only if you already know you want fewer or more suggestions.</p>
     <div class="code-wrap">
-      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-      <pre><code><span class="comment"># Fewer suggestions</span>
-curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/install_workshop.sh | bash -s -- --level quiet
-
-<span class="comment"># More suggestions</span>
-curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/install_workshop.sh | bash -s -- --level high</code></pre>
+      <div class="code-label"><span class="code-tag terminal">Quiet</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/install_workshop.sh | bash -s -- --level quiet</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">High</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/install_workshop.sh | bash -s -- --level high</code></pre>
     </div>
 
     <div class="callout tip">
@@ -1968,6 +2219,14 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	      <strong>Recommended path:</strong> Codex app &rarr; Local project &rarr; Plugins / Settings / Computer Use. The CLI is optional but useful for attendees who prefer terminal workflows.
 	    </div>
 
+	    <div class="callout tip">
+	      <strong>Verify first:</strong> paste this prompt into the Codex app or Codex CLI before setup. Paste it again after setup.
+	    </div>
+	    <div class="code-wrap">
+	      <div class="code-label"><span class="code-tag session">Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	      <pre><code>Audit this Codex session for workshop readiness. List installed plugins, plugin marketplaces, skills, MCP servers, app connectors, browser tools, computer-use permissions, GitHub access, model, reasoning effort, approval policy, and sandbox mode. Then list only the missing workshop items and the exact next setup step for each missing item.</code></pre>
+	    </div>
+
 	    <!-- 4.1 App -->
 	    <details open>
 	      <summary>4.1 &mdash; Recommended: Codex App</summary>
@@ -1979,23 +2238,60 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 
 	        <div class="path-grid">
 	          <div class="path-card">
-	            <h4>Plugins and marketplaces</h4>
-	            <p>Open <strong>Plugins</strong> in the Codex app. Install or enable:</p>
-	            <ul>
-	              <li>Chrome plugin</li>
-	              <li>Vercel plugin</li>
-	              <li>compound-engineering plugin</li>
-	              <li>Any other plugin Jack asks you to add live</li>
-	            </ul>
+	            <h4>Curated plugins</h4>
+	            <ol>
+	              <li>Open the Codex app.</li>
+	              <li>Click <strong>Plugins</strong> in the sidebar.</li>
+	              <li>Browse <strong>Curated by OpenAI</strong>.</li>
+	              <li>Open the plugin details page.</li>
+	              <li>Click the plus button or <strong>Add to Codex</strong>.</li>
+	              <li>Connect any required external app when prompted.</li>
+	              <li>Start a new Codex thread after install.</li>
+	            </ol>
 	          </div>
 	          <div class="path-card">
-	            <h4>Skills</h4>
-	            <p>Codex can use reusable skills across the app, CLI, and IDE extension. Workshop installers such as SignalSweep, SkillForge, and Everlearn will place skills in the local skill folders for you.</p>
+	            <h4>Shared or custom plugins</h4>
+	            <ol>
+	              <li>Open the Codex app.</li>
+	              <li>Click <strong>Plugins</strong>.</li>
+	              <li>Check <strong>Shared with you</strong> for workspace-shared plugins.</li>
+	              <li>Check <strong>Created by you</strong> for plugins you created or imported.</li>
+	              <li>If a plugin marketplace is not visible, register it with the Codex CLI first, then restart the app.</li>
+	              <li>Return to <strong>Plugins</strong>, choose the marketplace source, and install the plugin.</li>
+	            </ol>
 	          </div>
 	          <div class="path-card">
 	            <h4>MCP and connectors</h4>
-	            <p>Open <strong>Settings &gt; Integrations & MCP</strong>. Enable recommended servers or add your own. Codex stores MCP config in <code>~/.codex/config.toml</code>, which also applies to the CLI.</p>
+	            <ol>
+	              <li>Open the Codex app.</li>
+	              <li>Open <strong>Settings</strong> with <code>Cmd + ,</code>.</li>
+	              <li>Click <strong>Integrations &amp; MCP</strong>.</li>
+	              <li>Enable recommended servers or add the server details supplied by the tool author.</li>
+	              <li>Restart the Codex thread and ask Codex to list available MCP tools.</li>
+	            </ol>
 	          </div>
+	        </div>
+
+	        <h3>Compound Engineering plugin in the Codex app</h3>
+	        <p>Compound Engineering is a custom marketplace plugin. Register the marketplace with the CLI first, then install from the app or CLI plugin browser.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex plugin marketplace add EveryInc/compound-engineering-plugin</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>bunx @every-env/compound-plugin install compound-engineering --to codex</code></pre>
+	        </div>
+	        <ol>
+	          <li>Quit and reopen the Codex app.</li>
+	          <li>Click <strong>Plugins</strong>.</li>
+	          <li>Choose the <strong>Compound Engineering</strong> marketplace source if the UI shows marketplace tabs.</li>
+	          <li>Open <strong>compound-engineering</strong>.</li>
+	          <li>Click the plus button, <strong>Add to Codex</strong>, or <strong>Install plugin</strong>.</li>
+	          <li>Start a new thread and ask Codex to verify the plugin.</li>
+	        </ol>
+	        <div class="callout warn">
+	          <strong>Why the Bun line matters:</strong> Compound Engineering currently uses an extra installer for Codex agents. Without it, some CE skills may install but fail when they try to delegate to missing agents.
 	        </div>
 	      </div>
 	    </details>
@@ -2004,21 +2300,36 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	    <details>
 	      <summary>4.2 &mdash; Optional: Codex CLI in Ghostty</summary>
 	      <div class="detail-body">
-	        <p>Codex CLI is OpenAI's terminal coding agent. Official source and release context lives at <a href="https://github.com/openai/codex" target="_blank">github.com/openai/codex</a>.</p>
+	        <p>Codex CLI is OpenAI's terminal coding agent. Official source and release context lives at <a href="https://github.com/openai/codex" target="_blank">github.com/openai/codex</a>. Copy and run one line at a time.</p>
+	        <h3>Recommended native install</h3>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>npm i -g @openai/codex
-	codex --version
-	codex          <span class="comment"># First run prompts you to sign in</span></code></pre>
+	          <pre><code>curl -fsSL https://chatgpt.com/codex/install.sh | sh</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex --version</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex</code></pre>
+	        </div>
+	        <h3>npm fallback</h3>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>npm i -g @openai/codex</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex --version</code></pre>
 	        </div>
 
 	        <h3>Safe starter config</h3>
-	        <p>Choose your model from the app UI or <code>/model</code> inside Codex. This starter config sets a useful reasoning level and avoids full-machine access by default.</p>
+	        <p>Copy this whole block once. Choose your model from the app UI or <code>/model</code> inside Codex. This starter config sets a useful reasoning level and avoids full-machine access by default.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag config">Config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>mkdir -p ~/.codex
 	cat > ~/.codex/config.toml <<-'TOML'
-	# Pick the model in Codex with /model or the app model menu.
 	model_reasoning_effort = "high"
 	approval_policy = "on-request"
 	sandbox_mode = "workspace-write"
@@ -2077,13 +2388,73 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	    <details>
 	      <summary>4.6 &mdash; Install Workshop Plugins</summary>
 	      <div class="detail-body">
-	        <p>App path: open <strong>Plugins</strong>, browse the marketplace, and install <strong>compound-engineering</strong> and <strong>Vercel</strong>.</p>
-	        <p>CLI path: start Codex and open the plugin marketplace:</p>
+	        <p>Codex plugins can include skills, app integrations, and MCP server configuration. Use the Codex app plugin directory when the plugin is visible there. Use the CLI marketplace command first when a custom marketplace is not visible in the app.</p>
+
+	        <h3>Open the plugin directory in the Codex app</h3>
+	        <ol>
+	          <li>Open the Codex app.</li>
+	          <li>Click <strong>Plugins</strong>.</li>
+	          <li>Browse <strong>Curated by OpenAI</strong>, <strong>Shared with you</strong>, and <strong>Created by you</strong>.</li>
+	          <li>Open a plugin's details page.</li>
+	          <li>Click the plus button or <strong>Add to Codex</strong>.</li>
+	          <li>Start a new thread after installation.</li>
+	        </ol>
+
+	        <h3>Open the plugin directory in Codex CLI</h3>
+	        <p>Copy and run one line at a time.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex</code></pre>
+	        </div>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Codex Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>/plugins</code></pre>
 	        </div>
-	        <div class="callout tip">Prefer the in-app marketplace browser when available. It is easier for non-technical attendees and avoids copy/paste install errors.</div>
+
+	        <h3>Add a custom marketplace from Ghostty</h3>
+	        <p>Use one of these only when a plugin author gives you that kind of source. Copy and run one line at a time.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">GitHub</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex plugin marketplace add owner/repo</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Pinned Ref</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex plugin marketplace add owner/repo --ref main</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Git URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex plugin marketplace add https://github.com/example/plugins.git</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Local</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex plugin marketplace add ./local-marketplace-root</code></pre>
+	        </div>
+
+	        <h3>Compound Engineering in Codex</h3>
+	        <p>Copy and run one line at a time in Ghostty.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex plugin marketplace add EveryInc/compound-engineering-plugin</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>bunx @every-env/compound-plugin install compound-engineering --to codex</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag session">Codex Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>/plugins</code></pre>
+	        </div>
+	        <ol>
+	          <li>In the plugin directory, select the Compound Engineering marketplace.</li>
+	          <li>Open <strong>compound-engineering</strong>.</li>
+	          <li>Select <strong>Install plugin</strong>.</li>
+	          <li>Restart Codex after install completes.</li>
+	        </ol>
+	        <div class="callout tip">Prefer the in-app plugin browser when the plugin is already visible. Use the CLI marketplace command when the marketplace is custom or missing.</div>
 	      </div>
 	    </details>
 
@@ -2091,26 +2462,60 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	    <details>
 	      <summary>4.7 &mdash; Configure MCP Servers</summary>
 	      <div class="detail-body">
-	        <p>Use Codex app <strong>Settings &gt; Integrations & MCP</strong> for graphical setup. For CLI setup, use <code>codex mcp add</code> or edit <code>~/.codex/config.toml</code>.</p>
-	        <p><strong>Excalidraw</strong> (diagram work):</p>
+	        <p>Use Codex app <strong>Settings &gt; Integrations & MCP</strong> for graphical setup. For CLI setup, use <code>codex mcp add</code> or edit <code>~/.codex/config.toml</code>. Copy CLI commands one line at a time.</p>
+	        <h3>Codex app clickpath</h3>
+	        <ol>
+	          <li>Open the Codex app.</li>
+	          <li>Open <strong>Settings</strong> with <code>Cmd + ,</code>.</li>
+	          <li>Click <strong>Integrations &amp; MCP</strong>.</li>
+	          <li>Click <strong>Add MCP server</strong> or the available add button for custom servers.</li>
+	          <li>Enter the server name, command or URL, arguments, and any required environment variables.</li>
+	          <li>Save the server.</li>
+	          <li>Start a new Codex thread and ask Codex to list available MCP tools.</li>
+	        </ol>
+	        <p><strong>Excalidraw official remote MCP</strong> (diagram work):</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex mcp add excalidraw --url https://mcp.excalidraw.com</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>codex mcp list</code></pre>
+	        </div>
+	        <p><strong>Alternative local Excalidraw server</strong> if a tool author gives you a local npm package:</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>codex mcp add excalidraw -- npx -y @scofieldfree/excalidraw-mcp</code></pre>
+	          <pre><code>codex mcp add excalidraw-local -- npx -y @cmd8/excalidraw-mcp</code></pre>
 	        </div>
-	        <p><strong>Manual config shape:</strong></p>
+	        <p><strong>Manual config shape for a local stdio server:</strong></p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag config">Config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>[mcp_servers.excalidraw]
+	          <pre><code>[mcp_servers.excalidraw_local]
 	command = "npx"
-	args = ["-y", "@scofieldfree/excalidraw-mcp"]</code></pre>
+	args = ["-y", "@cmd8/excalidraw-mcp"]</code></pre>
 	        </div>
 	        <div class="callout warn"><strong>Important:</strong> The section name is <code>mcp_servers</code> with an underscore.</div>
 	      </div>
 	    </details>
 
+	    <!-- 4.8 Agent Setup -->
+	    <details>
+	      <summary>4.8 &mdash; OpenClaw / Hermes Agent Setup</summary>
+	      <div class="detail-body">
+	        <div class="callout warn">
+	          <strong>Install the app or CLI first.</strong> OpenClaw, Hermes, or any other agent can help configure Codex only after the Codex app or Codex CLI is installed and signed in on this Mac.
+	        </div>
+	        <p>Paste this whole prompt into your OpenClaw or Hermes agent if you want it to help finish Codex setup:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag prompt">Agent Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>Help me prepare Codex for the AI for Ecommerce Workshop. First verify whether the Codex app or Codex CLI is installed and signed in. Do not proceed if neither is installed. Then configure Codex for the workshop: verify model, reasoning effort, approval policy, sandbox mode, GitHub access, plugin marketplaces, installed plugins, skills, MCP servers, browser tools, and Computer Use. Register the EveryInc/compound-engineering-plugin marketplace if it is missing, run the Compound Engineering Codex agent installer if Bun is available, guide me through installing compound-engineering from the Codex plugin directory, configure Excalidraw MCP using https://mcp.excalidraw.com if supported, and report what is ready versus missing. Ask before changing broad permissions or touching folders with secrets, customer data, financial exports, or production credentials.</code></pre>
+	        </div>
+	      </div>
+	    </details>
+
 	    <!-- 4.8 Remote Control -->
 	    <details>
-	      <summary>4.8 &mdash; Remote Control</summary>
+	      <summary>4.9 &mdash; Remote Control</summary>
 	      <div class="detail-body">
 	        <p>Remote Control lets you start, steer, approve, and review Codex work from a connected device. In team/workspace environments, admins may need to enable this permission.</p>
 	        <div class="code-wrap">
@@ -2122,12 +2527,12 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 
 	    <!-- 4.9 Verify -->
 	    <details>
-	      <summary>4.9 &mdash; Verify Codex Setup</summary>
+	      <summary>4.10 &mdash; Verify Codex Setup</summary>
 	      <div class="detail-body">
-	        <p>Run this inside Codex app or Codex CLI:</p>
+	        <p>Run this at the bottom of your setup pass inside the Codex app or Codex CLI:</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Codex</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>What plugins, skills, MCP servers, browser tools, computer-use permissions, GitHub access, model, and approval settings are available in this session?</code></pre>
+	          <pre><code>Verify my Codex workshop setup. Confirm the active model, reasoning effort, approval policy, sandbox mode, plugin marketplaces, installed plugins, skills, MCP servers, browser tools, Computer Use, Chrome plugin, GitHub access, and remote-control status. Specifically check for compound-engineering, Vercel, SignalSweep, SkillForge, Everlearn, Excalidraw MCP, Playwright MCP if configured, and GitHub. For anything missing, give me the exact clickpath or single command to fix it.</code></pre>
 	        </div>
 	        <p>You should see: GitHub connected, Chrome plugin or browser use, Computer Use if enabled, Vercel and compound-engineering plugins if installed, and any workshop skills installed from the SignalSweep, SkillForge, and Everlearn tabs.</p>
 	      </div>
@@ -2137,9 +2542,14 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	      <a href="https://developers.openai.com/codex/app" target="_blank">Codex app docs</a>
 	      <a href="https://developers.openai.com/codex/cli" target="_blank">Codex CLI docs</a>
 	      <a href="https://github.com/openai/codex" target="_blank">OpenAI Codex repo</a>
+	      <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex plugins</a>
+	      <a href="https://developers.openai.com/codex/plugins/build" target="_blank">Codex custom marketplaces</a>
+	      <a href="https://developers.openai.com/learn/docs-mcp" target="_blank">Codex MCP CLI example</a>
 	      <a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Codex Computer Use</a>
 	      <a href="https://developers.openai.com/codex/app/chrome-extension" target="_blank">Codex Chrome extension</a>
 	      <a href="https://developers.openai.com/codex/app/settings" target="_blank">Codex settings</a>
+	      <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">Compound Engineering plugin</a>
+	      <a href="https://github.com/excalidraw/excalidraw-mcp" target="_blank">Excalidraw MCP</a>
 	    </div>
 	  </div>
 
@@ -2966,16 +3376,18 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	    </div>
 
     <div class="checklist-group">
-      <div class="checklist-group-title">Claude Code</div>
+      <div class="checklist-group-title">Claude Desktop / Claude Code</div>
       <ul class="checklist">
         <li><input type="checkbox" data-key="prereq-brew"><span><code>brew --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-git"><span><code>git --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-node"><span><code>node --version</code> shows v18.x or higher</span></li>
 	        <li><input type="checkbox" data-key="prereq-python"><span><code>python3.12 --version</code> returns a version number</span></li>
+	        <li><input type="checkbox" data-key="prereq-bun"><span>Optional for Codex Compound Engineering agents: <code>bun --version</code> returns a version number</span></li>
 	        <li><input type="checkbox" data-key="prereq-tmux"><span><code>tmux -V</code> returns a version number</span></li>
 	        <li><input type="checkbox" data-key="cc-desktop-code"><span>Claude Desktop Code tab opens a Local session</span></li>
 	        <li><input type="checkbox" data-key="cc-mode"><span>Claude model, effort, and permission mode reviewed</span></li>
 	        <li><input type="checkbox" data-key="cc-version"><span>Optional CLI: <code>claude --version</code> returns a version number</span></li>
+	        <li><input type="checkbox" data-key="cc-marketplace-compound"><span>Claude custom marketplace added: <code>EveryInc/compound-engineering-plugin</code></span></li>
 	        <li><input type="checkbox" data-key="cc-compound"><span>compound-engineering plugin installed</span></li>
 	        <li><input type="checkbox" data-key="cc-vercel"><span>Vercel plugin installed</span></li>
 	        <li><input type="checkbox" data-key="cc-signalsweep"><span>SignalSweep public workshop skill installed and free-key template created</span></li>
@@ -2983,7 +3395,7 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
         <li><input type="checkbox" data-key="cc-grill-me"><span>grill-me skill installed</span></li>
         <li><input type="checkbox" data-key="cc-goal"><span>Goal skill installed</span></li>
 	        <li><input type="checkbox" data-key="cc-skillforge"><span>SkillForge installed (<code>/skillforge</code> is available after restart)</span></li>
-	        <li><input type="checkbox" data-key="cc-excalidraw"><span>Excalidraw MCP configured</span></li>
+	        <li><input type="checkbox" data-key="cc-excalidraw"><span>Excalidraw MCP configured with extension or <code>https://mcp.excalidraw.com</code></span></li>
 	        <li><input type="checkbox" data-key="cc-playwright"><span>Playwright MCP configured</span></li>
 	        <li><input type="checkbox" data-key="cc-desktop-skills"><span>Claude Desktop Customize &gt; Skills reviewed for app-level skills</span></li>
 	        <li><input type="checkbox" data-key="cc-desktop-ext"><span>Claude Desktop Settings &gt; Extensions reviewed for MCP desktop extensions</span></li>
@@ -3001,13 +3413,15 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
 	        <li><input type="checkbox" data-key="cx-settings"><span>Codex model, reasoning effort, approval, sandbox, and personalization settings reviewed</span></li>
 	        <li><input type="checkbox" data-key="cx-version"><span>Optional CLI: <code>codex --version</code> returns a version number</span></li>
 	        <li><input type="checkbox" data-key="cx-github"><span>GitHub connector authorized (Settings &gt; Apps)</span></li>
+	        <li><input type="checkbox" data-key="cx-marketplace-compound"><span>Codex custom marketplace added: <code>EveryInc/compound-engineering-plugin</code></span></li>
+	        <li><input type="checkbox" data-key="cx-compound-agents"><span>Compound Engineering Codex agents installed with <code>bunx @every-env/compound-plugin install compound-engineering --to codex</code></span></li>
 	        <li><input type="checkbox" data-key="cx-compound"><span>compound-engineering plugin installed</span></li>
 	        <li><input type="checkbox" data-key="cx-computer"><span>Computer Use installed (Codex app &gt; Settings)</span></li>
 	        <li><input type="checkbox" data-key="cx-chrome"><span>Codex in Chrome extension installed</span></li>
 	        <li><input type="checkbox" data-key="cx-vercel"><span>Vercel plugin installed (via <code>/plugins</code>)</span></li>
 	        <li><input type="checkbox" data-key="cx-mcp-settings"><span>Codex Settings &gt; Integrations &amp; MCP reviewed</span></li>
 	        <li><input type="checkbox" data-key="cx-skillforge"><span>SkillForge installed in Codex (<code>~/.codex/skills/skillforge</code> exists)</span></li>
-	        <li><input type="checkbox" data-key="cx-excalidraw"><span>Excalidraw MCP configured</span></li>
+	        <li><input type="checkbox" data-key="cx-excalidraw"><span>Excalidraw MCP configured with <code>https://mcp.excalidraw.com</code> or a local Excalidraw MCP server</span></li>
 	        <li><input type="checkbox" data-key="cx-remote"><span>Remote Control tested (<code>codex remote-control</code> starts)</span></li>
 	      </ul>
 	    </div>
@@ -3055,9 +3469,9 @@ curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/i
     <div class="checklist-group">
       <div class="checklist-group-title">Smoke Tests</div>
       <ul class="checklist">
-        <li><input type="checkbox" data-key="smoke-prereqs"><span><code>brew --version && git --version && node --version && npm --version && gh auth status && tmux -V</code> &mdash; all return versions</span></li>
-	        <li><input type="checkbox" data-key="smoke-claude"><span>In Claude: setup verification prompt lists available plugins, skills, connectors, MCP servers, browser tools, and computer-use status</span></li>
-	        <li><input type="checkbox" data-key="smoke-codex"><span>In Codex: setup verification prompt lists available plugins, skills, MCP servers, browser tools, computer-use status, model, and approval settings</span></li>
+        <li><input type="checkbox" data-key="smoke-prereqs"><span>Prerequisite verification block runs without unexpected errors</span></li>
+	        <li><input type="checkbox" data-key="smoke-claude"><span>In Claude: top and bottom setup verification prompts list available plugin marketplaces, plugins, skills, connectors, MCP servers, browser tools, and computer-use status</span></li>
+	        <li><input type="checkbox" data-key="smoke-codex"><span>In Codex: top and bottom setup verification prompts list plugin marketplaces, plugins, skills, MCP servers, browser tools, computer-use status, model, reasoning effort, approval policy, and sandbox mode</span></li>
 	      </ul>
     </div>
   </div>
