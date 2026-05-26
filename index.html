@@ -1324,7 +1324,8 @@ git --version
 node --version
 npm --version
 python3.12 --version
-gh auth status</code></pre>
+gh auth status
+vercel --version</code></pre>
 	    </div>
 
 	    <div class="path-grid">
@@ -1349,6 +1350,43 @@ gh auth status</code></pre>
 	        </ul>
 	      </div>
 	    </div>
+
+	    <details open style="margin-bottom: 20px;">
+	      <summary>Verified GitHub URLs for agent-assisted setup</summary>
+	      <div class="detail-body">
+	        <p>If a one-line install fails, paste the relevant GitHub URL into Claude Desktop, Claude Code, Codex app, or Codex CLI and ask it to inspect the current README before installing. These sources were checked against the public repos on May 26, 2026.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag prompt">Agent Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>Help me install this AI for Ecommerce Workshop prerequisite from the official GitHub source. First read the repo README, releases, and install docs. Then explain the exact install path for Claude Desktop, Claude Code CLI, Codex app, or Codex CLI on my Mac. Ask before changing broad permissions, installing untrusted binaries, touching secrets, or editing files outside the workshop setup folders.</code></pre>
+	        </div>
+	        <div class="table-wrap">
+	          <table class="accounts-table">
+	            <thead>
+	              <tr><th>Prerequisite</th><th>GitHub source URL</th><th>Install note</th></tr>
+	            </thead>
+	            <tbody>
+	              <tr><td><strong>Claude Code CLI</strong></td><td><a href="https://github.com/anthropics/claude-code" target="_blank">github.com/anthropics/claude-code</a></td><td>Use <code>curl -fsSL https://claude.ai/install.sh | bash</code> or <code>brew install --cask claude-code</code>; npm is deprecated.</td></tr>
+	              <tr><td><strong>OpenAI Codex CLI / app</strong></td><td><a href="https://github.com/openai/codex" target="_blank">github.com/openai/codex</a></td><td>Use the README install script, npm, Homebrew cask, or GitHub releases.</td></tr>
+	              <tr><td><strong>Codex plugin examples</strong></td><td><a href="https://github.com/openai/plugins" target="_blank">github.com/openai/plugins</a></td><td>Reference repo for Codex plugin bundle structure and curated plugin examples.</td></tr>
+	              <tr><td><strong>Compound Engineering plugin</strong></td><td><a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">github.com/EveryInc/compound-engineering-plugin</a></td><td>Claude: add marketplace, then <code>/plugin install compound-engineering</code>. Codex: add marketplace, run the Bun agent installer, then install from <code>/plugins</code>.</td></tr>
+	              <tr><td><strong>Vercel Claude deploy plugin</strong></td><td><a href="https://github.com/vercel/vercel-deploy-claude-code-plugin" target="_blank">github.com/vercel/vercel-deploy-claude-code-plugin</a> and <a href="https://github.com/anthropics/claude-plugins-official" target="_blank">github.com/anthropics/claude-plugins-official</a></td><td>Claude Code command: <code>/plugin install vercel@claude-plugins-official</code>.</td></tr>
+	              <tr><td><strong>Vercel ecosystem plugin</strong></td><td><a href="https://github.com/vercel/vercel-plugin" target="_blank">github.com/vercel/vercel-plugin</a> and <a href="https://github.com/openai/plugins/tree/main/plugins/vercel" target="_blank">openai/plugins/plugins/vercel</a></td><td>Claude source install uses <code>npx plugins add vercel/vercel-plugin</code>; Codex uses the packaged Vercel plugin from the Codex plugin directory.</td></tr>
+	              <tr><td><strong>Vercel CLI</strong></td><td><a href="https://github.com/vercel/vercel/tree/main/packages/cli" target="_blank">github.com/vercel/vercel/packages/cli</a></td><td>Required by the Vercel deploy plugin: <code>npm install -g vercel</code> then <code>vercel login</code>.</td></tr>
+	              <tr><td><strong>Excalidraw MCP</strong></td><td><a href="https://github.com/excalidraw/excalidraw-mcp" target="_blank">github.com/excalidraw/excalidraw-mcp</a></td><td>Recommended remote MCP URL: <code>https://mcp.excalidraw.com</code>.</td></tr>
+	              <tr><td><strong>Playwright MCP</strong></td><td><a href="https://github.com/microsoft/playwright-mcp" target="_blank">github.com/microsoft/playwright-mcp</a></td><td>Claude and Codex use <code>npx @playwright/mcp@latest</code>.</td></tr>
+	              <tr><td><strong>SignalSweep</strong></td><td><a href="https://github.com/tripleyak/signalsweep-open" target="_blank">github.com/tripleyak/signalsweep-open</a></td><td>Workshop public package and macOS installer.</td></tr>
+	              <tr><td><strong>Autoresearch starter kit</strong></td><td><a href="https://github.com/tripleyak/ai-for-ecommerce-workshop/tree/main/autoresearch-starter-kit" target="_blank">workshop starter kit</a> and <a href="https://github.com/miolini/autoresearch-macos" target="_blank">github.com/miolini/autoresearch-macos</a></td><td>Use the workshop installer on this site; the upstream repo is the workflow reference.</td></tr>
+	              <tr><td><strong>SkillForge</strong></td><td><a href="https://github.com/tripleyak/SkillForge" target="_blank">github.com/tripleyak/SkillForge</a></td><td>Workshop installer installs the skill into Claude, Codex, and shared local skill folders.</td></tr>
+	              <tr><td><strong>Everlearn</strong></td><td><a href="https://github.com/tripleyak/everlearn" target="_blank">github.com/tripleyak/everlearn</a></td><td>Workshop installer installs the ecommerce profile, local command, vault, and Claude/Codex skill files.</td></tr>
+	              <tr><td><strong>grill-me / grill-with-docs</strong></td><td><a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a></td><td>README quickstart: <code>npx skills@latest add mattpocock/skills</code>.</td></tr>
+	              <tr><td><strong>Goal skill</strong></td><td><a href="https://github.com/jthack/claude-goal" target="_blank">github.com/jthack/claude-goal</a></td><td>Clone the repo and run <code>./install.sh</code>.</td></tr>
+	              <tr><td><strong>Core command-line tools</strong></td><td><a href="https://github.com/Homebrew/brew" target="_blank">Homebrew</a>, <a href="https://github.com/cli/cli" target="_blank">GitHub CLI</a>, <a href="https://github.com/ghostty-org/ghostty" target="_blank">Ghostty</a>, <a href="https://github.com/oven-sh/bun" target="_blank">Bun</a>, <a href="https://github.com/nodejs/node" target="_blank">Node.js</a>, <a href="https://github.com/python/cpython" target="_blank">Python</a></td><td>Use the normal installer commands on this page unless an agent is troubleshooting a failed install.</td></tr>
+	              <tr><td><strong>Claude in Chrome, Codex Chrome, and Computer Use</strong></td><td>No public GitHub source repo surfaced in the official setup docs.</td><td>Install these from the app settings or Chrome Web Store links on the Claude and Codex tabs.</td></tr>
+	            </tbody>
+	          </table>
+	        </div>
+	      </div>
+	    </details>
 
 	    <details style="margin-bottom: 20px;">
 	      <summary>First time using Terminal or Ghostty? Start here.</summary>
@@ -1419,6 +1457,21 @@ gh auth status</code></pre>
     </div>
     <p>When prompted, choose <strong>GitHub.com</strong>, <strong>HTTPS</strong>, and <strong>Authenticate via browser</strong>.</p>
 
+    <h3>Core Tool 6: Vercel CLI</h3>
+    <p>Copy and run one line at a time. The Vercel deploy plugin expects the Vercel CLI to be installed and logged in.</p>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>npm install -g vercel</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>vercel --version</code></pre>
+    </div>
+    <div class="code-wrap">
+      <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+      <pre><code>vercel login</code></pre>
+    </div>
+
     <h3>Obsidian</h3>
     <p>Obsidian is your personal second brain &mdash; we'll connect it to our research tools during the workshop.</p>
     <div class="step"><span class="step-num">1</span><div class="step-body"><p>Download from <a href="https://obsidian.md" target="_blank">obsidian.md</a></p></div></div>
@@ -1477,7 +1530,8 @@ git --version
 node --version
 npm --version
 python3.12 --version
-gh auth status</code></pre>
+gh auth status
+vercel --version</code></pre>
 	    </div>
 	    <h4>Optional CLI checks</h4>
 	    <div class="code-wrap">
@@ -1647,10 +1701,15 @@ bun --version</code></pre>
 	    <details>
 	      <summary>3.2 &mdash; Optional: Claude Code CLI in Ghostty</summary>
 	      <div class="detail-body">
-	        <p>Open Ghostty, then install Claude Code. Copy and run one line at a time.</p>
+	        <p>Open Ghostty, then install Claude Code. The official repo lists the curl installer and Homebrew cask as current macOS options. Copy and run one line at a time.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+	        </div>
+	        <p>Homebrew alternative from the official repo:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>brew install --cask claude-code</code></pre>
 	        </div>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
@@ -1664,7 +1723,7 @@ bun --version</code></pre>
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>claude</code></pre>
 	        </div>
-	        <p>Fallback if the native installer does not work:</p>
+	        <p>Deprecated npm fallback if the current installer paths are blocked:</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Fallback</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
@@ -1716,13 +1775,29 @@ bun --version</code></pre>
 	        <h3>Install Compound Engineering</h3>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>/plugin install compound-engineering@compound-engineering-plugin</code></pre>
+	          <pre><code>/plugin install compound-engineering</code></pre>
 	        </div>
 
 	        <h3>Install Vercel from the official marketplace</h3>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag session">Claude Session</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>/plugin install vercel@claude-plugins-official</code></pre>
+	        </div>
+	        <p>The Vercel deploy plugin also expects the Vercel CLI and a logged-in Vercel account.</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>npm install -g vercel</code></pre>
+	        </div>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>vercel login</code></pre>
+	        </div>
+
+	        <h3>Optional full Vercel ecosystem plugin source</h3>
+	        <p>If you want an agent to install the broader Vercel skill library instead of only the simple deploy plugin, give it the official source repo:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag config">GitHub URL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>https://github.com/vercel/vercel-plugin</code></pre>
 	        </div>
 
 	        <h3>If the official marketplace is missing or stale</h3>
@@ -1778,7 +1853,12 @@ bun --version</code></pre>
 	        <p><strong>Claude Code local skills:</strong> skills live in <code>~/.claude/skills/</code> for personal skills or <code>.claude/skills/</code> for project skills.</p>
 
 	        <p><strong>grill-with-docs & grill-me</strong> (stress-test plans and designs &mdash; <a href="https://github.com/mattpocock/skills" target="_blank">github.com/mattpocock/skills</a>):</p>
-	        <p>Copy and run one line at a time in Ghostty or Terminal.</p>
+	        <p>Recommended by the repo README:</p>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>npx skills@latest add mattpocock/skills</code></pre>
+	        </div>
+	        <p>Pick <strong>grill-me</strong>, <strong>grill-with-docs</strong>, and <strong>setup-matt-pocock-skills</strong> when the installer asks which skills to add. If the npx installer fails, use the repo fallback below.</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>cd ~/Projects</code></pre>
@@ -1860,7 +1940,7 @@ bun --version</code></pre>
 	        <p><strong>Playwright</strong> (browser automation for local app testing):</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>claude mcp add playwright -- npx @playwright/mcp@latest</code></pre>
+	          <pre><code>claude mcp add playwright npx @playwright/mcp@latest</code></pre>
 	        </div>
 
 	        <p><strong>Claude in Chrome</strong> (browser automation via your real Chrome):</p>
@@ -1880,7 +1960,7 @@ bun --version</code></pre>
 	        <p>Paste this whole prompt into your OpenClaw or Hermes agent if you want it to help finish Claude setup:</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag prompt">Agent Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>Help me prepare Claude for the AI for Ecommerce Workshop. First verify whether Claude Desktop or Claude Code CLI is installed and signed in. Do not proceed if neither is installed. Then configure Claude for the workshop: verify model and permission settings, add the EveryInc/compound-engineering-plugin marketplace, install compound-engineering, install the Vercel plugin from claude-plugins-official, verify available skills, configure Excalidraw MCP using https://mcp.excalidraw.com if supported, verify Playwright MCP if requested, confirm browser and computer-use permissions, and report what is ready versus missing. Ask before changing broad permissions or touching folders with secrets, customer data, financial exports, or production credentials.</code></pre>
+	          <pre><code>Help me prepare Claude for the AI for Ecommerce Workshop. First verify whether Claude Desktop or Claude Code CLI is installed and signed in. Do not proceed if neither is installed. Then configure Claude for the workshop using the official source repos where needed: https://github.com/anthropics/claude-code, https://github.com/EveryInc/compound-engineering-plugin, https://github.com/vercel/vercel-deploy-claude-code-plugin, https://github.com/anthropics/claude-plugins-official, https://github.com/excalidraw/excalidraw-mcp, https://github.com/microsoft/playwright-mcp, https://github.com/tripleyak/signalsweep-open, https://github.com/tripleyak/SkillForge, https://github.com/tripleyak/everlearn, https://github.com/mattpocock/skills, and https://github.com/jthack/claude-goal. Verify model and permission settings, add the EveryInc/compound-engineering-plugin marketplace, install compound-engineering, install the Vercel plugin from claude-plugins-official, verify available skills, configure Excalidraw MCP using https://mcp.excalidraw.com if supported, verify Playwright MCP if requested, confirm browser and computer-use permissions, and report what is ready versus missing. Ask before changing broad permissions or touching folders with secrets, customer data, financial exports, or production credentials.</code></pre>
 	        </div>
 	      </div>
 	    </details>
@@ -1918,13 +1998,23 @@ bun --version</code></pre>
 	    <div class="source-list">
 	      <a href="https://code.claude.com/docs/en/desktop" target="_blank">Claude Desktop Code docs</a>
 	      <a href="https://code.claude.com/docs/en/getting-started" target="_blank">Claude Code install docs</a>
+	      <a href="https://github.com/anthropics/claude-code" target="_blank">Claude Code GitHub repo</a>
 	      <a href="https://code.claude.com/docs/en/settings" target="_blank">Claude Code settings</a>
 	      <a href="https://code.claude.com/docs/en/discover-plugins" target="_blank">Claude plugin marketplaces</a>
 	      <a href="https://claude.com/docs/cowork/guide/plugins" target="_blank">Claude Desktop plugin install</a>
 	      <a href="https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop" target="_blank">Claude Desktop MCP extensions</a>
 	      <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank">Claude Skills</a>
 	      <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">Compound Engineering plugin</a>
+	      <a href="https://github.com/anthropics/claude-plugins-official" target="_blank">Claude official plugin marketplace</a>
+	      <a href="https://github.com/vercel/vercel-deploy-claude-code-plugin" target="_blank">Vercel Claude deploy plugin</a>
+	      <a href="https://github.com/vercel/vercel-plugin" target="_blank">Vercel ecosystem plugin</a>
 	      <a href="https://github.com/excalidraw/excalidraw-mcp" target="_blank">Excalidraw MCP</a>
+	      <a href="https://github.com/microsoft/playwright-mcp" target="_blank">Playwright MCP</a>
+	      <a href="https://github.com/tripleyak/signalsweep-open" target="_blank">SignalSweep</a>
+	      <a href="https://github.com/tripleyak/SkillForge" target="_blank">SkillForge</a>
+	      <a href="https://github.com/tripleyak/everlearn" target="_blank">Everlearn</a>
+	      <a href="https://github.com/mattpocock/skills" target="_blank">grill-me / grill-with-docs</a>
+	      <a href="https://github.com/jthack/claude-goal" target="_blank">Goal skill</a>
 	    </div>
 	  </div>
 
@@ -1944,6 +2034,10 @@ bun --version</code></pre>
       <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/signalsweep-open/v3.28.4/scripts/install_workshop.sh | bash</code></pre>
     </div>
     <p style="color: var(--text-muted); font-size: 0.85rem;">This downloads the public <code>signalsweep-open.skill</code>, verifies checksum <code>db4a060a3642b6160d8f61e4ccf5c16512b73a7baab59730330b146f73d013de</code>, installs it into Claude and Codex local skill folders, and creates the free public-key template.</p>
+    <div class="source-list">
+      <a href="https://github.com/tripleyak/signalsweep-open" target="_blank">SignalSweep GitHub repo</a>
+      <a href="https://github.com/tripleyak/signalsweep-open/releases/download/v3.28.4/signalsweep-open.skill" target="_blank">SignalSweep .skill release</a>
+    </div>
 
     <h3>2. Restart Your AI Apps</h3>
     <p>Quit and reopen Claude Desktop, Claude Code CLI, the Codex app, or Codex CLI after installing. Skills load when a new session starts.</p>
@@ -2069,6 +2163,10 @@ bun --version</code></pre>
       <a class="cta-btn" href="autoresearch-starter-kit.zip" download>Download ZIP Backup</a>
       <a class="cta-btn" href="https://github.com/tripleyak/ai-for-ecommerce-workshop/tree/main/autoresearch-starter-kit" target="_blank" style="margin-left: 8px;">View Starter Kit Source</a>
     </p>
+    <div class="source-list">
+      <a href="https://github.com/tripleyak/ai-for-ecommerce-workshop/tree/main/autoresearch-starter-kit" target="_blank">Autoresearch starter kit repo folder</a>
+      <a href="https://github.com/miolini/autoresearch-macos" target="_blank">autoresearch-macos reference repo</a>
+    </div>
 
     <h3>4. The Autoresearch Pattern</h3>
     <div class="table-wrap">
@@ -2175,6 +2273,10 @@ Dog Ramp,2026-04-06,157,79,1460,72,0</code></pre>
     <div class="code-wrap">
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/SkillForge/main/scripts/install_workshop.sh | bash</code></pre>
+    </div>
+    <div class="source-list">
+      <a href="https://github.com/tripleyak/SkillForge" target="_blank">SkillForge GitHub repo</a>
+      <a href="https://github.com/tripleyak/SkillForge/blob/main/scripts/install_workshop.sh" target="_blank">SkillForge installer source</a>
     </div>
 
     <h3>2. Verify The Install</h3>
@@ -2330,6 +2432,11 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>npm i -g @openai/codex</code></pre>
 	        </div>
+	        <h3>Homebrew fallback</h3>
+	        <div class="code-wrap">
+	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+	          <pre><code>brew install --cask codex</code></pre>
+	        </div>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>codex --version</code></pre>
@@ -2422,6 +2529,15 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	          <pre><code>/plugins</code></pre>
 	        </div>
 
+	        <h3>Codex plugin source URLs</h3>
+	        <p>If a plugin is missing from the app directory, give Codex the source URL and ask it to inspect the current README before installing.</p>
+	        <div class="source-list">
+	          <a href="https://github.com/openai/plugins" target="_blank">OpenAI plugin examples</a>
+	          <a href="https://github.com/openai/plugins/tree/main/plugins/vercel" target="_blank">Codex Vercel plugin package</a>
+	          <a href="https://github.com/vercel/vercel-plugin" target="_blank">Vercel upstream plugin</a>
+	          <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">Compound Engineering plugin</a>
+	        </div>
+
 	        <h3>Add a custom marketplace from Ghostty</h3>
 	        <p>Use one of these only when a plugin author gives you that kind of source. Copy and run one line at a time.</p>
 	        <div class="code-wrap">
@@ -2493,17 +2609,21 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	          <div class="code-label"><span class="code-tag terminal">Ghostty</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
 	          <pre><code>codex mcp list</code></pre>
 	        </div>
-	        <p><strong>Alternative local Excalidraw server</strong> if a tool author gives you a local npm package:</p>
+	        <p><strong>Playwright MCP</strong> (browser automation for local app testing):</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>codex mcp add excalidraw-local -- npx -y @cmd8/excalidraw-mcp</code></pre>
+	          <pre><code>codex mcp add playwright npx "@playwright/mcp@latest"</code></pre>
 	        </div>
-	        <p><strong>Manual config shape for a local stdio server:</strong></p>
+	        <p><strong>Manual config shape for Playwright:</strong></p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag config">Config</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>[mcp_servers.excalidraw_local]
+	          <pre><code>[mcp_servers.playwright]
 	command = "npx"
-	args = ["-y", "@cmd8/excalidraw-mcp"]</code></pre>
+	args = ["@playwright/mcp@latest"]</code></pre>
+	        </div>
+	        <div class="source-list">
+	          <a href="https://github.com/excalidraw/excalidraw-mcp" target="_blank">Excalidraw MCP GitHub repo</a>
+	          <a href="https://github.com/microsoft/playwright-mcp" target="_blank">Playwright MCP GitHub repo</a>
 	        </div>
 	        <div class="callout warn"><strong>Important:</strong> The section name is <code>mcp_servers</code> with an underscore.</div>
 	      </div>
@@ -2519,7 +2639,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	        <p>Paste this whole prompt into your OpenClaw or Hermes agent if you want it to help finish Codex setup:</p>
 	        <div class="code-wrap">
 	          <div class="code-label"><span class="code-tag prompt">Agent Prompt</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
-	          <pre><code>Help me prepare Codex for the AI for Ecommerce Workshop. First verify whether the Codex app or Codex CLI is installed and signed in. Do not proceed if neither is installed. Then configure Codex for the workshop: verify model, reasoning effort, approval policy, sandbox mode, GitHub access, plugin marketplaces, installed plugins, skills, MCP servers, browser tools, and Computer Use. Register the EveryInc/compound-engineering-plugin marketplace if it is missing, run the Compound Engineering Codex agent installer if Bun is available, guide me through installing compound-engineering from the Codex plugin directory, configure Excalidraw MCP using https://mcp.excalidraw.com if supported, and report what is ready versus missing. Ask before changing broad permissions or touching folders with secrets, customer data, financial exports, or production credentials.</code></pre>
+	          <pre><code>Help me prepare Codex for the AI for Ecommerce Workshop. First verify whether the Codex app or Codex CLI is installed and signed in. Do not proceed if neither is installed. Then configure Codex for the workshop using official source repos where needed: https://github.com/openai/codex, https://github.com/openai/plugins, https://github.com/openai/plugins/tree/main/plugins/vercel, https://github.com/vercel/vercel-plugin, https://github.com/EveryInc/compound-engineering-plugin, https://github.com/excalidraw/excalidraw-mcp, https://github.com/microsoft/playwright-mcp, https://github.com/tripleyak/signalsweep-open, https://github.com/tripleyak/SkillForge, and https://github.com/tripleyak/everlearn. Verify model, reasoning effort, approval policy, sandbox mode, GitHub access, plugin marketplaces, installed plugins, skills, MCP servers, browser tools, and Computer Use. Register the EveryInc/compound-engineering-plugin marketplace if it is missing, run the Compound Engineering Codex agent installer if Bun is available, guide me through installing compound-engineering from the Codex plugin directory, configure Excalidraw MCP using https://mcp.excalidraw.com if supported, configure Playwright MCP if requested, and report what is ready versus missing. Ask before changing broad permissions or touching folders with secrets, customer data, financial exports, or production credentials.</code></pre>
 	        </div>
 	      </div>
 	    </details>
@@ -2555,12 +2675,19 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 	      <a href="https://github.com/openai/codex" target="_blank">OpenAI Codex repo</a>
 	      <a href="https://developers.openai.com/codex/plugins" target="_blank">Codex plugins</a>
 	      <a href="https://developers.openai.com/codex/plugins/build" target="_blank">Codex custom marketplaces</a>
+	      <a href="https://github.com/openai/plugins" target="_blank">OpenAI plugin examples</a>
+	      <a href="https://github.com/openai/plugins/tree/main/plugins/vercel" target="_blank">Codex Vercel plugin package</a>
+	      <a href="https://github.com/vercel/vercel-plugin" target="_blank">Vercel upstream plugin</a>
 	      <a href="https://developers.openai.com/learn/docs-mcp" target="_blank">Codex MCP CLI example</a>
 	      <a href="https://developers.openai.com/codex/app/computer-use" target="_blank">Codex Computer Use</a>
 	      <a href="https://developers.openai.com/codex/app/chrome-extension" target="_blank">Codex Chrome extension</a>
 	      <a href="https://developers.openai.com/codex/app/settings" target="_blank">Codex settings</a>
 	      <a href="https://github.com/EveryInc/compound-engineering-plugin" target="_blank">Compound Engineering plugin</a>
 	      <a href="https://github.com/excalidraw/excalidraw-mcp" target="_blank">Excalidraw MCP</a>
+	      <a href="https://github.com/microsoft/playwright-mcp" target="_blank">Playwright MCP</a>
+	      <a href="https://github.com/tripleyak/signalsweep-open" target="_blank">SignalSweep</a>
+	      <a href="https://github.com/tripleyak/SkillForge" target="_blank">SkillForge</a>
+	      <a href="https://github.com/tripleyak/everlearn" target="_blank">Everlearn</a>
 	    </div>
 	  </div>
 
@@ -3297,6 +3424,10 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
       <div class="code-label"><span class="code-tag terminal">Terminal</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
       <pre><code>curl -fsSL https://raw.githubusercontent.com/tripleyak/everlearn/v2026-05-27-workshop/scripts/install.sh | bash -s -- --ref v2026-05-27-workshop --profile ecommerce</code></pre>
     </div>
+    <div class="source-list">
+      <a href="https://github.com/tripleyak/everlearn" target="_blank">Everlearn GitHub repo</a>
+      <a href="https://github.com/tripleyak/everlearn/blob/v2026-05-27-workshop/scripts/install.sh" target="_blank">Everlearn installer source</a>
+    </div>
 
     <h3>2. Manual ZIP Install</h3>
     <p>Prefer this if you want to download the workshop package first, then run setup yourself.</p>
@@ -3401,7 +3532,8 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
         <li><input type="checkbox" data-key="prereq-brew"><span><code>brew --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-git"><span><code>git --version</code> returns a version number</span></li>
         <li><input type="checkbox" data-key="prereq-node"><span><code>node --version</code> shows v18.x or higher</span></li>
-	        <li><input type="checkbox" data-key="prereq-python"><span><code>python3.12 --version</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="prereq-python"><span><code>python3.12 --version</code> returns a version number</span></li>
+        <li><input type="checkbox" data-key="prereq-vercel-cli"><span><code>vercel --version</code> returns a version number and <code>vercel login</code> is complete</span></li>
 	        <li><input type="checkbox" data-key="prereq-bun"><span>Optional for Codex Compound Engineering agents: <code>bun --version</code> returns a version number</span></li>
 	        <li><input type="checkbox" data-key="prereq-tmux"><span><code>tmux -V</code> returns a version number</span></li>
 	        <li><input type="checkbox" data-key="cc-desktop-code"><span>Claude Desktop Code tab opens a Local session</span></li>
@@ -3602,7 +3734,7 @@ test -f ~/.claude/commands/skillforge.md</code></pre>
 </div>
 
 <div style="text-align: center; padding: 40px 24px; color: var(--text-muted); font-size: 0.8rem;">
-  Last updated: May 25, 2026
+  Last updated: May 26, 2026
 </div>
 
 <script>
